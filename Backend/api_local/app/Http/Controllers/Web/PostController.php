@@ -97,6 +97,7 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->post->delete($id);
+        return view('post.post');
     }
 }

@@ -66,7 +66,7 @@ export default function ComPost() {
             'comment': addcomm
         }
 
-        Axios.post(api + 'comments/addComment/' + param,data)
+        Axios.post(api + 'comments/addComment/' + param, data)
             .then(res => {
                 console.log(res)
                 setTimeout(() => {
@@ -81,7 +81,7 @@ export default function ComPost() {
 
     return (
         <React.Fragment>
-            <br/>
+            <br />
 
             <Card className={classes.card}>
                 <CardActionArea>
@@ -116,6 +116,7 @@ export default function ComPost() {
                 ))}
 
             </Card>
+
         </React.Fragment>
     )
 }

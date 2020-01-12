@@ -42,6 +42,8 @@ export default function ComIndex() {
     const [title, setTitle] = React.useState('')
     const [desc, setDesc] = React.useState('')
 
+    const [del, setDel] = React.useState('')
+
     let ApiUrl = 'http://127.0.0.1:8000/'
 
     React.useEffect(() => {
@@ -56,15 +58,26 @@ export default function ComIndex() {
             })
     }, [])
 
+    const deletePost = (id) => {
+
+        Axios.delete(ApiUrl + 'api/delete/' + id)
+            .then(res => {
+                console.log(res.data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
     return (
         <React.Fragment>
             <h1>Index page</h1>
 
             <Paper className={classes.root}>
-                
+
                 <Link href="/addPost">
-                <Button variant="contained" color="primary">
-                    Add Post
+                    <Button variant="contained" color="primary">
+                        Add Post
                 </Button>
                 </Link>
 
@@ -74,6 +87,7 @@ export default function ComIndex() {
                             <TableCell>ID</TableCell>
                             <TableCell align="right">Title</TableCell>
                             <TableCell align="right">Description</TableCell>
+                            <TableCell align="right">Methods</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -84,6 +98,11 @@ export default function ComIndex() {
                                 </TableCell>
                                 <TableCell align="right"><Link href={'/post?getId=' + row.id}><a>{row.title}</a></Link></TableCell>
                                 <TableCell align="right">{row.description}</TableCell>
+                                <TableCell align="right">
+                                    <Button variant="contained" color="secondary" onClick={() => deletePost(row.id)}>
+                                        Delete Post
+                                    </Button>
+                                </TableCell>
                             </TableRow>
                         ))}
                     </TableBody>

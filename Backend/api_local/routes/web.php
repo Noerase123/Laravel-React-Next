@@ -19,6 +19,7 @@ Route::get('/', 'Web\PostController@index');
 Route::get('/view/{id}', 'Web\PostController@show');
 Route::get('/update/{id}', 'Web\PostController@update');
 Route::get('/addPost','Web\PostController@create');
+Route::delete('/delete/{id}', 'Web\PostController@destroy');
 
 Auth::routes();
 
