@@ -70,9 +70,7 @@ class PostController extends Controller
             ],404);
         }
         else {
-            return response()->json([
-                'data' => $model
-            ],200);
+            return response()->json($model,200);
         }
     }
 
