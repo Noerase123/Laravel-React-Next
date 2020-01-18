@@ -13,21 +13,32 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::group([ 'prefix' => 'auth'], function (){
+    Route::group(['middleware' => ['guest:api']], function () {
+        Route::post('login', 'Api\AuthController@login');
+        Route::post('signup', 'Api\AuthController@signup');
+    });
+    Route::group(['middleware' => 'auth:api'], function() {
+        Route::get('logout', 'Api\AuthController@logout');
+        Route::get('getuser', 'Api\AuthController@getUser');
+    });
 });
 
-Route::group(['prefix' => 'post'], function ($route) {
+Route::group(['prefix' => 'post'], function () {
 
-    $route->get('/', 'Api\PostController@index');
-    $route->post('/', 'Api\PostController@store');
-    $route->get('/{id}', 'Api\PostController@show');
-    $route->patch('/{id}', 'Api\PostController@update');
-    $route->delete('/{id}','Api\PostController@destroy');
+    Route::get('/', 'Api\PostController@index');
+    Route::post('/', 'Api\PostController@store');
+    Route::get('/{id}', 'Api\PostController@show');
+    Route::patch('/{id}', 'Api\PostController@update');
+    Route::delete('/{id}','Api\PostController@destroy');
 });
 
-Route::group(['prefix' => 'comments'], function ($route) {
-    
+Route::group(['prefix' => 'comments'], function () {
+
     Route::get('/viewPost/{postid}','Api\CommentController@viewComments');
     Route::post('/addComment/{postid}', 'Api\CommentController@addComment');
     Route::delete('/deleteComment/{postid}', 'Api\CommentController@deleteComment');
