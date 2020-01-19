@@ -17,31 +17,33 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // });
 
-Route::group([ 'prefix' => 'auth'], function (){
-    Route::group(['middleware' => ['guest:api']], function () {
-        Route::post('login', 'Api\AuthController@login');
-        Route::post('signup', 'Api\AuthController@signup');
+    Route::group([ 'prefix' => 'auth'], function ($route){
+        $route->group(['middleware' => ['guest:api']], function ($route) {
+            $route->post('login', 'Api\AuthController@login');
+            $route->post('signup', 'Api\AuthController@signup');
+        });
+        $route->group(['middleware' => 'auth:api'], function($route) {
+            $route->get('logout', 'Api\AuthController@logout');
+            $route->get('getuser', 'Api\AuthController@getUser');
+        });
     });
-    Route::group(['middleware' => 'auth:api'], function() {
-        Route::get('logout', 'Api\AuthController@logout');
-        Route::get('getuser', 'Api\AuthController@getUser');
+    
+    Route::group(['prefix' => 'post'], function ($route) {
+    
+        $route->get('/', 'Api\PostController@index');
+        $route->post('/', 'Api\PostController@store');
+        $route->get('/{id}', 'Api\PostController@show');
+        $route->patch('/{id}', 'Api\PostController@update');
+        $route->delete('/{id}','Api\PostController@destroy');
     });
-});
+    
+    Route::group(['prefix' => 'comments'], function ($route) {
+    
+        $route->get('/viewPost/{postid}','Api\CommentController@viewComments');
+        $route->post('/addComment/{postid}', 'Api\CommentController@addComment');
+        $route->delete('/deleteComment/{postid}', 'Api\CommentController@deleteComment');
+    
+        $route->get('/viewPost', 'Api\CommentController@viewAllComments');
+    });
 
-Route::group(['prefix' => 'post'], function () {
 
-    Route::get('/', 'Api\PostController@index');
-    Route::post('/', 'Api\PostController@store');
-    Route::get('/{id}', 'Api\PostController@show');
-    Route::patch('/{id}', 'Api\PostController@update');
-    Route::delete('/{id}','Api\PostController@destroy');
-});
-
-Route::group(['prefix' => 'comments'], function () {
-
-    Route::get('/viewPost/{postid}','Api\CommentController@viewComments');
-    Route::post('/addComment/{postid}', 'Api\CommentController@addComment');
-    Route::delete('/deleteComment/{postid}', 'Api\CommentController@deleteComment');
-
-    Route::get('/viewPost', 'Api\CommentController@viewAllComments');
-});
