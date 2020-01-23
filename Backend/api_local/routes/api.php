@@ -28,22 +28,35 @@ use Illuminate\Http\Request;
         });
     });
     
-    Route::group(['prefix' => 'post'], function ($route) {
+    // Route::middleware('auth:api')->group(function ($route) {
+        Route::group(['prefix' => 'post'], function ($route) {
     
-        $route->get('/', 'Api\PostController@index');
-        $route->post('/', 'Api\PostController@store');
-        $route->get('/{id}', 'Api\PostController@show');
-        $route->patch('/{id}', 'Api\PostController@update');
-        $route->delete('/{id}','Api\PostController@destroy');
-    });
-    
-    Route::group(['prefix' => 'comments'], function ($route) {
-    
-        $route->get('/viewPost/{postid}','Api\CommentController@viewComments');
-        $route->post('/addComment/{postid}', 'Api\CommentController@addComment');
-        $route->delete('/deleteComment/{postid}', 'Api\CommentController@deleteComment');
-    
-        $route->get('/viewPost', 'Api\CommentController@viewAllComments');
-    });
+            $route->get('/', 'Api\PostController@index');
+            $route->post('/', 'Api\PostController@store');
+            $route->get('/{id}', 'Api\PostController@show');
+            $route->patch('/{id}', 'Api\PostController@update');
+            $route->delete('/{id}','Api\PostController@destroy');
+        });
+        
+        
+        Route::group(['prefix' => 'comment'], function ($route) {
+        
+            $route->get('/viewPost/{postid}','Api\CommentController@viewComments');
+            $route->post('/addComment/{postid}', 'Api\CommentController@addComment');
+            $route->delete('/deleteComment/{postid}', 'Api\CommentController@deleteComment');
+        
+            $route->get('/viewPost', 'Api\CommentController@viewAllComments');
+        });
 
+        Route::group(['prefix' => 'tenant'], function ($route) {
+
+            $route->get('/', 'Api\TenantController@index');
+            $route->post('/', 'Api\TenantController@store');
+            $route->get('/{id}', 'Api\TenantController@show');
+            $route->patch('/{id}', 'Api\TenantController@update');
+            $route->delete('/{id}','Api\TenantController@destroy');
+        });
+
+
+    // });
 
