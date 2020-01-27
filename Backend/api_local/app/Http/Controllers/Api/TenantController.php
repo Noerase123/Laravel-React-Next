@@ -4,14 +4,13 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\TenantModel;
+use App\Models\Tenant;
 
 class TenantController extends Controller
 {
-    private $tenant;
-    public function __construct(TenantModel $tenant) 
-    {
-        $this->tenant = $tenant;
+    private $tenants;
+    public function __construct(Tenant $tenant) {
+        $this->tenants = $tenant;
     }
     /**
      * Display a listing of the resource.
@@ -20,41 +19,41 @@ class TenantController extends Controller
      */
     public function index()
     {
-        $all = $this->tenant->all();
+        $all = $this->tenants->paginate(10);
 
-        foreach ($all as $key => $value) {
+        foreach ($all as $key => $val) {
             $data[] = [
-                'tenantId' => $value->tenantId,
-                'created_at' => $value->created_at,
-                'updated_at' => $value->updated_at,
-                'basic_info' => [
-                    'fullname' => $value->firstname.' '.$value->lastname,
-                    'age' => $value->age,
-                    'gender' => $value->gender,
-                    'birthday' => $value->birthday,
-                    'birthPlace' => $value->birthPlace,
-                    'remarks' => $value->remarks,
-                    'cityLocation' => $value->citylocation,
-                    'permanentAddress' => $value->permanentAddress,
+                'tenantID' => $val->tenant_id,
+                'created_at' => $val->created_at,
+                'updated_at' => $val->updated_at,
+                'fullname' => $val->firstname . ' ' . strtoupper(substr($val->middlename, 0, 1)) . '. ' . $val->lastname,
+                'name' => [
+                    'firstname' => $val->firstname,
+                    'middlename' => $val->middlename,
+                    'lastname' => $val->lastname,
+                    'nickname' => $val->nickname,
                 ],
-                'contact_info' => [
-                    'email' => $value->email,
-                    'phoneNumber' => $value->phoneNumber
+                'gender' => $val->gender,
+                'birthdate' => $val->birthdate,
+                'birthplace' => $val->birthplace,
+                'tenantType' => $val->tenantType,
+                'profilePic' => $val->profilePic,
+                'contactInfo' => [
+                    'contactNum' => $val->contactNum,
+                    'landline' => $val->landline,
+                    'primaryEmail' => $val->primaryEmail
                 ],
-                'company_info' => [
-                    'companyName' => $value->companyname,
-                    'officeAddress' => $value->officeaddress,
-                    'hrHeadname' => $value->hrheadname,
-                    'workPosition' => $value->workposition,
-                    'salaryRange' => $value->salaryrange,
-                    'workingSchedule' => $value->workingschedule,
-                    'shift' => $value->shift,
-                ]
-                ];
+                'locationInfo' => [
+                    'houseNumStr' => $val->houseNumStr,
+                    'city' => $val->city,
+                    'province' => $val->province,
+                    'country' => $val->country
+                ],
+            ];
         }
 
         return response()->json([
-            'tenants' => $data
+            'allTenants' => $data
         ],200);
     }
 
@@ -64,51 +63,48 @@ class TenantController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $req)
+    public function store(Request $request)
     {
-        $this->validate($req, [
+        $this->validate($request, [
+            'profilePic' => 'required',
             'firstname' => 'required',
+            'middlename' => 'required',
             'lastname' => 'required',
-            'companyname' => 'required',
-            'cityLocation' => 'required',
-            'officeAddress' => 'required',
-            'hrHeadname' => 'required',
-            'workPosition' => 'required',
-            'salaryRange' => 'required',
-            'workingSchedule' => 'required',
-            'shift' => 'required',
+            'nickname' => 'required',
+            'contactNum' => 'required',
+            'landline' => 'required',
+            'birthdate' => 'required',
+            'birthplace' => 'required',
+            'tenantType' => 'required',
+            'primaryEmail' => 'required',
             'gender' => 'required',
-            'email' => 'required',
-            'phoneNumber' => 'required',
-            'age' => 'required',
-            'birthday' => 'required',
-            'permanentAddress' => 'required',
-            'birthPlace' => 'required',
-            'remarks' => 'required'
+            'country' => 'required',
+            'province' => 'required',
+            'city' => 'required',
+            'houseNumStr' => 'required'
         ]);
-        $ten = new TenantModel;
-        $ten->firstname = $req->firstname;
-        $ten->lastname = $req->lastname;
-        $ten->companyname = $req->companyname;
-        $ten->cityLocation = $req->cityLocation;
-        $ten->officeAddress = $req->officeAddress;
-        $ten->hrHeadname = $req->hrHeadname;
-        $ten->workPosition = $req->workPosition;
-        $ten->salaryRange = $req->salaryRange;
-        $ten->workingSchedule = $req->workingSchedule;
-        $ten->shift = $req->shift;
-        $ten->gender = $req->gender;
-        $ten->email = $req->email;
-        $ten->phoneNumber = $req->phoneNumber;
-        $ten->age = $req->age;
-        $ten->birthday = $req->birthday;
-        $ten->permanentAddress = $req->permanentAddress;
-        $ten->birthPlace = $req->birthPlace;
-        $ten->remarks = $req->remarks;
+
+        $ten = new Tenant;
+        $ten->profilePic = $request->profilePic;
+        $ten->firstname = $request->firstname;
+        $ten->middlename = $request->middlename;
+        $ten->lastname = $request->lastname;
+        $ten->nickname = $request->nickname;
+        $ten->contactNum = $request->contactNum;
+        $ten->landline = $request->landline;
+        $ten->birthdate = $request->birthdate;
+        $ten->birthplace = $request->birthplace;
+        $ten->tenantType = $request->tenantType;
+        $ten->primaryEmail = $request->primaryEmail;
+        $ten->gender = $request->gender;
+        $ten->country = $request->country;
+        $ten->province = $request->province;
+        $ten->city = $request->city;
+        $ten->houseNumStr = $request->houseNumStr;
         $ten->save();
 
         return response()->json([
-            'message' => 'Tenant added successfully'
+            'message' => 'inserted successfully!'
         ],201);
     }
 
@@ -120,46 +116,39 @@ class TenantController extends Controller
      */
     public function show($id)
     {
-        $value = $this->tenant->find($id);
+        $val = Tenant::find($id);
 
-        if (is_null($value)) {
+        if (is_null($val)) {
             return response()->json([
-                'data' => 'Not Found'
+                'message' => 'Not found'
             ],404);
         }
         else {
-
-            $data = [
-                'tenantId' => $value->tenantId,
-                'created_at' => $value->created_at,
-                'updated_at' => $value->updated_at,
-                'basic_info' => [
-                    'firstname' => $value->firstname,
-                    'lastname' => $value->lastname,
-                    'age' => $value->age,
-                    'gender' => $value->gender,
-                    'birthday' => $value->birthday,
-                    'birthPlace' => $value->birthPlace,
-                    'remarks' => $value->remarks,
-                    'cityLocation' => $value->citylocation,
-                    'permanentAddress' => $value->permanentAddress
+            return response()->json([
+                'fullname' => $val->firstname . ' ' . strtoupper(substr($val->middlename, 0, 1)) . '. ' . $val->lastname,
+                'name' => [
+                    'firstname' => $val->firstname,
+                    'middlename' => $val->middlename,
+                    'lastname' => $val->lastname,
+                    'nickname' => $val->nickname,
                 ],
-                'contact_info' => [
-                    'email' => $value->email,
-                    'phoneNumber' => $value->phoneNumber
+                'gender' => $val->gender,
+                'birthdate' => $val->birthdate,
+                'birthplace' => $val->birthplace,
+                'tenantType' => $val->tenantType,
+                'profilePic' => $val->profilePic,
+                'contactInfo' => [
+                    'contactNum' => $val->contactNum,
+                    'landline' => $val->landline,
+                    'primaryEmail' => $val->primaryEmail
                 ],
-                'company_info' => [
-                    'companyName' => $value->companyname,
-                    'officeAddress' => $value->officeaddress,
-                    'hrHeadname' => $value->hrheadname,
-                    'workPosition' => $value->workposition,
-                    'salaryRange' => $value->salaryrange,
-                    'workingSchedule' => $value->workingschedule,
-                    'shift' => $value->shift,
-                ]
-            ];
-
-            return response()->json($data, 200);
+                'locationInfo' => [
+                    'houseNumStr' => $val->houseNumStr,
+                    'city' => $val->city,
+                    'province' => $val->province,
+                    'country' => $val->country
+                ],
+            ],200);
         }
     }
 
@@ -170,42 +159,9 @@ class TenantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $req, $id)
+    public function update(Request $request, $id)
     {
-        $getFirst = $this->tenant->where('tenantId',$id)->first();
-
-        if (is_null($getFirst)) {
-            return response()->json([
-                'message' => 'Not Found'
-            ],404);
-        }
-
-        $data = [
-        'firstname' => $req->firstname,
-        'lastname' => $req->lastname,
-        'companyname' => $req->companyname,
-        'cityLocation' => $req->cityLocation,
-        'officeAddress' => $req->officeAddress,
-        'hrHeadname' => $req->hrHeadname,
-        'workPosition' => $req->workPosition,
-        'salaryRange' => $req->salaryRange,
-        'workingSchedule' => $req->workingSchedule,
-        'shift' => $req->shift,
-        'gender' => $req->gender,
-        'email' => $req->email,
-        'phoneNumber' => $req->phoneNumber, 
-        'age' => $req->age,
-        'birthday' => $req->birthday,
-        'permanentAddress' => $req->permanentAddress,
-        'birthPlace' => $req->birthPlace,
-        'remarks' => $req->remarks
-        ];
-        
-        $getFirst->update($data);
-
-        return response()->json([
-            'message' => 'tenant updated successfully'
-        ],200);
+        //
     }
 
     /**
@@ -216,17 +172,10 @@ class TenantController extends Controller
      */
     public function destroy($id)
     {
-        $content = $this->tenant->destroy($id);
-
-        if (is_null($content)) {
-            return response()->json([
-                'message' => 'Not Found'
-            ],404);
-        }
-
+        Tenant::destroy($id);
+        
         return response()->json([
-            'message' => 'tenant removed successfully'
+            'message' => 'tenant has been removed'
         ],200);
-
     }
 }
