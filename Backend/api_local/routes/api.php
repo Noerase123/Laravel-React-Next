@@ -28,22 +28,35 @@ use Illuminate\Http\Request;
         });
     });
     
-    Route::group(['prefix' => 'post'], function ($route) {
+    Route::group(['namespace' => 'Api'],function ($route) {
+        $route->group(['prefix' => 'post'], function ($route) {
     
-        $route->get('/', 'Api\PostController@index');
-        $route->post('/', 'Api\PostController@store');
-        $route->get('/{id}', 'Api\PostController@show');
-        $route->patch('/{id}', 'Api\PostController@update');
-        $route->delete('/{id}','Api\PostController@destroy');
-    });
-    
-    Route::group(['prefix' => 'comments'], function ($route) {
-    
-        $route->get('/viewPost/{postid}','Api\CommentController@viewComments');
-        $route->post('/addComment/{postid}', 'Api\CommentController@addComment');
-        $route->delete('/deleteComment/{postid}', 'Api\CommentController@deleteComment');
-    
-        $route->get('/viewPost', 'Api\CommentController@viewAllComments');
-    });
+            $route->get('/', 'PostController@index');
+            $route->post('/', 'PostController@store');
+            $route->get('/{id}', 'PostController@show');
+            $route->patch('/{id}', 'PostController@update');
+            $route->delete('/{id}','PostController@destroy');
+        });
+        
+        
+        $route->group(['prefix' => 'comment'], function ($route) {
+        
+            $route->get('/viewPost/{postid}','CommentController@viewComments');
+            $route->post('/addComment/{postid}', 'CommentController@addComment');
+            $route->delete('/deleteComment/{postid}', 'CommentController@deleteComment');
+        
+            $route->get('/viewPost', 'Api\CommentController@viewAllComments');
+        });
 
+        $route->group(['prefix' => '/tenant'], function ($route) {
+
+            $route->get('/', 'TenantController@index');
+            $route->post('/', 'TenantController@store');
+            $route->get('/{id}', 'TenantController@show');
+            $route->patch('/{id}', 'TenantController@update');
+            $route->delete('/{id}','TenantController@destroy');
+        });
+
+
+    });
 

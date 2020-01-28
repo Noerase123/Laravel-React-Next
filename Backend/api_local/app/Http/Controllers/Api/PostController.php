@@ -12,10 +12,17 @@ use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 
 class PostController extends Controller
 {
+<<<<<<< HEAD
     // public function __construct()
     // {
 
     // }
+=======
+    public function __construct() 
+    {
+        // $this->middleware('guest:api');
+    }
+>>>>>>> d0266cb154094d1add1ebbc6020315437f478c7e
     /**
      * Display a listing of the resource.
      *
