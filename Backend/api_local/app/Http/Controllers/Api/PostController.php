@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers\Api;
 
-use League\Fractal\Pagination\IlluminatePaginatorAdapter;
-use League\Fractal\Serializer\ArraySerializer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\PostModel;
+use App\Transformers\PostTransformer;
 use App\Http\Requests\StorePostRequest;
-use App\Transformers\Post\PostTransformer;
+use League\Fractal\Serializer\ArraySerializer;
+use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 
 class PostController extends Controller
 {
-    // public function __construct() 
+    // public function __construct()
     // {
 
     // }
