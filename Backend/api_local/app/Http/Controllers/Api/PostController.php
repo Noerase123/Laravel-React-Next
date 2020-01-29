@@ -12,17 +12,13 @@ use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 
 class PostController extends Controller
 {
-<<<<<<< HEAD
-    // public function __construct()
-    // {
-
-    // }
-=======
-    public function __construct() 
+    private $post;
+    public function __construct(PostModel $post)
     {
         // $this->middleware('guest:api');
+
+        $this->post = $post;
     }
->>>>>>> d0266cb154094d1add1ebbc6020315437f478c7e
     /**
      * Display a listing of the resource.
      *
@@ -30,11 +26,15 @@ class PostController extends Controller
      */
     public function index()
     {
-        $all = PostModel::all();
+        $all = $this->post->all();
 
-        return response()->json([
-            'data' => $all
-        ],200);
+        // return response()->json([
+        //     'data' => $all
+        // ],200);
+
+        return fractal($all, new PostTransformer)
+            ->serializeWith(new ArraySerializer)
+            ->response(200);
     }
 
     /**
@@ -43,12 +43,12 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $req)
+    public function store(StorePostRequest $req)
     {
-        $this->validate($req,[
-            'title' => 'required',
-            'description' => 'required|min:10'
-        ]);
+        // $this->validate($req,[
+        //     'title' => 'required',
+        //     'description' => 'required|min:10'
+        // ]);
 
         $post = new PostModel;
 
@@ -88,7 +88,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StorePostRequest $request, $id)
     {
         $res = $this->model->where('id', $id)->first();
 

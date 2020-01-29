@@ -116,7 +116,7 @@ class TenantController extends Controller
      */
     public function show($id)
     {
-        $val = Tenant::find($id);
+        $val = $this->tenants->find($id);
 
         if (is_null($val)) {
             return response()->json([
@@ -173,7 +173,7 @@ class TenantController extends Controller
     public function destroy($id)
     {
         Tenant::destroy($id);
-        
+
         return response()->json([
             'message' => 'tenant has been removed'
         ],200);
