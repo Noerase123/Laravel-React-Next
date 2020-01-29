@@ -9,6 +9,7 @@ use App\Models\Tenant;
 class TenantController extends Controller
 {
     private $tenants;
+
     public function __construct(Tenant $tenant) {
         $this->tenants = $tenant;
     }
@@ -19,37 +20,39 @@ class TenantController extends Controller
      */
     public function index()
     {
-        $all = $this->tenants->paginate(10);
+        $all = $this->tenants->all();
+
+        $data = [];
 
         foreach ($all as $key => $val) {
-            $data[] = [
-                'tenantID' => $val->tenant_id,
-                'created_at' => $val->created_at,
-                'updated_at' => $val->updated_at,
-                'fullname' => $val->firstname . ' ' . strtoupper(substr($val->middlename, 0, 1)) . '. ' . $val->lastname,
-                'name' => [
-                    'firstname' => $val->firstname,
-                    'middlename' => $val->middlename,
-                    'lastname' => $val->lastname,
-                    'nickname' => $val->nickname,
-                ],
-                'gender' => $val->gender,
-                'birthdate' => $val->birthdate,
-                'birthplace' => $val->birthplace,
-                'tenantType' => $val->tenantType,
-                'profilePic' => $val->profilePic,
-                'contactInfo' => [
-                    'contactNum' => $val->contactNum,
-                    'landline' => $val->landline,
-                    'primaryEmail' => $val->primaryEmail
-                ],
-                'locationInfo' => [
-                    'houseNumStr' => $val->houseNumStr,
-                    'city' => $val->city,
-                    'province' => $val->province,
-                    'country' => $val->country
-                ],
-            ];
+                $data[] = [
+                    'tenantID' => $val->tenant_id,
+                    'created_at' => $val->created_at,
+                    'updated_at' => $val->updated_at,
+                    'fullname' => $val->firstname . ' ' . strtoupper(substr($val->middlename, 0, 1)) . '. ' . $val->lastname,
+                    'name' => [
+                        'firstname' => $val->firstname,
+                        'middlename' => $val->middlename,
+                        'lastname' => $val->lastname,
+                        'nickname' => $val->nickname,
+                    ],
+                    'gender' => $val->gender,
+                    'birthdate' => $val->birthdate,
+                    'birthplace' => $val->birthplace,
+                    'tenantType' => $val->tenantType,
+                    'profilePic' => $val->profilePic,
+                    'contactInfo' => [
+                        'contactNum' => $val->contactNum,
+                        'landline' => $val->landline,
+                        'primaryEmail' => $val->primaryEmail
+                    ],
+                    'locationInfo' => [
+                        'houseNumStr' => $val->houseNumStr,
+                        'city' => $val->city,
+                        'province' => $val->province,
+                        'country' => $val->country
+                    ],
+                ];
         }
 
         return response()->json([
@@ -104,7 +107,7 @@ class TenantController extends Controller
         $ten->save();
 
         return response()->json([
-            'message' => 'inserted successfully!'
+            'message' => 'tenant added successfully'
         ],201);
     }
 
@@ -125,6 +128,9 @@ class TenantController extends Controller
         }
         else {
             return response()->json([
+                'tenantID' => $val->tenant_id,
+                'created_at' => $val->created_at,
+                'updated_at' => $val->updated_at,
                 'fullname' => $val->firstname . ' ' . strtoupper(substr($val->middlename, 0, 1)) . '. ' . $val->lastname,
                 'name' => [
                     'firstname' => $val->firstname,
@@ -138,9 +144,15 @@ class TenantController extends Controller
                 'tenantType' => $val->tenantType,
                 'profilePic' => $val->profilePic,
                 'contactInfo' => [
-                    'contactNum' => $val->contactNum,
-                    'landline' => $val->landline,
-                    'primaryEmail' => $val->primaryEmail
+                    'personal' => [
+                        'contactNum' => $val->contactNum,
+                        'landline' => $val->landline,
+                        'primaryEmail' => $val->primaryEmail
+                    ],
+                    'company' => [
+                        'workEmail' => $com->workEmail,
+                        'workContactNum' => $com->hrContactNumber
+                    ]
                 ],
                 'locationInfo' => [
                     'houseNumStr' => $val->houseNumStr,
@@ -148,6 +160,7 @@ class TenantController extends Controller
                     'province' => $val->province,
                     'country' => $val->country
                 ],
+                
             ],200);
         }
     }
@@ -172,7 +185,7 @@ class TenantController extends Controller
      */
     public function destroy($id)
     {
-        Tenant::destroy($id);
+        $this->tenants->destroy($id);
 
         return response()->json([
             'message' => 'tenant has been removed'
