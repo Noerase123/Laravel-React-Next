@@ -66,6 +66,15 @@ use Illuminate\Http\Request;
             $route->delete('/{id}','CompanyController@destroy');
         });
 
+        $route->group(['prefix' => '/rent'], function ($route) {
+
+            $route->get('/', 'RentController@index');
+            $route->post('/', 'RentController@store');
+            $route->get('/{id}', 'RentController@show');
+            $route->patch('/{id}', 'RentController@update');
+            $route->delete('/{id}','RentController@destroy');
+        });
+
 
     });
 

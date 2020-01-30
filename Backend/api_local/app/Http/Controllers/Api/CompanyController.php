@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCompanyRequest;
 use App\Models\Company;
 
 class CompanyController extends Controller
@@ -34,20 +35,8 @@ class CompanyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $this->validate($request, [
-            'companyName' => 'required',
-            'companyLocation' => 'required',
-            'industry' => 'required',
-            'position' => 'required',
-            'monthlySalary' => 'required',
-            'hrContactName' => 'required',
-            'hrContactNumber' => 'required',
-            'workEmail' => 'required',
-            'workingHours' => 'required'
-        ]);
-        
+    public function store(StoreCompanyRequest $request)
+    {   
         $com = new Company;
         $com->companyName = $request->companyName;
         $com->companyLocation = $request->companyLocation;
@@ -104,7 +93,7 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreCompanyRequest $request, $id)
     {
         //
     }
