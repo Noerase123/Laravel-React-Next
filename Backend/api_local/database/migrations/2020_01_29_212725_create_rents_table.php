@@ -22,8 +22,8 @@ class CreateRentsTable extends Migration
             $table->string('roomType');
             $table->string('contractDuration');
             $table->date('endDate');
-            $table->boolean('standardRate');
-            $table->string('monthlyDiscount');
+            $table->integer('standardRate');
+            $table->float('monthlyDiscount');
             $table->timestamps();
         });
     }

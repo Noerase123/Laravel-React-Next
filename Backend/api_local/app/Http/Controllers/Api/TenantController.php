@@ -4,17 +4,30 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManager;
 use App\Models\Tenant;
 use Carbon\Carbon;
+=======
+use App\Http\Requests\StoreTenantRequest;
+use App\Models\Tenant;
+use App\Models\Company;
+use App\Models\Rent;
+>>>>>>> e9f134187e5ef7768505c5a7d792242e0769be07
 
 class TenantController extends Controller
 {
     private $tenants;
+    private $company;
+    private $rent;
 
-    public function __construct(Tenant $tenant) {
+    public $baseUrl = 'http://localhost:8000/api/tenant/';
+
+    public function __construct(Tenant $tenant, Company $company, Rent $rent) {
         $this->tenants = $tenant;
+        $this->company = $company;
+        $this->rent = $rent;
     }
     /**
      * Display a listing of the resource.
@@ -30,31 +43,10 @@ class TenantController extends Controller
         foreach ($all as $key => $val) {
                 $data[] = [
                     'tenantID' => $val->tenant_id,
+                    'name' => $val->firstname . ' ' . strtoupper(substr($val->middlename, 0, 1)) . '. ' . $val->lastname,
+                    'url' => $this->baseUrl.$val->tenant_id,
                     'created_at' => $val->created_at,
                     'updated_at' => $val->updated_at,
-                    'fullname' => $val->firstname . ' ' . strtoupper(substr($val->middlename, 0, 1)) . '. ' . $val->lastname,
-                    'name' => [
-                        'firstname' => $val->firstname,
-                        'middlename' => $val->middlename,
-                        'lastname' => $val->lastname,
-                        'nickname' => $val->nickname,
-                    ],
-                    'gender' => $val->gender,
-                    'birthdate' => $val->birthdate,
-                    'birthplace' => $val->birthplace,
-                    'tenantType' => $val->tenantType,
-                    'profilePic' => $val->profilePic,
-                    'contactInfo' => [
-                        'contactNum' => $val->contactNum,
-                        'landline' => $val->landline,
-                        'primaryEmail' => $val->primaryEmail
-                    ],
-                    'locationInfo' => [
-                        'houseNumStr' => $val->houseNumStr,
-                        'city' => $val->city,
-                        'province' => $val->province,
-                        'country' => $val->country
-                    ],
                 ];
         }
 
@@ -69,27 +61,8 @@ class TenantController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTenantRequest $request)
     {
-        $this->validate($request, [
-            'profilePic' => 'required',
-            'firstname' => 'required',
-            'middlename' => 'required',
-            'lastname' => 'required',
-            'nickname' => 'required',
-            'contactNum' => 'required',
-            'landline' => 'required',
-            'birthdate' => 'required',
-            'birthplace' => 'required',
-            'tenantType' => 'required',
-            'primaryEmail' => 'required',
-            'gender' => 'required',
-            'country' => 'required',
-            'province' => 'required',
-            'city' => 'required',
-            'houseNumStr' => 'required'
-        ]);
-
         $ten = new Tenant;
         $ten->profilePic = $request->profilePic;
         $ten->firstname = $request->firstname;
@@ -123,6 +96,8 @@ class TenantController extends Controller
     public function show($id)
     {
         $val = $this->tenants->find($id);
+        $com = $this->company->find($id);
+        $rent = $this->rent->find($id);
 
         if (is_null($val)) {
             return response()->json([
@@ -163,7 +138,38 @@ class TenantController extends Controller
                     'province' => $val->province,
                     'country' => $val->country
                 ],
+<<<<<<< HEAD
 
+=======
+                'companyInfo' => [
+                    'name' => $com->companyName,
+                    'location' => $com->companyLocation,
+                    'industry' => $com->industry,
+                    'position' => $com->position,
+                    'monthlySalary' => $com->monthlySalary,
+                    'hr' => [
+                        'Name' => $com->hrContactName,
+                        'ContactNum' => $com->hrContactNumber,
+                    ],
+                    'workEmail' => $com->workEmail,
+                    'workingHours' => $com->workingHours,
+                ],
+                'rentInfo' => [
+                    'building' => [
+                        'name' => $rent->buildingName,
+                        'bedNum' => $rent->bedNumber,
+                    ],
+                    'room' => [
+                        'price' => $rent->roomPrice,
+                        'type' => $rent->roomType,
+                    ],
+                    'startDate' => $rent->startDate,
+                    'endDate' => $rent->endDate,
+                    'standardRate' => $rent->standardRate,
+                    'monthlyDiscount' => $rent->monthlyDiscount
+                ]
+                
+>>>>>>> e9f134187e5ef7768505c5a7d792242e0769be07
             ],200);
         }
     }
@@ -175,7 +181,7 @@ class TenantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreTenantRequest $request, $id)
     {
         //
     }

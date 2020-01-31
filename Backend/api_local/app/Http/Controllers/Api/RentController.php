@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreRentRequest;
 use App\Models\Rent;
 
 class RentController extends Controller
@@ -33,20 +34,8 @@ class RentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRentRequest $request)
     {
-        $this->validate($request,[
-            'startDate' => 'required',
-            'buildingName' => 'required',
-            'bedNumber' => 'required',
-            'roomPrice' => 'required',
-            'roomType' => 'required',
-            'contractDuration' => 'required',
-            'endDate' => 'required',
-            'standardRate' => 'required',
-            'monthlyDiscount' => 'required'
-        ]);
-
         $rent = new Rent;
         $rent->startDate = $request->startDate;
         $rent->buildingName = $request->buildingName;
@@ -55,7 +44,7 @@ class RentController extends Controller
         $rent->roomType = $request->roomType;
         $rent->contractDuration = $request->contractDuration;
         $rent->endDate = $request->endDate;
-        $rent->standardRate = $request->stardardRate;
+        $rent->standardRate = $request->standardRate;
         $rent->monthlyDiscount = $request->monthlyDiscount;
         $rent->save();
 
@@ -90,7 +79,7 @@ class RentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreRentRequest $request, $id)
     {
         //
     }
