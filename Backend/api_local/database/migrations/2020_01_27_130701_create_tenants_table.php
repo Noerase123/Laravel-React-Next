@@ -24,7 +24,7 @@ class CreateTenantsTable extends Migration
             $table->string('landline');
             $table->string('birthdate');
             $table->string('birthplace');
-            $table->string('tenantType');
+            $table->integer('tenantType');
             $table->string('primaryEmail');
             $table->string('gender');
             $table->string('country');

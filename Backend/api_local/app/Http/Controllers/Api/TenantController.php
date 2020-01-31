@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManager;
 use App\Models\Tenant;
+use Carbon\Carbon;
 
 class TenantController extends Controller
 {
@@ -160,7 +163,7 @@ class TenantController extends Controller
                     'province' => $val->province,
                     'country' => $val->country
                 ],
-                
+
             ],200);
         }
     }
