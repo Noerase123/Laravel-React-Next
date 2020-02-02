@@ -77,6 +77,15 @@ use Illuminate\Http\Request;
             $route->delete('/{id}','RentController@destroy');
         });
 
+        $route->group(['prefix' => '/invoice'], function ($route) {
+
+            $route->get('/', 'InvoiceController@index');
+            $route->post('/', 'InvoiceController@store');
+            $route->get('/{id}', 'InvoiceController@show');
+            $route->patch('/{id}', 'InvoiceController@update');
+            $route->delete('/{id}','InvoiceController@destroy');
+        });
+
 
     });
 

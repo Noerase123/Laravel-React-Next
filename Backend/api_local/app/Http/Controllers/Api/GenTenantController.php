@@ -7,26 +7,30 @@ use App\Http\Controllers\Controller;
 use App\Models\Tenant;
 use App\Models\Company;
 use App\Models\Rent;
+use App\Models\Invoice;
 
 class GenTenantController extends Controller
 {
     private $tenant;
     private $company;
     private $rent;
+    private $invoice;
     
-    public function __construct(Tenant $tenant, Company $company, Rent $rent)
+    public function __construct(Tenant $tenant, Company $company, Rent $rent, Invoice $invoice)
     {
         $this->tenant = $tenant;
         $this->company = $company;
         $this->rent = $rent;
+        $this->invoice = $invoice;
     }
 
     public function getRenter($id) 
     {
         $ten = $this->tenant->find($id);
         if ($ten) {
-            $com = $this->company->find($ten->tenant_id);
-            $rent = $this->rent->find($ten->tenant_id);
+            $com = $this->company->where('tenant_id',$ten->tenant_id)->first();
+            $rent = $this->rent->where('tenant_id',$ten->tenant_id)->first();
+            $invoice = $this->invoice->where('tenant_id', $ten->tenant_id)->orderBy('invoice_id', 'DESC')->get();
         }
 
         if (is_null($ten)){
@@ -85,17 +89,19 @@ class GenTenantController extends Controller
                     'rentInfo' => [
                         'building' => [
                             'name' => isset($rent->buildingName) ? $rent->buildingName : 'no data',
-                            'bedNum' => isset($rent->bedNumber) ? $rent->bedNumber : 'no data',
+                            'room' => [
+                                'roomNumber' => isset($rent->roomNumber) ? $rent->roomNumber : 'no data',
+                                'bed' => isset($rent->bed) ? $rent->bed : 'no data',
+                                'roomType' => isset($rent->roomType) ? $rent->roomType : 'no data',
+                            ],  
                         ],
-                        'room' => [
-                            'price' => isset($rent->roomPrice) ? $rent->roomPrice : 'no data',
-                            'type' => isset($rent->roomType) ? $rent->roomType : 'no data',
-                        ],
+                        'contractDuration' => isset($rent->contractDuration) ? $rent->contractDuration : 'no data',
                         'startDate' => isset($rent->startDate) ? $rent->startDate : 'no data',
                         'endDate' => isset($rent->endDate) ? $rent->endDate : 'no data',
                         'standardRate' => isset($rent->standardRate) ? $rent->standardRate : 'no data',
                         'monthlyDiscount' => isset($rent->monthlyDiscount) ? $rent->monthlyDiscount : 'no data'
-                    ]
+                    ],
+                    'invoicesInfo' => $invoice
             ],200);
         }
     }
