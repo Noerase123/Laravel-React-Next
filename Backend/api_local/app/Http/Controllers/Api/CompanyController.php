@@ -37,21 +37,14 @@ class CompanyController extends Controller
      */
     public function store(StoreCompanyRequest $request)
     {   
-        $com = new Company;
-        $com->companyName = $request->companyName;
-        $com->companyLocation = $request->companyLocation;
-        $com->industry = $request->industry;
-        $com->position = $request->position;
-        $com->monthlySalary = $request->monthlySalary;
-        $com->hrContactName = $request->hrContactName;
-        $com->hrContactNumber = $request->hrContactNumber;
-        $com->workEmail = $request->workEmail;
-        $com->workingHours = $request->workingHours;
-        $com->save();
+        $input = $request->all();
+
+        $this->company->create($input);
 
         return response()->json([
             'message' => 'tenant\'s company added successfully'
         ],201);
+
     }
 
     /**
@@ -70,19 +63,7 @@ class CompanyController extends Controller
             ],404);
         }
         else {
-            return response()->json([
-                    'name' => $com->companyName,
-                    'location' => $com->companyLocation,
-                    'industry' => $com->industry,
-                    'position' => $com->position,
-                    'monthlySalary' => $com->monthlySalary,
-                    'workEmail' => $com->workEmail,
-                    'workingHours' => $com->workingHours,
-                    'hr' => [
-                        'ContactName' => $com->hrContactName,
-                        'ContactNumber' => $com->hrContactNumber,
-                    ]
-            ],200);
+            return response()->json($com,200);
         }
     }
 

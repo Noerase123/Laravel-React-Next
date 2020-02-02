@@ -24,6 +24,9 @@ class StoreCompanyRequest extends FormRequest
     public function rules()
     {
         return [
+            'tenant_id' => [
+                'required',
+            ],
             'companyName' => [
                 'required',
             ],

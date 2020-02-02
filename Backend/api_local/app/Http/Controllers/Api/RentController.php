@@ -36,17 +36,9 @@ class RentController extends Controller
      */
     public function store(StoreRentRequest $request)
     {
-        $rent = new Rent;
-        $rent->startDate = $request->startDate;
-        $rent->buildingName = $request->buildingName;
-        $rent->bedNumber = $request->bedNumber;
-        $rent->roomPrice = $request->roomPrice;
-        $rent->roomType = $request->roomType;
-        $rent->contractDuration = $request->contractDuration;
-        $rent->endDate = $request->endDate;
-        $rent->standardRate = $request->standardRate;
-        $rent->monthlyDiscount = $request->monthlyDiscount;
-        $rent->save();
+        $input = $request->all();
+
+        $this->rent->create($input);
 
         return response()->json([
             'message' => 'Tenant\'s Rent Details Added'
@@ -62,6 +54,7 @@ class RentController extends Controller
     public function show($id)
     {
         $rent = $this->rent->find($id);
+        // $rent = $this->rent->where('tenant_id',$id)->get();
 
         if (is_null($rent)){
             return response()->json([

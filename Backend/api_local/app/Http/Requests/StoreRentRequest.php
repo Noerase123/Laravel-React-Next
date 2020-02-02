@@ -24,16 +24,22 @@ class StoreRentRequest extends FormRequest
     public function rules()
     {
         return [
+            'tenant_id' => [
+                'required',
+            ],
             'startDate' => [
                 'required',
             ],
             'buildingName' => [
                 'required',
             ],
-            'bedNumber' => [
+            'roomNumber' => [
                 'required',
             ],
             'roomPrice' => [
+                'required',
+            ],
+            'bed' => [
                 'required',
             ],
             'roomType' => [

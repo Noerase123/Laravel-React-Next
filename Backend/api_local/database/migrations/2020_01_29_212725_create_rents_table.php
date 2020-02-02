@@ -13,12 +13,14 @@ class CreateRentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('rents', function (Blueprint $table) {
+        Schema::create('rent', function (Blueprint $table) {
             $table->bigIncrements('rent_id');
+            $table->integer('tenant_id');
             $table->date('startDate');
             $table->string('buildingName');
-            $table->integer('bedNumber');
+            $table->integer('roomNumber');
             $table->float('roomPrice');
+            $table->string('bed');
             $table->string('roomType');
             $table->string('contractDuration');
             $table->date('endDate');
@@ -35,6 +37,6 @@ class CreateRentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rents');
+        Schema::dropIfExists('rent');
     }
 }

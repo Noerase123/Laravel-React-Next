@@ -6,13 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rent extends Model
 {
-    protected $table = 'rents';
+    protected $table = 'rent';
     protected $primaryKey = 'rent_id';
     protected $fillable = [
+        'tenant_id',
         'startDate',
         'buildingName',
-        'bedNumber',
+        'roomNumber',
         'roomPrice',
+        'bed',
         'roomType',
         'contractDuration',
         'endDate',

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tenant extends Model
 {
-    protected $table = 'tenants';
+    protected $table = 'tenant';
     protected $primaryKey = 'tenant_id';
     protected $fillable = [
         'profilePic',

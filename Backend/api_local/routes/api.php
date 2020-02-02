@@ -55,6 +55,8 @@ use Illuminate\Http\Request;
             $route->get('/{id}', 'TenantController@show');
             $route->patch('/{id}', 'TenantController@update');
             $route->delete('/{id}','TenantController@destroy');
+
+            $route->get('/full/{id}', 'GenTenantController@getRenter');
         });
 
         $route->group(['prefix' => '/company'], function ($route) {
