@@ -31,6 +31,7 @@ class CreateTenantsTable extends Migration
             $table->string('province');
             $table->string('city');
             $table->string('houseNumStr');
+            $table->string('slug');
             $table->timestamps();
         });
     }

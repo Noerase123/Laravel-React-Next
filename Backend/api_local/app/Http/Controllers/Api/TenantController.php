@@ -46,9 +46,25 @@ class TenantController extends Controller
      */
     public function store(StoreTenantRequest $request)
     {
-        $input = $request->all();
-
-        $this->tenants->create($input);
+        $input = new Tenant;
+        $input->profilePic = $request->profilePic;
+        $input->firstname = $request->firstname;
+        $input->middlename = $request->middlename;
+        $input->lastname = $request->lastname;
+        $input->nickname = $request->nickname;
+        $input->contactNum = $request->contactNum;
+        $input->landline = $request->landline;
+        $input->birthdate = $request->birthdate;
+        $input->birthplace = $request->birthplace;
+        $input->tenantType = $request->tenantType;
+        $input->primaryEmail = $request->primaryEmail;
+        $input->gender = $request->gender;
+        $input->country = $request->country;
+        $input->province = $request->province;
+        $input->city = $request->city;
+        $input->houseNumStr = $request->houseNumStr;
+        $input->slug = Carbon::now()->timestamp;
+        $input->save();
 
         return response()->json([
             'message' => 'tenant added successfully'
