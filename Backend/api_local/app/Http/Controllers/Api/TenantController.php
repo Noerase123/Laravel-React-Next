@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreTenantRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManager;
+use League\Fractal\Serializer\ArraySerializer;
+use League\Fractal\Pagination\IlluminatePaginatorAdapter;
+use App\Transformers\TenantTransformer;
 use App\Models\Tenant;
 use Carbon\Carbon;
 
@@ -16,13 +20,8 @@ class TenantController extends Controller
     private $rent;
     private $tenRepo;
 
-    public function __construct(Tenant $tenant, 
-                    Company $company, Rent $rent,
-                    EloquentTenantRepository $tenRepo) {
+    public function __construct(Tenant $tenant) {
         $this->tenants = $tenant;
-        $this->company = $company;
-        $this->rent = $rent;
-        $this->tenRepo = $tenRepo;
     }
     /**
      * Display a listing of the resource.
@@ -72,40 +71,7 @@ class TenantController extends Controller
             ],404);
         }
         else {
-            return response()->json([
-                'tenantID' => $val->tenant_id,
-                'created_at' => $val->created_at,
-                'updated_at' => $val->updated_at,
-                'fullname' => $val->firstname . ' ' . strtoupper(substr($val->middlename, 0, 1)) . '. ' . $val->lastname,
-                'name' => [
-                    'firstname' => $val->firstname,
-                    'middlename' => $val->middlename,
-                    'lastname' => $val->lastname,
-                    'nickname' => $val->nickname,
-                ],
-                'gender' => $val->gender,
-                'birthdate' => $val->birthdate,
-                'birthplace' => $val->birthplace,
-                'tenantType' => $val->tenantType,
-                'profilePic' => $val->profilePic,
-                'contactInfo' => [
-                    'personal' => [
-                        'contactNum' => $val->contactNum,
-                        'landline' => $val->landline,
-                        'primaryEmail' => $val->primaryEmail
-                    ],
-                    'company' => [
-                        'workEmail' => $com->workEmail,
-                        'workContactNum' => $com->hrContactNumber
-                    ]
-                ],
-                'locationInfo' => [
-                    'houseNumStr' => $val->houseNumStr,
-                    'city' => $val->city,
-                    'province' => $val->province,
-                    'country' => $val->country
-                ],
-            ],200);
+            return response()->json($tenant,200);
         }
     }
 
@@ -118,15 +84,30 @@ class TenantController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // $tenant = Tenant::findOrFail($id);
+
+        // $input = $request->all();
+
+        // $tenant->fill($input)->save();
+
         $tenant = Tenant::findOrFail($id);
 
-        $input = $request->all();
+        if (is_null($tenant)) {
+            return response()->json([
+                'message' => 'No tenant Data'
+            ],404);
+        }
+        else {
 
-        $tenant->fill($input)->save();
+            $input = $request->all();
 
-        return response()->json([
-            'message' => 'tenant updated successfully'
-        ],200);
+            $tenant->fill($input)->save();
+
+            return response()->json([
+                'message' => 'tenant updated successfully'
+            ],200);
+        }
+
     }
 
     /**

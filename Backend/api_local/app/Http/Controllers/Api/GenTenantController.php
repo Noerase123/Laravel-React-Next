@@ -40,17 +40,19 @@ class GenTenantController extends Controller
                     'created_at' => $ten->created_at->format('Y/m/d h:i a'),
                     'updated_at' => $ten->updated_at->format('Y/m/d h:i a'),
                     'fullname' => $ten->firstname . ' ' . strtoupper(substr($ten->middlename, 0, 1)) . '. ' . $ten->lastname,
-                    'name' => [
-                        'firstname' => $ten->firstname,
-                        'middlename' => $ten->middlename,
-                        'lastname' => $ten->lastname,
-                        'nickname' => $ten->nickname,
+                    'basicInfo' => [
+                        'name' => [
+                            'firstname' => $ten->firstname,
+                            'middlename' => $ten->middlename,
+                            'lastname' => $ten->lastname,
+                            'nickname' => $ten->nickname,
+                        ],
+                        'gender' => $ten->gender,
+                        'birthdate' => $ten->birthdate,
+                        'birthplace' => $ten->birthplace,
+                        'tenantType' => $ten->tenantType,
+                        'profilePic' => $ten->profilePic,
                     ],
-                    'gender' => $ten->gender,
-                    'birthdate' => $ten->birthdate,
-                    'birthplace' => $ten->birthplace,
-                    'tenantType' => $ten->tenantType,
-                    'profilePic' => $ten->profilePic,
                     'contactInfo' => [
                         'personal' => [
                             'contactNum' => $ten->contactNum,
