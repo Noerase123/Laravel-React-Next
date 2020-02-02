@@ -4,6 +4,12 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+<<<<<<< HEAD
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManager;
+use App\Models\Tenant;
+use Carbon\Carbon;
+=======
 use App\Http\Requests\StoreTenantRequest;
 use App\Transformers\TenantTransformer;
 use App\Transformers\TenantOneTransformer;
@@ -14,6 +20,7 @@ use App\Repositories\Eloquent\EloquentTenantRepository;
 use App\Models\Tenant;
 use App\Models\Company;
 use App\Models\Rent;
+>>>>>>> e9f134187e5ef7768505c5a7d792242e0769be07
 
 class TenantController extends Controller
 {
@@ -78,7 +85,76 @@ class TenantController extends Controller
             ],404);
         }
         else {
+<<<<<<< HEAD
             return response()->json($tenant,200);
+=======
+            return response()->json([
+                'tenantID' => $val->tenant_id,
+                'created_at' => $val->created_at,
+                'updated_at' => $val->updated_at,
+                'fullname' => $val->firstname . ' ' . strtoupper(substr($val->middlename, 0, 1)) . '. ' . $val->lastname,
+                'name' => [
+                    'firstname' => $val->firstname,
+                    'middlename' => $val->middlename,
+                    'lastname' => $val->lastname,
+                    'nickname' => $val->nickname,
+                ],
+                'gender' => $val->gender,
+                'birthdate' => $val->birthdate,
+                'birthplace' => $val->birthplace,
+                'tenantType' => $val->tenantType,
+                'profilePic' => $val->profilePic,
+                'contactInfo' => [
+                    'personal' => [
+                        'contactNum' => $val->contactNum,
+                        'landline' => $val->landline,
+                        'primaryEmail' => $val->primaryEmail
+                    ],
+                    'company' => [
+                        'workEmail' => $com->workEmail,
+                        'workContactNum' => $com->hrContactNumber
+                    ]
+                ],
+                'locationInfo' => [
+                    'houseNumStr' => $val->houseNumStr,
+                    'city' => $val->city,
+                    'province' => $val->province,
+                    'country' => $val->country
+                ],
+<<<<<<< HEAD
+
+=======
+                'companyInfo' => [
+                    'name' => $com->companyName,
+                    'location' => $com->companyLocation,
+                    'industry' => $com->industry,
+                    'position' => $com->position,
+                    'monthlySalary' => $com->monthlySalary,
+                    'hr' => [
+                        'Name' => $com->hrContactName,
+                        'ContactNum' => $com->hrContactNumber,
+                    ],
+                    'workEmail' => $com->workEmail,
+                    'workingHours' => $com->workingHours,
+                ],
+                'rentInfo' => [
+                    'building' => [
+                        'name' => $rent->buildingName,
+                        'bedNum' => $rent->bedNumber,
+                    ],
+                    'room' => [
+                        'price' => $rent->roomPrice,
+                        'type' => $rent->roomType,
+                    ],
+                    'startDate' => $rent->startDate,
+                    'endDate' => $rent->endDate,
+                    'standardRate' => $rent->standardRate,
+                    'monthlyDiscount' => $rent->monthlyDiscount
+                ]
+                
+>>>>>>> e9f134187e5ef7768505c5a7d792242e0769be07
+            ],200);
+>>>>>>> acdc544595231a0241a4032fdc4d53ed46716742
         }
     }
 
