@@ -37,7 +37,7 @@ class TenantTransformer extends TransformerAbstract
         $rent = Rent::where('tenant_id',$val->tenant_id)->first();
 
         return [
-            'tenantID' => $val->tenant_id,
+            'tenantID' => $val->getKey(),
             'name' => $val->firstname . ' ' . strtoupper(substr($val->middlename, 0, 1)) . '. ' . $val->lastname,
             'url' => $this->baseUrl.$val->tenant_id,
             'bedPrice' => $rent['roomPrice'],

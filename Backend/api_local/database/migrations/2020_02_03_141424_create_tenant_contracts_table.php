@@ -17,6 +17,9 @@ class CreateTenantContractsTable extends Migration
             $table->bigIncrements('contract_id');
             $table->integer('tenant_id');
             $table->string('contractForm');
+            $table->string('landingInvoiceRef');
+            $table->float('deposit');
+            $table->float('monthAdvance');
             $table->string('validId1');
             $table->string('IdType1');
             $table->string('validId2');

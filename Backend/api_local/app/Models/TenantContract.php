@@ -11,6 +11,9 @@ class TenantContract extends Model
     protected $fillable = [
         'tenant_id',
         'contractForm',
+        'landingInvoiceRef',
+        'deposit',
+        'monthAdvance',
         'validId1',
         'validId2',
         'IdType1',
