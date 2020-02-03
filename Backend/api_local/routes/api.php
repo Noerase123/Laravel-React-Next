@@ -57,6 +57,7 @@ use Illuminate\Http\Request;
             $route->delete('/{id}','TenantController@destroy');
 
             $route->get('/full/{id}', 'GenTenantController@getRenter');
+            $route->get('/contract/{id}', 'GenTenantController@getContract');
         });
 
         $route->group(['prefix' => '/company'], function ($route) {
