@@ -8,11 +8,6 @@ use App\Models\tenantInfo\Tenant;
 
 class TenantContractTransformer extends TransformerAbstract
 {
-    private $tenant;
-    public function __construct(Tenant $tenant)
-    {
-        $this->tenant = $tenant;
-    }
     /**
      * List of resources to automatically include
      *
@@ -38,7 +33,7 @@ class TenantContractTransformer extends TransformerAbstract
      */
     public function transform(TenantContract $tenCon)
     {
-        $val = $this->tenant->where('tenant_id', $tenCon->tenant_id)->first();
+        $val = Tenant::where('tenant_id', $tenCon->tenant_id)->first();
 
         return [
             'contractID' => $tenCon->getKey(),

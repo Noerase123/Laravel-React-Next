@@ -8,11 +8,6 @@ use App\Models\tenantInfo\Tenant;
 
 class IssueTransformer extends TransformerAbstract
 {
-    private $tenant; 
-    public function __construct(Tenant $tenant)
-    {
-        $this->tenant;
-    }
     /**
      * List of resources to automatically include
      *
@@ -38,7 +33,7 @@ class IssueTransformer extends TransformerAbstract
      */
     public function transform(Issues $issue)
     {
-        $val = $this->tenant->where('tenant_id', $issue->tenant_id)->first();
+        $val = Tenant::where('tenant_id', $issue->tenant_id)->first();
 
         return [
             'id' => $issue->getKey(),

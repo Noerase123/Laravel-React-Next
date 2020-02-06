@@ -8,11 +8,6 @@ use App\Models\tenantInfo\Tenant;
 
 class SchoolTransformer extends TransformerAbstract
 {
-    private $tenant;
-    public function __construct(Tenant $tenant)
-    {
-        $this->tenant = $tenant;
-    }
     /**
      * List of resources to automatically include
      *
@@ -38,7 +33,7 @@ class SchoolTransformer extends TransformerAbstract
      */
     public function transform(School $school)
     {
-        $val = $this->tenant->where('tenant_id', $school->tenant_id)->first();
+        $val = Tenant::where('tenant_id', $school->tenant_id)->first();
 
         return [
             'schoolID' => $school->getKey(),

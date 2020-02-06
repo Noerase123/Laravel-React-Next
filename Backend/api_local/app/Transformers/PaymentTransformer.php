@@ -9,13 +9,6 @@ use App\Models\Invoice;
 
 class PaymentTransformer extends TransformerAbstract
 {
-    private $tenant;
-    private $invoice;
-    public function __construct(Tenant $tenant, Invoice $invoice)
-    {
-        $this->tenant = $tenant;
-        $this->invoice = $invoice;
-    }
     /**
      * List of resources to automatically include
      *
@@ -41,8 +34,8 @@ class PaymentTransformer extends TransformerAbstract
      */
     public function transform(Payment $payment)
     {
-        $val = $this->tenant->where('tenant_id', $payment->tenant_id)->first();
-        $invoice = $this->invoice->where('tenant_id', $payment->tenant_id)->first();
+        $val = Tenant::where('tenant_id', $payment->tenant_id)->first();
+        $invoice = Invoice::where('tenant_id', $payment->tenant_id)->first();
 
         return [
             'payID' => $payment->getKey(),

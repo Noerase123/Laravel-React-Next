@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreRentRequest;
 use App\Models\tenantInfo\Rent;
+use League\Fractal\Serializer\ArraySerializer;
+use League\Fractal\Pagination\IlluminatePaginatorAdapter;
+use App\Transformers\RentTransformer;
 
 class RentController extends Controller
 {
@@ -23,9 +26,9 @@ class RentController extends Controller
     {
         $all = $this->rent->all();
         
-        return response()->json([
-            'rents' => $all
-        ],200);
+        return fractal($all, new RentTransformer)
+                ->serializeWith(new ArraySerializer)
+                ->respond(200);
     }
 
     /**

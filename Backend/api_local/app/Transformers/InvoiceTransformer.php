@@ -8,11 +8,6 @@ use App\Models\tenantInfo\Tenant;
 
 class InvoiceTransformer extends TransformerAbstract
 {
-    private $tenant;
-    public function __construct(Tenant $tenant)
-    {
-        $this->tenant = $tenant;
-    }
     /**
      * List of resources to automatically include
      *
@@ -38,7 +33,7 @@ class InvoiceTransformer extends TransformerAbstract
      */
     public function transform(Invoice $invoice)
     {
-        $val = $this->tenant->where('tenant_id', $invoice->tenant_id)->first();
+        $val = Tenant::where('tenant_id', $invoice->tenant_id)->first();
 
         return [
             'id' => $invoice->getKey(),
