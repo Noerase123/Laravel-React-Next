@@ -4,9 +4,15 @@ namespace App\Transformers;
 
 use League\Fractal\TransformerAbstract;
 use App\Models\tenantInfo\School;
+use App\Models\tenantInfo\Tenant;
 
 class SchoolTransformer extends TransformerAbstract
 {
+    private $tenant;
+    public function __construct(Tenant $tenant)
+    {
+        $this->tenant = $tenant;
+    }
     /**
      * List of resources to automatically include
      *
@@ -32,9 +38,11 @@ class SchoolTransformer extends TransformerAbstract
      */
     public function transform(School $school)
     {
+        $val = $this->tenant->where('tenant_id', $school->tenant_id)->first();
+
         return [
             'schoolID' => $school->getKey(),
-            'tenant_id' => $school->tenant_id,
+            'tenant' => $val->firstname . ' ' . strtoupper(substr($val->middlename, 0, 1)) . '. ' . $val->lastname,
             'schoolName' => $school->schoolName,
             'schoolLocation' => $school->schoolLocation,
             'course' => $school->course,

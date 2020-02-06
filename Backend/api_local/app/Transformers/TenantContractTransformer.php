@@ -4,9 +4,15 @@ namespace App\Transformers;
 
 use League\Fractal\TransformerAbstract;
 use App\Models\TenantContract;
+use App\Models\tenantInfo\Tenant;
 
 class TenantContractTransformer extends TransformerAbstract
 {
+    private $tenant;
+    public function __construct(Tenant $tenant)
+    {
+        $this->tenant = $tenant;
+    }
     /**
      * List of resources to automatically include
      *
@@ -32,9 +38,11 @@ class TenantContractTransformer extends TransformerAbstract
      */
     public function transform(TenantContract $tenCon)
     {
+        $val = $this->tenant->where('tenant_id', $tenCon->tenant_id)->first();
+
         return [
             'contractID' => $tenCon->getKey(),
-            'tenant_id' => $tenCon->tenant_id,
+            'tenant' => $val->firstname . ' ' . strtoupper(substr($val->middlename, 0, 1)) . '. ' . $val->lastname,
             'contractForm' => $tenCon->contractForm,
             'landingInvoiceRef' => $tenCon->landingInvoiceRef,
             'deposit' => $tenCon->deposit,

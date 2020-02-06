@@ -4,9 +4,15 @@ namespace App\Transformers;
 
 use League\Fractal\TransformerAbstract;
 use App\Models\Invoice;
+use App\Models\tenantInfo\Tenant;
 
 class InvoiceTransformer extends TransformerAbstract
 {
+    private $tenant;
+    public function __construct(Tenant $tenant)
+    {
+        $this->tenant = $tenant;
+    }
     /**
      * List of resources to automatically include
      *
@@ -32,9 +38,11 @@ class InvoiceTransformer extends TransformerAbstract
      */
     public function transform(Invoice $invoice)
     {
+        $val = $this->tenant->where('tenant_id', $invoice->tenant_id)->first();
+
         return [
             'id' => $invoice->getKey(),
-            'tenant_id' => $invoice->tenant_id,
+            'tenant' => $val->firstname . ' ' . strtoupper(substr($val->middlename, 0, 1)) . '. ' . $val->lastname,
             'ref_no' => $invoice->ref_no,
             'billingDate' => $invoice->billingDate,
             'dueDate' => $invoice->dueDate,

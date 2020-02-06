@@ -30,9 +30,6 @@ class StorePaymentRequest extends FormRequest
             'invoice_id' => [
                 'required',
             ],
-            'tenant' => [
-                'required',
-            ],
             'paymentSlip' => [
                 'required',
             ],
