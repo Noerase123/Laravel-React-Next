@@ -37,7 +37,7 @@ class RentTransformer extends TransformerAbstract
 
         return [
             'rentID' => $rent->getKey(),
-            'tenant' => $val->firstname . ' ' . strtoupper(substr($val->middlename, 0, 1)) . '. ' . $val->lastname,
+            'tenant' => isset($val) ? $val->firstname . ' ' . strtoupper(substr($val->middlename, 0, 1)) . '. ' . $val->lastname : '',
             'startDate' => $rent->startDate,
             'endDate' => $rent->endDate,
             'buildingName' => $rent->buildingName,
