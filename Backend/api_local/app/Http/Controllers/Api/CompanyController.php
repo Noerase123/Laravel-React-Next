@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCompanyRequest;
 use App\Models\tenantInfo\Company;
+use League\Fractal\Serializer\ArraySerializer;
+use League\Fractal\Pagination\IlluminatePaginatorAdapter;
+use App\Transformers\CompanyTransformer;
 
 class CompanyController extends Controller
 {
@@ -24,9 +27,9 @@ class CompanyController extends Controller
     {
         $all = $this->company->all();
 
-        return response()->json([
-            'companies' => $all
-        ],200);
+        return fractal($all, new CompanyTransformer)
+                ->serializeWith(new ArraySerializer)
+                ->respond(200);
     }
 
     /**
