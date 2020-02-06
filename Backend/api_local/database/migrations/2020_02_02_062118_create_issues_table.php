@@ -21,8 +21,12 @@ class CreateIssuesTable extends Migration
             $table->string('image');
             $table->string('issueDetails');
             $table->string('category');
-            $table->date('dateVisited')->useCurrent();
-            $table->date('dateFixed')->useCurrent();
+            $table->string('dateVisited');
+            $table->string('dateFixed');
+            $table->integer('anytime');
+            $table->date('date1');
+            $table->date('date2');
+            $table->date('date3');
             $table->integer('status');
             $table->timestamps();
         });

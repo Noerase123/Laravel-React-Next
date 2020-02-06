@@ -47,8 +47,9 @@ class TenantContractTransformer extends TransformerAbstract
             'confirmMonthlyPayment' => $tenCon->confirmMonthlyPayment,
             'confirmUtilitiesRates' => $tenCon->confirmUtilitiesRates,
             'confirmTermsConditions' => $tenCon->confirmTermsConditions,
-            'hearFromMyTown' => $tenCon->hearFromMyTown
-            
+            'hearFromMyTown' => $tenCon->hearFromMyTown,
+            'created_at' => $tenCon->created_at->format('Y/m/d h:i:s a'),
+            'updated_at' => $tenCon->updated_at->format('Y/m/d h:i:s a')
         ];
     }
 }

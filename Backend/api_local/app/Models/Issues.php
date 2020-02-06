@@ -10,13 +10,16 @@ class Issues extends Model
     protected $primaryKey = 'issue_id';
     protected $fillable = [
         'tenant_id',
-        'tenant',
         'unit_no',
         'image',
         'issueDetails',
         'category',
-        // 'dateVisited',
-        // 'dateFixed',
+        'dateVisited',
+        'dateFixed',
+        'anytime',
+        'date1',
+        'date2',
+        'date3',
         'status'
     ];
 }

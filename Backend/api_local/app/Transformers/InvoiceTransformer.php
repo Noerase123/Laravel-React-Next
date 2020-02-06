@@ -42,7 +42,9 @@ class InvoiceTransformer extends TransformerAbstract
             'amount' => $invoice->amount,
             'remaining' => $invoice->remaining,
             'payment_status' => $invoice->payment_status,
-            'unit_no' => $invoice->unit_no
+            'unit_no' => $invoice->unit_no,
+            'created_at' => $invoice->created_at->format('Y/m/d h:i:s a'),
+            'updated_at' => $invoice->updated_at->format('Y/m/d h:i:s a')
         ];
     }
 }

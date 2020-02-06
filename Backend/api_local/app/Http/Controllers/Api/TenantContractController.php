@@ -4,17 +4,25 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\TenantContract;
+use App\Models\tenantInfo\TenantContract;
+use App\Models\tenantInfo\Tenant;
+use App\Models\tenantInfo\Rent;
 use App\Http\Requests\StoreContractRequest;
 use App\Transformers\TenantContractTransformer;
+use League\Fractal\Serializer\ArraySerializer;
+use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 
 class TenantContractController extends Controller
 {
     private $contract;
+    private $tenant;
+    private $rent;
 
-    public function __construct(TenantContract $contract)
+    public function __construct(TenantContract $contract, Tenant $tenant, Rent $rent)
     {
         $this->contract = $contract;
+        $this->tenant = $tenant;
+        $this->rent = $rent;
     }
     /**
      * Display a listing of the resource.
@@ -25,9 +33,9 @@ class TenantContractController extends Controller
     {
         $all = $this->contract->all();
 
-        return response()->json([
-            'data' => $all
-        ],200);
+        return fractal($all, new TenantContractTransformer)
+                ->serializeWith(new ArraySerializer)
+                ->respond(200);
     }
 
     /**
@@ -38,10 +46,15 @@ class TenantContractController extends Controller
      */
     public function store(StoreContractRequest $request)
     {
+        $invoice_ref = $this->rent->where('tenant_id', $request->tenant_id)->first();
+        $building = $invoice_ref->buildingName;
+        $startDate = $invoice_ref->startDate;
+        
+
         $input = new TenantContract;
         $input->tenant_id = $request->tenant_id;
         $input->contractForm = $request->contractForm;
-        $input->landingInvoiceRef = $request->landingInvoiceRef;
+        $input->landingInvoiceRef = $request->landingInvoiceRef;    
         $input->deposit = $request->deposit;
         $input->monthAdvance = $request->monthAdvance;
         $input->validId1 = $request->validId1;
@@ -67,7 +80,17 @@ class TenantContractController extends Controller
      */
     public function show($id)
     {
-        //
+        $tenCon = $this->contract->find($id);
+
+        if (is_null($tenCon)) {
+            return response()->json([
+                'message' => 'Data not Found'
+            ],404);
+        }
+        else {
+            return response()->json($tenCon,200);
+        }
+
     }
 
     /**
@@ -90,6 +113,18 @@ class TenantContractController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $iddelete = $this->contract->destroy($id);
+
+        if (is_null($iddelete)) {
+            return response()->json([
+                'message' => 'data not found'
+            ]);
+        }
+        else {
+            return response()->json([
+                'message' => 'tenant\'s contract has been removed'
+            ],200);
+        }
+
     }
 }

@@ -9,8 +9,8 @@ use League\Fractal\Serializer\ArraySerializer;
 use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 use App\Transformers\IssueTransformer;
 use App\Models\Issues;
-use App\Models\Tenant;
-use App\Models\Rent;
+use App\Models\tenantInfo\Tenant;
+use App\Models\tenantInfo\Rent;
 
 class IssueController extends Controller
 {

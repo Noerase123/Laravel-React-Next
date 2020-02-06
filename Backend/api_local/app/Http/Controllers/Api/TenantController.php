@@ -10,7 +10,7 @@ use Intervention\Image\ImageManager;
 use League\Fractal\Serializer\ArraySerializer;
 use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 use App\Transformers\TenantTransformer;
-use App\Models\Tenant;
+use App\Models\tenantInfo\Tenant;
 use Carbon\Carbon;
 
 class TenantController extends Controller

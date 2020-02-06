@@ -4,15 +4,17 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreRentRequest;
-use App\Models\tenantInfo\Rent;
+use App\Models\Payment;
+use League\Fractal\Serializer\ArraySerializer;
+use League\Fractal\Pagination\IlluminatePaginatorAdapter;
+use App\Http\Requests\StorePaymentRequest;
 
-class RentController extends Controller
+class PaymentController extends Controller
 {
-    private $rent;
-
-    public function __construct(Rent $rent){
-        $this->rent = $rent;
+    private $payment;
+    public function __construct(Payment $payment)
+    {
+        $this->payment = $payment;
     }
     /**
      * Display a listing of the resource.
@@ -21,11 +23,9 @@ class RentController extends Controller
      */
     public function index()
     {
-        $all = $this->rent->all();
-        
-        return response()->json([
-            'rents' => $all
-        ],200);
+        $all = $this->payment->all();
+
+        return response()->json($all, 200);
     }
 
     /**
@@ -34,14 +34,14 @@ class RentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRentRequest $request)
+    public function store(StorePaymentRequest $request)
     {
         $input = $request->all();
 
-        $this->rent->create($input);
+        $this->payment->create($input);
 
         return response()->json([
-            'message' => 'Tenant\'s Rent Details Added'
+            'message' => 'Tenant\'s Payment Received'
         ],201);
     }
 
@@ -53,15 +53,14 @@ class RentController extends Controller
      */
     public function show($id)
     {
-        $rent = $this->rent->find($id);
-        // $rent = $this->rent->where('tenant_id',$id)->get();
+        $payment = $this->payment->find($id);
 
-        if (is_null($rent)){
+        if (is_null($payment)) {
             return response()->json([
-                'message' => 'Data Not Found'
+                'message' => 'Data not found'
             ],404);
         } else {
-            return response()->json($rent,200);
+            return response()->json($payment,200);
         }
     }
 
@@ -72,7 +71,7 @@ class RentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreRentRequest $request, $id)
+    public function update(StorePaymentRequest $request, $id)
     {
         //
     }
@@ -85,10 +84,17 @@ class RentController extends Controller
      */
     public function destroy($id)
     {
-        $this->rent->destroy($id);
+        $payment = $this->payment->destroy($id);
 
-        return response()->json([
-            'message' => 'Tenant\'s Rent Details Removed'
-        ],200);
+        if (is_null($payment)) {
+            return response()->json([
+                'message' => 'Data not found'
+            ],404);
+        }
+        else {
+            return response()->json([
+                'message' => 'payment Deleted'
+            ],200);
+        }
     }
 }

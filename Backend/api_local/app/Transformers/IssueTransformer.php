@@ -42,7 +42,7 @@ class IssueTransformer extends TransformerAbstract
             'category' => $issue->category,
             'dateVisited' => isset($issue->dateVisited) ? $issue->dateVisited : '',
             'dateFixed' => isset($issue->dateFixed) ? $issue->dateFixed : '',
-            'status' => $issue->status
+            'status' => $issue->status,
         ];
     }
 }

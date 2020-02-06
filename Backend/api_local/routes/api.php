@@ -56,8 +56,8 @@ use Illuminate\Http\Request;
             $route->patch('/{id}', 'TenantController@update');
             $route->delete('/{id}','TenantController@destroy');
 
-            $route->get('/full/{id}', 'GenTenantController@getRenter');
-            $route->get('/contract/{id}', 'GenTenantController@getContract');
+            $route->get('/full/{tenantId}', 'GenTenantController@getRenter');
+            $route->get('/contract/{tenantId}', 'GenTenantController@getContract');
         });
 
         $route->group(['prefix' => '/company'], function ($route) {
@@ -94,6 +94,15 @@ use Illuminate\Http\Request;
             $route->get('/{id}', 'IssueController@show');
             $route->patch('/{id}', 'IssueController@update');
             $route->delete('/{id}','IssueController@destroy');
+        });
+
+        $route->group(['prefix' => '/contract'], function ($route) {
+
+            $route->get('/', 'TenantContractController@index');
+            $route->post('/', 'TenantContractController@store');
+            $route->get('/{id}', 'TenantContractController@show');
+            $route->patch('/{id}', 'TenantContractController@update');
+            $route->delete('/{id}','TenantContractController@destroy');
         });
 
 
