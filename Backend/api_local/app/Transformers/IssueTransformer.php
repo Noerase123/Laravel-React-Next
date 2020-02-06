@@ -4,7 +4,7 @@ namespace App\Transformers;
 
 use League\Fractal\TransformerAbstract;
 use App\Models\Issues;
-use App\Models\Tenant;
+use App\Models\tenantInfo\Tenant;
 
 class IssueTransformer extends TransformerAbstract
 {

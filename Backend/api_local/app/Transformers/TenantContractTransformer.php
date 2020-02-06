@@ -3,7 +3,7 @@
 namespace App\Transformers;
 
 use League\Fractal\TransformerAbstract;
-use App\Models\TenantContract;
+use App\Models\tenantInfo\TenantContract;
 use App\Models\tenantInfo\Tenant;
 
 class TenantContractTransformer extends TransformerAbstract
