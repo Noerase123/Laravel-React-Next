@@ -14,7 +14,7 @@ use App\Models\tenantInfo\Rent;
 
 class InvoiceController extends Controller
 {
-    private $invoice; 
+    private $invoice;
     private $tenant;
     private $rent;
 
@@ -53,13 +53,14 @@ class InvoiceController extends Controller
         $input = new Invoice;
         $input->tenant_id = $request->tenant_id;
         $input->ref_no = strtoupper(substr($rent->buildingName,0,3)).$rent->roomNumber.$rent->bed;
+        $input->unit_no = $rent->buildingName.' '.$rent->roomNumber;
         $input->billingDate = $request->billingDate;
         $input->dueDate = $request->dueDate;
         $input->tenant = $ten->firstname.' '.$ten->lastname;
         $input->amount = $request->amount;
         $input->remaining = $request->remaining;
         $input->payment_status = $request->payment_status;
-        $input->unit_no = $rent->buildingName.' '.$rent->roomNumber;
+        $input->is_deleted = 0;
         $input->save();
 
         return response()->json([

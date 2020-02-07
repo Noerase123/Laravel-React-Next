@@ -40,9 +40,19 @@ class CompanyController extends Controller
      */
     public function store(StoreCompanyRequest $request)
     {
-        $input = $request->all();
-
-        $this->company->create($input);
+        $input = new Company;
+        $input->tenant_id = $request->tenant_id;
+        $input->companyName = $request->companyName;
+        $input->companyLocation = $request->companyLocation;
+        $input->industry = $request->industry;
+        $input->position = $request->position;
+        $input->monthlySalary = $request->monthlySalary;
+        $input->hrContactName = $request->hrContactName;
+        $input->hrContactNumber = $request->hrContactNumber;
+        $input->workEmail = $request->workEmail;
+        $input->workingHours = $request->workingHours;
+        $input->is_deleted = 0;
+        $input->save();
 
         return response()->json([
             'message' => 'tenant\'s company added successfully'

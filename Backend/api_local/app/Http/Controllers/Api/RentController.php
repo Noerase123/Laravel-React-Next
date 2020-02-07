@@ -25,7 +25,7 @@ class RentController extends Controller
     public function index()
     {
         $all = $this->rent->all();
-        
+
         return fractal($all, new RentTransformer)
                 ->serializeWith(new ArraySerializer)
                 ->respond(200);
@@ -39,9 +39,20 @@ class RentController extends Controller
      */
     public function store(StoreRentRequest $request)
     {
-        $input = $request->all();
-
-        $this->rent->create($input);
+        $input = new Rent;
+        $input->tenant_id = $request->tenant_id;
+        $input->startDate = $request->startDate;
+        $input->buildingName = $request->buildingName;
+        $input->roomNumber = $request->roomNumber;
+        $input->roomPrice = $request->roomPrice;
+        $input->bed = $request->bed;
+        $input->roomType = $request->roomType;
+        $input->contractDuration = $request->contractDuration;
+        $input->endDate = $request->endDate;
+        $input->standardRate = $request->standardRate;
+        $input->monthlyDiscount = $request->monthlyDiscount;
+        $input->is_deleted = 0;
+        $input->save();
 
         return response()->json([
             'message' => 'Tenant\'s Rent Details Added'

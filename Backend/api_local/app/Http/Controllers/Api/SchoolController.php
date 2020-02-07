@@ -14,7 +14,7 @@ class SchoolController extends Controller
 {
     private $school;
 
-    public function __construct(School $school) 
+    public function __construct(School $school)
     {
         $this->school = $school;
     }
@@ -40,9 +40,19 @@ class SchoolController extends Controller
      */
     public function store(StoreSchoolRequest $request)
     {
-        $input = $request->all();
-
-        $this->school->create($input);
+        $input = new School;
+        $input->tenant_id = $request->tenant_id;
+        $input->schoolName = $request->schoolName;
+        $input->schoolLocation = $request->schoolLocation;
+        $input->course = $request->course;
+        $input->schoolYear = $request->schoolYear;
+        $input->uaap = $request->uaap;
+        $input->ncaa = $request->ncaa;
+        $input->weeklyOff = $request->weeklyOff;
+        $input->deptHeadname = $request->deptHeadname;
+        $input->deptHeadnumber = $request->deptHeadnumber;
+        $input->is_deleted = 0;
+        $input->save();
 
         return response()->json([
             'message' => 'Tenant\'s School Details Added'

@@ -11,13 +11,13 @@ class Invoice extends Model
     protected $fillable = [
         'tenant_id',
         'ref_no',
+        'unit_no',
         'billingDate',
         'dueDate',
         'tenant',
         'amount',
         'remaining',
         'payment_status',
-        'unit_no',
         'is_deleted'
     ];
 }

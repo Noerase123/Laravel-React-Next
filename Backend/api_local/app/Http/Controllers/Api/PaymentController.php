@@ -36,9 +36,15 @@ class PaymentController extends Controller
      */
     public function store(StorePaymentRequest $request)
     {
-        $input = $request->all();
-
-        $this->payment->create($input);
+        $input = new Payment;
+        $input->tenant_id = $request->tenant_id;
+        $input->invoice_id = $request->invoice_id;
+        $input->paymentSlip = $request->paymentSlip;
+        $input->amount = $request->amount;
+        $input->amountByFinance = $request->amountByFinance;
+        $input->approved = 0;
+        $input->is_deleted = 0;
+        $input->save();
 
         return response()->json([
             'message' => 'Tenant\'s Payment Received'

@@ -24,6 +24,9 @@ class StoreSchoolRequest extends FormRequest
     public function rules()
     {
         return [
+            'tenant_id' => [
+                'required',
+            ],
             'schoolName' => [
                 'required',
             ],

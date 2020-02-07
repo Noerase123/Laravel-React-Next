@@ -49,12 +49,12 @@ class TenantContractController extends Controller
         $invoice_ref = $this->rent->where('tenant_id', $request->tenant_id)->first();
         $building = $invoice_ref->buildingName;
         $startDate = $invoice_ref->startDate;
-        
+
 
         $input = new TenantContract;
         $input->tenant_id = $request->tenant_id;
         $input->contractForm = $request->contractForm;
-        $input->landingInvoiceRef = $request->landingInvoiceRef;    
+        $input->landingInvoiceRef = $request->landingInvoiceRef;
         $input->deposit = $request->deposit;
         $input->monthAdvance = $request->monthAdvance;
         $input->validId1 = $request->validId1;
@@ -65,6 +65,7 @@ class TenantContractController extends Controller
         $input->confirmUtilitiesRates = $request->confirmUtilitiesRates;
         $input->confirmTermsConditions = $request->confirmTermsConditions;
         $input->hearMyTown = $request->hearMyTown;
+        $input->is_deleted = 0;
         $input->save();
 
         return response()->json([

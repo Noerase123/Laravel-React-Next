@@ -64,6 +64,7 @@ class TenantController extends Controller
         $input->city = $request->city;
         $input->houseNumStr = $request->houseNumStr;
         $input->slug = Carbon::now()->timestamp;
+        $input->is_deleted = 0;
         $input->save();
 
         return response()->json([

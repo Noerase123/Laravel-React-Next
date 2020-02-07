@@ -52,12 +52,16 @@ class IssueController extends Controller
 
         $issue = new Issues;
         $issue->tenant_id = $id;
-        $issue->tenant = $ten->firstname.' '.$ten->lastname;
         $issue->unit_no = $rent->buildingName.' '.$rent->roomNumber;
         $issue->image = $request->image;
         $issue->issueDetails = $request->issueDetails;
         $issue->category = $request->category;
+        $issue->anytime = $request->anytime;
+        $issue->date1 = $request->date1;
+        $issue->date2 = $request->date2;
+        $issue->date3 = $request->date3;
         $issue->status = 0;
+        $issue->is_deleted = 0;
         $issue->save();
 
 
@@ -74,7 +78,7 @@ class IssueController extends Controller
      */
     public function show($id)
     {
-        
+
     }
 
     /**
