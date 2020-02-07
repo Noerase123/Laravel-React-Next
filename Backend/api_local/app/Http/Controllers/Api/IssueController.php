@@ -56,6 +56,8 @@ class IssueController extends Controller
         $issue->image = $request->image;
         $issue->issueDetails = $request->issueDetails;
         $issue->category = $request->category;
+        $issue->dateVisited = "0000-00-00 00:00:00";
+        $issue->dateFixed = "0000-00-00 00:00:00";
         $issue->anytime = $request->anytime;
         $issue->date1 = $request->date1;
         $issue->date2 = $request->date2;
