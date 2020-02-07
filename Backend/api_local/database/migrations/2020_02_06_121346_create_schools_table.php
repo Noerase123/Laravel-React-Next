@@ -25,6 +25,7 @@ class CreateSchoolsTable extends Migration
             $table->integer('weeklyOff');
             $table->string('deptHeadname');
             $table->string('deptHeadnumber');
+            $table->integer('is_deleted');
             $table->timestamps();
         });
     }

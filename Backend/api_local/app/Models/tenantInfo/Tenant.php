@@ -25,6 +25,7 @@ class Tenant extends Model
         'province',
         'city',
         'houseNumStr',
-        'slug'
+        'slug',
+        'is_deleted'
     ];
 }

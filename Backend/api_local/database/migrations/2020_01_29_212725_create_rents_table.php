@@ -26,6 +26,7 @@ class CreateRentsTable extends Migration
             $table->date('endDate');
             $table->integer('standardRate');
             $table->float('monthlyDiscount');
+            $table->integer('is_deleted');
             $table->timestamps();
         });
     }

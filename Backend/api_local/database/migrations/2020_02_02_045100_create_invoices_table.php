@@ -24,6 +24,7 @@ class CreateInvoicesTable extends Migration
             $table->float('remaining');
             $table->integer('payment_status');
             $table->string('unit_no');
+            $table->integer('is_deleted');
             $table->timestamps();
         });
     }

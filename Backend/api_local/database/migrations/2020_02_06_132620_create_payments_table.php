@@ -22,6 +22,7 @@ class CreatePaymentsTable extends Migration
             $table->float('amount');
             $table->float('amountByFinance');
             $table->integer('approved');
+            $table->integer('is_deleted');
             $table->timestamps();
         });
     }

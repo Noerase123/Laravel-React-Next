@@ -29,6 +29,7 @@ class CreateTenantContractsTable extends Migration
             $table->boolean('confirmUtilitiesRates');
             $table->boolean('confirmTermsConditions');
             $table->string('hearFromMyTown');
+            $table->integer('is_deleted');
             $table->timestamps();
         });
     }

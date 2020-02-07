@@ -10,6 +10,7 @@ use App\Models\tenantInfo\Rent;
 use App\Models\Invoice;
 use App\Models\tenantInfo\TenantContract;
 use App\Models\tenantInfo\School;
+use App\Models\tenantInfo\Emergency;
 
 class GenTenantController extends Controller
 {
@@ -19,9 +20,10 @@ class GenTenantController extends Controller
     private $invoice;
     private $tenantContract;
     private $school;
-    
-    public function __construct(Tenant $tenant, 
-            Company $company, Rent $rent, Invoice $invoice, 
+    private $emergency;
+
+    public function __construct(Tenant $tenant, Emergency $emergency,
+            Company $company, Rent $rent, Invoice $invoice,
             TenantContract $tenantContract, School $school)
     {
         $this->tenant = $tenant;
@@ -30,9 +32,10 @@ class GenTenantController extends Controller
         $this->invoice = $invoice;
         $this->tenantContract = $tenantContract;
         $this->school = $school;
+        $this->emergency = $emergency;
     }
 
-    public function getRenter($tenantId) 
+    public function getRenter($tenantId)
     {
         $ten = $this->tenant->find($tenantId);
         if ($ten) {
@@ -40,8 +43,11 @@ class GenTenantController extends Controller
             $rent = $this->rent->where('tenant_id',$ten->tenant_id)->first();
             $invoice = $this->invoice->where('tenant_id', $ten->tenant_id)->orderBy('invoice_id', 'DESC')->get();
             $school = $this->school->where('tenant_id', $ten->tenant_id)->first();
+            $emergency = $this->emergency->where('tenant_id', $ten->tenant_id)->get();
 
             $data = [];
+            $emer = [];
+
             foreach ($invoice as $key => $value) {
                 $data[] = [
                     'invoice_id' => $value->invoice_id,
@@ -52,6 +58,14 @@ class GenTenantController extends Controller
                     'remaining' => $value->remaining,
                     'payment_status' => $value->payment_status,
                     'datePosted' => $value->created_at->format('m/d/Y h:i a')
+                ];
+            }
+
+            foreach ($emergency as $key => $value) {
+                $emer[] = [
+                    'name' => $value->name,
+                    'number' => $value->number,
+                    'relationship' => $value->relationship
                 ];
             }
         }
@@ -111,10 +125,10 @@ class GenTenantController extends Controller
                             'building' => [
                                 'name' => isset($rent->buildingName) ? $rent->buildingName : 'no data',
                                 'room' => [
-                                    'roomNumber' => isset($rent->roomNumber) ? $rent->roomNumber : 'no data',
+                                    'number' => isset($rent->roomNumber) ? $rent->roomNumber : 'no data',
                                     'bed' => isset($rent->bed) ? $rent->bed : 'no data',
-                                    'roomType' => isset($rent->roomType) ? $rent->roomType : 'no data',
-                                ],  
+                                    'type' => isset($rent->roomType) ? $rent->roomType : 'no data',
+                                ],
                             ],
                             'contractDuration' => isset($rent->contractDuration) ? $rent->contractDuration : 'no data',
                             'startDate' => isset($rent->startDate) ? $rent->startDate : 'no data',
@@ -122,11 +136,12 @@ class GenTenantController extends Controller
                             'standardRate' => isset($rent->standardRate) ? $rent->standardRate : 'no data',
                             'monthlyDiscount' => isset($rent->monthlyDiscount) ? $rent->monthlyDiscount : 'no data'
                         ],
+                        'emergencyInfo' => $emer,
                         'invoicesInfo' => $data,
                 ],200);
             }
             else {
-                
+
                 return response()->json([
                     'tenantID' => $ten->getKey(),
                         'created_at' => $ten->created_at->format('Y/m/d h:i a'),
@@ -178,10 +193,10 @@ class GenTenantController extends Controller
                             'building' => [
                                 'name' => isset($rent->buildingName) ? $rent->buildingName : 'no data',
                                 'room' => [
-                                    'roomNumber' => isset($rent->roomNumber) ? $rent->roomNumber : 'no data',
+                                    'number' => isset($rent->roomNumber) ? $rent->roomNumber : 'no data',
                                     'bed' => isset($rent->bed) ? $rent->bed : 'no data',
-                                    'roomType' => isset($rent->roomType) ? $rent->roomType : 'no data',
-                                ],  
+                                    'type' => isset($rent->roomType) ? $rent->roomType : 'no data',
+                                ],
                             ],
                             'contractDuration' => isset($rent->contractDuration) ? $rent->contractDuration : 'no data',
                             'startDate' => isset($rent->startDate) ? $rent->startDate : 'no data',
@@ -189,6 +204,7 @@ class GenTenantController extends Controller
                             'standardRate' => isset($rent->standardRate) ? $rent->standardRate : 'no data',
                             'monthlyDiscount' => isset($rent->monthlyDiscount) ? $rent->monthlyDiscount : 'no data'
                         ],
+                        'emergencyInfo' => $emer,
                         'invoicesInfo' => $data,
                 ],200);
 

@@ -28,6 +28,7 @@ class CreateIssuesTable extends Migration
             $table->date('date2');
             $table->date('date3');
             $table->integer('status');
+            $table->integer('is_deleted');
             $table->timestamps();
         });
     }

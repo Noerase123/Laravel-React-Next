@@ -17,6 +17,7 @@ class Invoice extends Model
         'amount',
         'remaining',
         'payment_status',
-        'unit_no'
+        'unit_no',
+        'is_deleted'
     ];
 }

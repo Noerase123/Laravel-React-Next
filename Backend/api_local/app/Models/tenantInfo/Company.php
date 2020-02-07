@@ -18,6 +18,7 @@ class Company extends Model
         'hrContactName',
         'hrContactNumber',
         'workEmail',
-        'workingHours'
+        'workingHours',
+        'is_deleted'
     ];
 }

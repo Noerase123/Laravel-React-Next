@@ -39,7 +39,7 @@ class CompanyController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(StoreCompanyRequest $request)
-    {   
+    {
         $input = $request->all();
 
         $this->company->create($input);
@@ -79,7 +79,15 @@ class CompanyController extends Controller
      */
     public function update(StoreCompanyRequest $request, $id)
     {
-        //
+        $item = $this->company->find($id);
+
+        $input = $request->all();
+
+        $item->update($input);
+
+        return response()->json([
+            'message' => 'tenant\'s company updated successfully'
+        ],200);
     }
 
     /**

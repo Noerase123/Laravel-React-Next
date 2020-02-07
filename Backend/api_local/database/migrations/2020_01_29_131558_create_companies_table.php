@@ -20,11 +20,12 @@ class CreateCompaniesTable extends Migration
             $table->string('companyLocation');
             $table->string('industry');
             $table->string('position');
-            $table->string('monthlySalary');
+            $table->float('monthlySalary');
             $table->string('hrContactName');
             $table->string('hrContactNumber');
             $table->string('workEmail');
             $table->string('workingHours');
+            $table->integer('is_deleted');
             $table->timestamps();
         });
     }

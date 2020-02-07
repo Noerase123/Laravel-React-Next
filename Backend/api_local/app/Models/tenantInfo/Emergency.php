@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\tenantInfo;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,6 +12,7 @@ class Emergency extends Model
         'tenant_id',
         'name',
         'number',
-        'relationship'
+        'relationship',
+        'is_deleted'
     ];
 }

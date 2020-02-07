@@ -14,6 +14,7 @@ class Payment extends Model
         'paymentSlip',
         'amount',
         'amountByFinance',
-        'approved'
+        'approved',
+        'is_deleted'
     ];
 }

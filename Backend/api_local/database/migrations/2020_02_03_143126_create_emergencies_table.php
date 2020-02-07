@@ -19,6 +19,7 @@ class CreateEmergenciesTable extends Migration
             $table->string('name');
             $table->string('number');
             $table->string('relationship');
+            $table->integer('is_deleted');
             $table->timestamps();
         });
     }

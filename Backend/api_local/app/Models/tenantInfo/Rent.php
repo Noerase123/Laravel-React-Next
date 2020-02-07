@@ -19,6 +19,7 @@ class Rent extends Model
         'contractDuration',
         'endDate',
         'standardRate',
-        'monthlyDiscount'
+        'monthlyDiscount',
+        'is_deleted'
     ];
 }

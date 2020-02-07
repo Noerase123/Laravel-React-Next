@@ -18,6 +18,7 @@ class School extends Model
         'ncaa',
         'weeklyOff',
         'deptHeadname',
-        'deptHeadnumber'
+        'deptHeadnumber',
+        'is_deleted'
     ];
 }

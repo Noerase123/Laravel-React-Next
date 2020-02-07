@@ -20,6 +20,7 @@ class Issues extends Model
         'date1',
         'date2',
         'date3',
-        'status'
+        'status',
+        'is_deleted'
     ];
 }

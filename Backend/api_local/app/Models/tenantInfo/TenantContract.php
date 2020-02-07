@@ -22,6 +22,7 @@ class TenantContract extends Model
         'confirmMonthlyPayment',
         'confirmUtilitiesRates',
         'confirmTermsConditions',
-        'hearFromMyTown'
+        'hearFromMyTown',
+        'is_deleted'
     ];
 }

@@ -32,6 +32,7 @@ class CreateTenantsTable extends Migration
             $table->string('city');
             $table->string('houseNumStr');
             $table->string('slug');
+            $table->integer('is_deleted');
             $table->timestamps();
         });
     }
