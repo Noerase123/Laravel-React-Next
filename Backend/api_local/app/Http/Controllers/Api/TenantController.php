@@ -30,7 +30,7 @@ class TenantController extends Controller
      */
     public function index()
     {
-        $all = $this->tenants->paginate(10);
+        $all = $this->tenants->where('is_deleted', 0)->paginate(10);
 
         return fractal($all, new TenantTransformer)
             ->serializeWith(new ArraySerializer)
@@ -80,7 +80,7 @@ class TenantController extends Controller
      */
     public function show($id)
     {
-        $tenant = $this->tenants->find($id);
+        $tenant = $this->tenants->where('is_deleted', 0)->find($id);
 
         if (is_null($tenant)) {
             return response()->json([
@@ -99,26 +99,34 @@ class TenantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreTenantRequest $request, $id)
     {
-        // $tenant = Tenant::findOrFail($id);
+        $input = $this->tenants->where('is_deleted', 0)->find($id);
 
-        // $input = $request->all();
-
-        // $tenant->fill($input)->save();
-
-        $tenant = Tenant::findOrFail($id);
-
-        if (is_null($tenant)) {
+        if (is_null($input)) {
             return response()->json([
                 'message' => 'No tenant Data'
             ],404);
         }
         else {
 
-            $input = $request->all();
-
-            $tenant->fill($input)->save();
+            $input->profilePic = $request->profilePic;
+            $input->firstname = $request->firstname;
+            $input->middlename = $request->middlename;
+            $input->lastname = $request->lastname;
+            $input->nickname = $request->nickname;
+            $input->contactNum = $request->contactNum;
+            $input->landline = $request->landline;
+            $input->birthdate = $request->birthdate;
+            $input->birthplace = $request->birthplace;
+            $input->tenantType = $request->tenantType;
+            $input->primaryEmail = $request->primaryEmail;
+            $input->gender = $request->gender;
+            $input->country = $request->country;
+            $input->province = $request->province;
+            $input->city = $request->city;
+            $input->houseNumStr = $request->houseNumStr;
+            $input->save();
 
             return response()->json([
                 'message' => 'tenant updated successfully'
@@ -135,7 +143,19 @@ class TenantController extends Controller
      */
     public function destroy($id)
     {
-        $this->tenants->destroy($id);
+        // $this->tenants->destroy($id);
+
+        $tenant = $this->tenants->where('is_deleted', 0)->find($id);
+
+        if (is_null($tenant)) {
+            return response()->json([
+                'message' => 'tenant not exist'
+            ],404);
+        }
+
+        $tenant->update([
+            'is_deleted' => 0
+        ]);
 
         return response()->json([
             'message' => 'tenant has been removed'

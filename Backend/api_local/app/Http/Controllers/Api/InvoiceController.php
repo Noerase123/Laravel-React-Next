@@ -31,7 +31,7 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        $all = $this->invoice->paginate(10);
+        $all = $this->invoice->where('is_deleted', 0)->paginate(10);
 
         return fractal($all, new InvoiceTransformer)
             ->serializeWith(new ArraySerializer)
@@ -56,7 +56,6 @@ class InvoiceController extends Controller
         $input->unit_no = $rent->buildingName.' '.$rent->roomNumber;
         $input->billingDate = $request->billingDate;
         $input->dueDate = $request->dueDate;
-        $input->tenant = $ten->firstname.' '.$ten->lastname;
         $input->amount = $request->amount;
         $input->remaining = $request->remaining;
         $input->payment_status = $request->payment_status;
@@ -76,7 +75,7 @@ class InvoiceController extends Controller
      */
     public function show($id)
     {
-        $invoice = $this->invoice->find($id);
+        $invoice = $this->invoice->where('is_deleted', 0)->find($id);
 
         if (is_null($invoice)) {
             return response()->json([
@@ -99,7 +98,31 @@ class InvoiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $this->invoice->where('is_deleted', 0)->find($id);
+
+        if (is_null($input)) {
+            return response()->json([
+                'message' => 'not found'
+            ],404);
+        }
+        // $newInvoice->update($request->all());
+        $ten = $this->tenant->find($request->tenant_id);
+        $rent = $this->rent->where('tenant_id', $ten->tenant_id)->first();
+        
+        $input->tenant_id = $request->tenant_id;
+        $input->ref_no = strtoupper(substr($rent->buildingName,0,3)).$rent->roomNumber.$rent->bed;
+        $input->unit_no = $rent->buildingName.' '.$rent->roomNumber;
+        $input->billingDate = $request->billingDate;
+        $input->dueDate = $request->dueDate;
+        $input->amount = $request->amount;
+        $input->remaining = $request->remaining;
+        $input->payment_status = $request->payment_status;
+        $input->is_deleted = 0;
+        $input->save();
+
+        return response()->json([
+            'message' => 'Invoice Updated Successfully'
+        ],200);
     }
 
     /**
@@ -110,6 +133,20 @@ class InvoiceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $invoice = $this->invoice->where('is_deleted', 0)->find($id);
+
+        if (is_null($invoice)) {
+            return response()->json([
+                'message' => 'not found'
+            ]);
+        }
+
+        $invoice->update([
+            'is_deleted' => 1
+        ]);
+
+        return response()->json([
+            'message' => 'Invoice '.$id.' ID Deleted'
+        ],200);
     }
 }

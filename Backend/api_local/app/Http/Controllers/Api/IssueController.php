@@ -31,7 +31,7 @@ class IssueController extends Controller
      */
     public function index()
     {
-        $all = $this->issues->paginate(10);
+        $all = $this->issues->where('is_deleted', 0)->paginate(10);
 
         return fractal($all, new IssueTransformer)
                 ->serializeWith(new ArraySerializer)
@@ -80,7 +80,15 @@ class IssueController extends Controller
      */
     public function show($id)
     {
+        $issue = $this->issues->where('is_deleted', 0)->find($id);
 
+        if (is_null($issue)) {
+            return response()->json([
+                'message' => 'not found'
+            ],404);
+        }
+
+        return response()->json($issue, 200);
     }
 
     /**
@@ -92,7 +100,36 @@ class IssueController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $issue = $this->issues->where('is_deleted', 0)->find($id);
+
+        if (is_null($issue)) {
+            return response()->json([
+                'message' => 'not found'
+            ],404);
+        }
+
+        $id = $request->tenant_id;
+        $ten = $this->tenant->find($id);
+        $rent = $this->rent->where('tenant_id', $ten->tenant_id)->first();
+
+        $issue->tenant_id = $id;
+        $issue->unit_no = $rent->buildingName.' '.$rent->roomNumber;
+        $issue->image = $request->image;
+        $issue->issueDetails = $request->issueDetails;
+        $issue->category = $request->category;
+        $issue->dateVisited = $request->dateFixed;
+        $issue->dateFixed = $request->dateFixed;
+        $issue->anytime = $request->anytime;
+        $issue->date1 = $request->date1;
+        $issue->date2 = $request->date2;
+        $issue->date3 = $request->date3;
+        $issue->status = $request->status;
+        $issue->is_deleted = 0;
+        $issue->save();
+
+        return response()->json([
+            'message' => 'issue Updated Successfully'
+        ],200);
     }
 
     /**
@@ -103,6 +140,20 @@ class IssueController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $issue = $this->issues->where('is_deleted', 0)->find($id);
+
+        if (is_null($issue)) {
+            return response()->json([
+                'message' => 'not found'
+            ],404);
+        }
+
+        $issue->update([
+            'is_deleted' => 1
+        ]);
+
+        return response()->json([
+            'message' => 'issue removed successfully'
+        ],200);
     }
 }

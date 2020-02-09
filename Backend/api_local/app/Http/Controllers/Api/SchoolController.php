@@ -25,7 +25,7 @@ class SchoolController extends Controller
      */
     public function index()
     {
-        $all = $this->school->all();
+        $all = $this->school->where('is_deleted', 0)->all();
 
         return fractal($all, new SchoolTransformer)
             ->serializeWith(new ArraySerializer)
@@ -67,7 +67,7 @@ class SchoolController extends Controller
      */
     public function show($id)
     {
-        $school = $this->school->find($id);
+        $school = $this->school->where('is_deleted', 0)->find($id);
 
         if (is_null($school)) {
             return response()->json([
@@ -88,7 +88,19 @@ class SchoolController extends Controller
      */
     public function update(StoreSchoolRequest $request, $id)
     {
-        //
+        $input = $this->school->where('is_deleted', 0)->find($id);
+
+        if (is_null($input)) {
+            return response()->json([
+                'message' => 'not found'
+            ],404);
+        }
+
+        $input->update($request->all());
+
+        return response()->json([
+            'message' => 'school info updated successfully'
+        ],200);
     }
 
     /**
@@ -99,13 +111,19 @@ class SchoolController extends Controller
      */
     public function destroy($id)
     {
-        $school = $this->school->destroy($id);
+        // $school = $this->school->destroy($id);
+        $school = $this->school->where('is_deleted', 0)->find($id);
 
         if(is_null($school)) {
             return response()->json([
                 'message' => 'Data not found'
             ],404);
         } else {
+
+            $school->update([
+                'is_deleted' => 1
+            ]);
+
             return response()->json([
                 'message' => 'tenant\'s school info has been removed'
             ],200);

@@ -23,7 +23,7 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        $all = $this->payment->all();
+        $all = $this->payment->where('is_deleted', 0)->all();
 
         return response()->json($all, 200);
     }
@@ -59,7 +59,7 @@ class PaymentController extends Controller
      */
     public function show($id)
     {
-        $payment = $this->payment->find($id);
+        $payment = $this->payment->where('is_deleted', 0)->find($id);
 
         if (is_null($payment)) {
             return response()->json([
@@ -79,7 +79,26 @@ class PaymentController extends Controller
      */
     public function update(StorePaymentRequest $request, $id)
     {
-        //
+        $input = $this->payment->where('is_deleted', 0)->find($id);
+
+        if (is_null($input)) {
+            return response()->json([
+                'message' => 'not found'
+            ],404);
+        }
+
+        $input->tenant_id = $request->tenant_id;
+        $input->invoice_id = $request->invoice_id;
+        $input->paymentSlip = $request->paymentSlip;
+        $input->amount = $request->amount;
+        $input->amountByFinance = $request->amountByFinance;
+        $input->approved = $request->approved;
+        $input->is_deleted = 0;
+        $input->save();
+
+        return response()->json([
+            'message' => 'payment Updated Successfully'
+        ],200);
     }
 
     /**
@@ -90,7 +109,8 @@ class PaymentController extends Controller
      */
     public function destroy($id)
     {
-        $payment = $this->payment->destroy($id);
+        // $payment = $this->payment->destroy($id);
+        $payment = $this->payment->where('is_deleted', 0)->find($id);
 
         if (is_null($payment)) {
             return response()->json([
@@ -98,6 +118,11 @@ class PaymentController extends Controller
             ],404);
         }
         else {
+
+            $payment->update([
+                'is_deleted' => 1
+            ]);
+
             return response()->json([
                 'message' => 'payment Deleted'
             ],200);

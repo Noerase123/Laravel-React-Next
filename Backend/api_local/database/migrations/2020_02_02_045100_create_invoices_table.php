@@ -19,7 +19,6 @@ class CreateInvoicesTable extends Migration
             $table->string('ref_no');
             $table->date('billingDate');
             $table->date('dueDate');
-            $table->string('tenant');
             $table->float('amount');
             $table->float('remaining');
             $table->integer('payment_status');

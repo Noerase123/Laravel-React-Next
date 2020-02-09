@@ -14,7 +14,6 @@ class Invoice extends Model
         'unit_no',
         'billingDate',
         'dueDate',
-        'tenant',
         'amount',
         'remaining',
         'payment_status',

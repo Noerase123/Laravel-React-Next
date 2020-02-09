@@ -31,7 +31,7 @@ class TenantContractController extends Controller
      */
     public function index()
     {
-        $all = $this->contract->all();
+        $all = $this->contract->where('is_deleted', 0)->all();
 
         return fractal($all, new TenantContractTransformer)
                 ->serializeWith(new ArraySerializer)
@@ -81,7 +81,7 @@ class TenantContractController extends Controller
      */
     public function show($id)
     {
-        $tenCon = $this->contract->find($id);
+        $tenCon = $this->contract->where('is_deleted', 0)->find($id);
 
         if (is_null($tenCon)) {
             return response()->json([
@@ -103,7 +103,35 @@ class TenantContractController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $this->contract->where('is_deleted', 0)->find($id);
+
+        if (is_null($input)) {
+            return response()->json([
+                'message' => 'not found'
+            ],404);
+        }
+        else {
+
+            $input->tenant_id = $request->tenant_id;
+            $input->contractForm = $request->contractForm;
+            $input->landingInvoiceRef = $request->landingInvoiceRef;
+            $input->deposit = $request->deposit;
+            $input->monthAdvance = $request->monthAdvance;
+            $input->validId1 = $request->validId1;
+            $input->IdType1 = $request->IdType1;
+            $input->validId2 = $request->validId2;
+            $input->IdType2 = $request->IdType2;
+            $input->confirmDetails = $request->confirmDetails;
+            $input->confirmUtilitiesRates = $request->confirmUtilitiesRates;
+            $input->confirmTermsConditions = $request->confirmTermsConditions;
+            $input->hearMyTown = $request->hearMyTown;
+            $input->is_deleted = 0;
+            $input->save();
+
+            return response()->json([
+                'message' => 'tenant Contract Updates Successfully'
+            ],200);
+        }
     }
 
     /**

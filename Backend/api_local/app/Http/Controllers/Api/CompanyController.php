@@ -25,7 +25,7 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $all = $this->company->all();
+        $all = $this->company->where('is_deleted', 0)->get();
 
         return fractal($all, new CompanyTransformer)
                 ->serializeWith(new ArraySerializer)
@@ -68,7 +68,7 @@ class CompanyController extends Controller
      */
     public function show($id)
     {
-        $com = $this->company->find($id);
+        $com = $this->company->where('is_deleted', 0)->find($id);
 
         if (is_null($com)) {
             return response()->json([
@@ -89,11 +89,26 @@ class CompanyController extends Controller
      */
     public function update(StoreCompanyRequest $request, $id)
     {
-        $item = $this->company->find($id);
+        $input = $this->company->where('is_deleted', 0)->find($id);
 
-        $input = $request->all();
+        if (is_null($input)) {
+            return response()->json([
+                'message' => 'not found'
+            ],404);
+        }
 
-        $item->update($input);
+        $input->update([
+            'tenant_id' => $request->tenant_id,
+            'companyName' => $request->companyName,
+            'companyLocation' => $request->companyLocation,
+            'industry' => $request->industry,
+            'position' => $request->position,
+            'monthlySalary' => $request->monthlySalary,
+            'hrContactName' => $request->hrContactName,
+            'hrContactNumber' => $request->hrContactNumber,
+            'workEmail' => $request->workEmail,
+            'workingHours' => $request->workingHours
+        ]);
 
         return response()->json([
             'message' => 'tenant\'s company updated successfully'
@@ -108,7 +123,18 @@ class CompanyController extends Controller
      */
     public function destroy($id)
     {
-        $this->company->destroy($id);
+        // $this->company->destroy($id);
+        $company = $this->company->where('is_deleted', 0)->find($id);
+
+        if (is_null($company)) {
+            return response()->json([
+                'message' => 'not found'
+            ],404);
+        }
+
+        $company->update([
+            'is_deleted' => 1
+        ]);
 
         return response()->json([
             'message' => 'tenant\'s company removed successfully'
