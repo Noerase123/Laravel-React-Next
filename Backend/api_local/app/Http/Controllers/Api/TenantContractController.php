@@ -47,15 +47,15 @@ class TenantContractController extends Controller
     public function store(StoreContractRequest $request)
     {
         $invoice_ref = $this->rent->where('tenant_id', $request->tenant_id)->first();
-        // $building = $invoice_ref->buildingName;
-        // $build = strtoupper(substr($building,0,3));
-        // $startDate = $invoice_ref->startDate;
+        $building = $invoice_ref->buildingName;
+        $unit = $invoice_ref->roomNumber;
+        $bed = $invoice_ref->bed;
 
 
         $input = new TenantContract;
         $input->tenant_id = $request->tenant_id;
         $input->contractForm = $request->contractForm;
-        $input->landingInvoiceRef = $request->landingInvoiceRef;
+        $input->landingInvoiceRef = $building.$unit.$bed.'00001';
         $input->deposit = $request->deposit;
         $input->monthAdvance = $request->monthAdvance;
         $input->validId1 = $request->validId1;
@@ -63,9 +63,10 @@ class TenantContractController extends Controller
         $input->validId2 = $request->validId2;
         $input->IdType2 = $request->IdType2;
         $input->confirmDetails = $request->confirmDetails;
+        $input->confirmMonthlyPayment = $request->confirmMonthlyPayment;
         $input->confirmUtilitiesRates = $request->confirmUtilitiesRates;
         $input->confirmTermsConditions = $request->confirmTermsConditions;
-        $input->hearMyTown = $request->hearMyTown;
+        $input->hearFromMyTown = $request->hearFromMyTown;
         $input->is_deleted = 0;
         $input->save();
 

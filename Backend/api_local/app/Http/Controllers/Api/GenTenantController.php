@@ -219,6 +219,27 @@ class GenTenantController extends Controller
             $com = $this->company->where('tenant_id',$ten->tenant_id)->first();
             $rent = $this->rent->where('tenant_id',$ten->tenant_id)->first();
             $cont = $this->tenantContract->where('tenant_id', $ten->tenant_id)->first();
+
+            $con = [
+                'contractForm' => $cont->contractForm,
+                'landingInvoiceRef' => $cont->landingInvoiceRef,
+                'deposit' => $cont->deposit,
+                'monthAdvance' => $cont->monthAdvance,
+                'totalPayment' => $cont->deposit + $cont->monthAdvance,
+                'Identification' => [
+                    'validId1' => $cont->validId1,
+                    'IdType1' => $cont->IdType1,
+                    'validId2' => $cont->validId1,
+                    'IdType2' => $cont->IdType1,
+                ],
+                'confirmationInfo' => [
+                    'confirmDetails' => $cont->confirmDetails == 1 ? 'accept' : 'decline',
+                    'confirmMonthlyPayment' => $cont->confirmMonthlyPayment == 1 ? 'accept' : 'decline',
+                    'confirmUtilities' => $cont->confirmUtilitiesRates == 1 ? 'accept' : 'decline',
+                    'confirmTermsConditions' => $cont->confirmTermsConditions == 1 ? 'accept' : 'decline',
+                ],
+                'hearFromMyTown' => $cont->hearFromMyTown
+            ];
         }
 
         if (is_null($ten)){
@@ -276,7 +297,7 @@ class GenTenantController extends Controller
                         'standardRate' => isset($rent->standardRate) ? $rent->standardRate : 'no data',
                         'monthlyDiscount' => isset($rent->monthlyDiscount) ? $rent->monthlyDiscount : 'no data'
                     ],
-                    'contract' => $cont
+                    'contract' => $con
             ],200);
         }
     }

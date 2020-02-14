@@ -45,6 +45,9 @@ class StoreContractRequest extends FormRequest
             'confirmDetails' => [
                 'required',
             ],
+            'confirmMonthlyPayment' => [
+                'required',
+            ],
             'confirmUtilitiesRates' => [
                 'required',
             ],

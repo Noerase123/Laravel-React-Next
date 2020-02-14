@@ -24,10 +24,10 @@ class CreateTenantContractsTable extends Migration
             $table->string('IdType1');
             $table->string('validId2');
             $table->string('IdType2');
-            $table->boolean('confirmDetails');
-            $table->boolean('confirmMonthlyPayment');
-            $table->boolean('confirmUtilitiesRates');
-            $table->boolean('confirmTermsConditions');
+            $table->integer('confirmDetails');
+            $table->integer('confirmMonthlyPayment');
+            $table->integer('confirmUtilitiesRates');
+            $table->integer('confirmTermsConditions');
             $table->string('hearFromMyTown');
             $table->integer('is_deleted');
             $table->timestamps();

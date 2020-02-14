@@ -45,6 +45,7 @@ class EmergencyController extends Controller
         $emer->name = $request->name;
         $emer->number = $request->number;
         $emer->relationship = $request->relationship;
+        $emer->is_deleted = 0;
         $emer->save();
 
         return response()->json([

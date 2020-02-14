@@ -16,7 +16,7 @@ class InvoiceTransformer extends TransformerAbstract
     protected $defaultIncludes = [
         //
     ];
-    
+
     /**
      * List of resources possible to include
      *
@@ -25,7 +25,7 @@ class InvoiceTransformer extends TransformerAbstract
     protected $availableIncludes = [
         //
     ];
-    
+
     /**
      * A Fractal transformer.
      *
@@ -36,8 +36,8 @@ class InvoiceTransformer extends TransformerAbstract
         $val = Tenant::where('tenant_id', $invoice->tenant_id)->first();
 
         return [
-            'id' => $invoice->getKey(),
-            'tenant' => $val->firstname . ' ' . strtoupper(substr($val->middlename, 0, 1)) . '. ' . $val->lastname,
+            'tenantID' => $invoice->getKey(),
+            'tenant' => $val->firstname.' '.$val->lastname,
             'ref_no' => $invoice->ref_no,
             'billingDate' => $invoice->billingDate,
             'dueDate' => $invoice->dueDate,

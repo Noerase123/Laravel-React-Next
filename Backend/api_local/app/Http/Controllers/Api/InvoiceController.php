@@ -58,7 +58,7 @@ class InvoiceController extends Controller
         $input->dueDate = $request->dueDate;
         $input->amount = $request->amount;
         $input->remaining = $request->remaining;
-        $input->payment_status = $request->payment_status;
+        $input->payment_status = 0;
         $input->is_deleted = 0;
         $input->save();
 
@@ -108,7 +108,7 @@ class InvoiceController extends Controller
         // $newInvoice->update($request->all());
         $ten = $this->tenant->find($request->tenant_id);
         $rent = $this->rent->where('tenant_id', $ten->tenant_id)->first();
-        
+
         $input->tenant_id = $request->tenant_id;
         $input->ref_no = strtoupper(substr($rent->buildingName,0,3)).$rent->roomNumber.$rent->bed;
         $input->unit_no = $rent->buildingName.' '.$rent->roomNumber;
