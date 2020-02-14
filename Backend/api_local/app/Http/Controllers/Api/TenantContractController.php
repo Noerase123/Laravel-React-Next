@@ -31,7 +31,7 @@ class TenantContractController extends Controller
      */
     public function index()
     {
-        $all = $this->contract->where('is_deleted', 0)->all();
+        $all = $this->contract->where('is_deleted', 0)->get();
 
         return fractal($all, new TenantContractTransformer)
                 ->serializeWith(new ArraySerializer)
@@ -47,8 +47,9 @@ class TenantContractController extends Controller
     public function store(StoreContractRequest $request)
     {
         $invoice_ref = $this->rent->where('tenant_id', $request->tenant_id)->first();
-        $building = $invoice_ref->buildingName;
-        $startDate = $invoice_ref->startDate;
+        // $building = $invoice_ref->buildingName;
+        // $build = strtoupper(substr($building,0,3));
+        // $startDate = $invoice_ref->startDate;
 
 
         $input = new TenantContract;

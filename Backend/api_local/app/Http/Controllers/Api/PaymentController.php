@@ -8,6 +8,7 @@ use App\Models\Payment;
 use League\Fractal\Serializer\ArraySerializer;
 use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 use App\Http\Requests\StorePaymentRequest;
+use App\Transformers\PaymentTransformer;
 
 class PaymentController extends Controller
 {
@@ -23,9 +24,11 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        $all = $this->payment->where('is_deleted', 0)->all();
+        $all = $this->payment->where('is_deleted', 0)->get();
 
-        return response()->json($all, 200);
+        return fractal($all, new PaymentTransformer)
+                ->serializeWith(new ArraySerializer)
+                ->respond(200);
     }
 
     /**

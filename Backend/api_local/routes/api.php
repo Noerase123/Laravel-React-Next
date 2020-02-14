@@ -27,24 +27,24 @@ use Illuminate\Http\Request;
             $route->get('getuser', 'Api\AuthController@getUser');
         });
     });
-    
+
     Route::group(['namespace' => 'Api'],function ($route) {
         $route->group(['prefix' => 'post'], function ($route) {
-    
+
             $route->get('/', 'PostController@index');
             $route->post('/', 'PostController@store');
             $route->get('/{id}', 'PostController@show');
             $route->patch('/{id}', 'PostController@update');
             $route->delete('/{id}','PostController@destroy');
         });
-        
-        
+
+
         $route->group(['prefix' => 'comment'], function ($route) {
-        
+
             $route->get('/viewPost/{postid}','CommentController@viewComments');
             $route->post('/addComment/{postid}', 'CommentController@addComment');
             $route->delete('/deleteComment/{postid}', 'CommentController@deleteComment');
-        
+
             $route->get('/viewPost', 'Api\CommentController@viewAllComments');
         });
 
@@ -60,6 +60,15 @@ use Illuminate\Http\Request;
             $route->get('/contract/{tenantId}', 'GenTenantController@getContract');
         });
 
+        $route->group(['prefix' => '/contract'], function ($route) {
+
+            $route->get('/', 'TenantContractController@index');
+            $route->post('/', 'TenantContractController@store');
+            $route->get('/{id}', 'TenantContractController@show');
+            $route->patch('/{id}', 'TenantContractController@update');
+            $route->delete('/{id}','TenantContractController@destroy');
+        });
+
         $route->group(['prefix' => '/company'], function ($route) {
 
             $route->get('/', 'CompanyController@index');
@@ -69,6 +78,24 @@ use Illuminate\Http\Request;
             $route->delete('/{id}','CompanyController@destroy');
         });
 
+        $route->group(['prefix' => '/school'], function ($route) {
+
+            $route->get('/', 'SchoolController@index');
+            $route->post('/', 'SchoolController@store');
+            $route->get('/{id}', 'SchoolController@show');
+            $route->patch('/{id}', 'SchoolController@update');
+            $route->delete('/{id}','SchoolController@destroy');
+        });
+
+        $route->group(['prefix' => '/emergency'], function ($route) {
+
+            $route->get('/', 'EmergencyController@index');
+            $route->post('/', 'EmergencyController@store');
+            $route->get('/{id}', 'EmergencyController@show');
+            $route->patch('/{id}', 'EmergencyController@update');
+            $route->delete('/{id}','EmergencyController@destroy');
+        });
+
         $route->group(['prefix' => '/rent'], function ($route) {
 
             $route->get('/', 'RentController@index');
@@ -76,6 +103,42 @@ use Illuminate\Http\Request;
             $route->get('/{id}', 'RentController@show');
             $route->patch('/{id}', 'RentController@update');
             $route->delete('/{id}','RentController@destroy');
+        });
+
+        $route->group(['prefix' => '/bed'], function ($route) {
+
+            $route->get('/', 'BedController@index');
+            $route->post('/', 'BedController@store');
+            $route->get('/{id}', 'BedController@show');
+            $route->patch('/{id}', 'BedController@update');
+            $route->delete('/{id}','BedController@destroy');
+        });
+
+        $route->group(['prefix' => '/building'], function ($route) {
+
+            $route->get('/', 'BuildingController@index');
+            $route->post('/', 'BuildingController@store');
+            $route->get('/{id}', 'BuildingController@show');
+            $route->patch('/{id}', 'BuildingController@update');
+            $route->delete('/{id}','BuildingController@destroy');
+        });
+
+        $route->group(['prefix' => '/room'], function ($route) {
+
+            $route->get('/', 'RoomController@index');
+            $route->post('/', 'RoomController@store');
+            $route->get('/{id}', 'RoomController@show');
+            $route->patch('/{id}', 'RoomController@update');
+            $route->delete('/{id}','RoomController@destroy');
+        });
+
+        $route->group(['prefix' => '/payment'], function ($route) {
+
+            $route->get('/', 'PaymentController@index');
+            $route->post('/', 'PaymentController@store');
+            $route->get('/{id}', 'PaymentController@show');
+            $route->patch('/{id}', 'PaymentController@update');
+            $route->delete('/{id}','PaymentController@destroy');
         });
 
         $route->group(['prefix' => '/invoice'], function ($route) {
@@ -96,14 +159,6 @@ use Illuminate\Http\Request;
             $route->delete('/{id}','IssueController@destroy');
         });
 
-        $route->group(['prefix' => '/contract'], function ($route) {
-
-            $route->get('/', 'TenantContractController@index');
-            $route->post('/', 'TenantContractController@store');
-            $route->get('/{id}', 'TenantContractController@show');
-            $route->patch('/{id}', 'TenantContractController@update');
-            $route->delete('/{id}','TenantContractController@destroy');
-        });
 
 
     });

@@ -25,7 +25,7 @@ class SchoolController extends Controller
      */
     public function index()
     {
-        $all = $this->school->where('is_deleted', 0)->all();
+        $all = $this->school->where('is_deleted', 0)->get();
 
         return fractal($all, new SchoolTransformer)
             ->serializeWith(new ArraySerializer)

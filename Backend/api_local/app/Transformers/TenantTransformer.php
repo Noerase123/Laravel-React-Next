@@ -17,7 +17,7 @@ class TenantTransformer extends TransformerAbstract
     protected $defaultIncludes = [
         //
     ];
-    
+
     /**
      * List of resources possible to include
      *
@@ -26,7 +26,7 @@ class TenantTransformer extends TransformerAbstract
     protected $availableIncludes = [
         //
     ];
-    
+
     /**
      * A Fractal transformer.
      *
@@ -39,6 +39,7 @@ class TenantTransformer extends TransformerAbstract
         return [
             'tenantID' => $val->getKey(),
             'name' => $val->firstname . ' ' . strtoupper(substr($val->middlename, 0, 1)) . '. ' . $val->lastname,
+            'tenantType' => $val->tenantType == 1 ? 'Student' : 'Employee',
             'url' => $this->baseUrl.$val->tenant_id,
             'bedPrice' => $rent['roomPrice'],
             'roomNumber' => $rent['buildingName'].' '.$rent['roomNumber'].' '.$rent['bed'],
