@@ -30,6 +30,12 @@ class StoreBedRequest extends FormRequest
             'bed_letter' => [
                 'required',
             ],
+            'bed_count' => [
+                'required',
+            ],
+            'bed_vacant' => [
+                'required',
+            ],
         ];
     }
 }

@@ -6,11 +6,11 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\tenantInfo\Tenant;
 use App\Models\tenantInfo\Company;
+use App\Models\tenantInfo\School;
+use App\Models\tenantInfo\TenantContract;
+use App\Models\tenantInfo\Emergency;
 use App\Models\tenantInfo\Rent;
 use App\Models\Invoice;
-use App\Models\tenantInfo\TenantContract;
-use App\Models\tenantInfo\School;
-use App\Models\tenantInfo\Emergency;
 
 class GenTenantController extends Controller
 {

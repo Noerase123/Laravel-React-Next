@@ -25,7 +25,7 @@ class BuildingController extends Controller
      */
     public function index()
     {
-        $all = $this->building->where('is_deleted', 0)->all();
+        $all = $this->building->where('is_deleted', 0)->get();
 
         return fractal($all, new BuildingTransformer)
                 ->serializeWith(new ArraySerializer)

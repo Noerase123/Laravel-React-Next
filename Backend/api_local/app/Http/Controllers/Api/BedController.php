@@ -25,7 +25,7 @@ class BedController extends Controller
      */
     public function index()
     {
-        $all = $this->bed->all();
+        $all = $this->bed->where('is_deleted', 0)->get();
 
         return fractal($all, new BedTransformer)
                 ->serializeWith(new ArraySerializer)
