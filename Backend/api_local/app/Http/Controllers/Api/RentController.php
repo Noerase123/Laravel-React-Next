@@ -33,11 +33,23 @@ class RentController extends Controller
      */
     public function index()
     {
-        $all = $this->rent->where('is_deleted', 0)->get();
+        // $all = $this->rent->where('is_deleted', 0)->get();
 
-        return fractal($all, new RentTransformer)
-                ->serializeWith(new ArraySerializer)
-                ->respond(200);
+        $buildingName = $this->building->where(['is_deleted' => 0, 'buildingName' => 'Amsterdam'])->first();
+        $room = $this->room->where(['is_deleted' => 0, 'roomNum' => 203])->first();
+        $bed = $this->bed->where(['is_deleted' => 0, 'bed_letter' => 'A'])->first();
+
+
+
+        return response()->json([
+            'building' => $buildingName,
+            'room' => $room,
+            'bed' => $bed
+        ], 200);
+
+        // return fractal($all, new RentTransformer)
+        //         ->serializeWith(new ArraySerializer)
+        //         ->respond(200);
     }
 
     /**
@@ -51,13 +63,13 @@ class RentController extends Controller
         $buildingName = $this->building->where(['is_deleted' => 0, 'buildingName' => $request->buildingName])->first();
         $room = $this->room->where(['is_deleted' => 0, 'roomNum' => $request->roomNumber])->first();
         $bed = $this->bed->where(['is_deleted' => 0, 'bed_letter' => $request->bed])->first();
-        
+
         $input = new Rent;
         $input->tenant_id = $request->tenant_id;
         $input->roomNumber = $request->roomNumber;
         $input->buildingName = $request->buildingName;
         $input->roomPrice = $request->roomPrice;
-        $input->bed = $bed;
+        $input->bed = $request->bed;
         $input->roomType = $request->roomType;
         $input->startDate = $request->startDate;
         $input->endDate = $request->endDate;

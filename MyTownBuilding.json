@@ -1,0 +1,82 @@
+[
+    {
+        "buildingName" : "Sydney",
+        "category" : "First Class",
+        "location" : "3376 Harvard Street, Makati, 1213 Metro Manila"
+    },
+    {
+        "buildingName" : "Auckland",
+        "category" : "First Class",
+        "location" : "Harvard Street, Makati, Metro Manila"
+    },
+    {
+        "buildingName" : "Amsterdam",
+        "category" : "First Class",
+        "location" : "359 Panay St., Makati, Metro Manila"
+    },
+    {
+        "buildingName" : "Kyoto",
+        "category" : "Deluxe",
+        "location" : "359 Panay St., Makati, 1213 Metro Manila"
+    },
+    {
+        "buildingName" : "Tokyo",
+        "category" : "Deluxe",
+        "location" : "Panay St, Makati, Metro Manila"
+    },
+    {
+        "buildingName" : "Seoul",
+        "category" : "Deluxe",
+        "location" : "338 Panay St, Makati, Metro Manila"
+    },
+    {
+        "buildingName" : "New York",
+        "category" : "First Class",
+        "location" : "1244 Gen. Jacinto St, Makati, Metro Manila"
+    },
+    {
+        "buildingName" : "Milan",
+        "category" : "Deluxe",
+        "location" : "23 Kalayaan Ave, Makati, Metro Manila"
+    },
+    {
+        "buildingName" : "London",
+        "category" : "Deluxe",
+        "location" : "1224 Kalayaan Ave, Makati, 1212 Metro Manila"
+    },
+    {
+        "buildingName" : "Singapore",
+        "category" : "Deluxe",
+        "location" : "Capas, Makati, Kalakhang Maynila"
+    },
+    {
+        "buildingName" : "Istanbul",
+        "category" : "Deluxe",
+        "location" : "Visaya, Makati, Kalakhang Maynila"
+    },
+    {
+        "buildingName" : "Athens",
+        "category" : "Deluxe",
+        "location" : "476 Narra St., Road lot 122, Brgy, Makati, Metro Manila"
+    },
+    {
+        "buildingName" : "Hong Kong",
+        "category" : "Deluxe",
+        "location" : "153 Lot 6 Teacher Cmpd, Makati, Metro Manila"
+    },
+    {
+        "buildingName" : "Capetown",
+        "category" : "Deluxe",
+        "location" : "204 Lot 14B, 13B, 16 & 15, Blk 36 Kalayaan Ave, Makati, 1214 Metro Manila"
+    },
+    {
+        "buildingName" : "Rio",
+        "category" : "Deluxe",
+        "location" : "47 Lot 11 Blk 184, cor. Jasmin St. & C-5, Makati, Metro Manila"
+    },
+    {
+        "buildingName" : "Paris",
+        "category" : "Deluxe",
+        "location" : "St. Extn, Camia, Makati, Metro Manila"
+    }
+]
