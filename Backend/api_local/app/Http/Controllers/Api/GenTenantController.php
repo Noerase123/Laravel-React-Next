@@ -45,6 +45,8 @@ class GenTenantController extends Controller
             $school = $this->school->where('tenant_id', $ten->tenant_id)->first();
             $emergency = $this->emergency->where('tenant_id', $ten->tenant_id)->get();
 
+            $sumInvoices = $this->invoice->sum('remaining');
+
             $data = [];
             $emer = [];
 
@@ -137,7 +139,10 @@ class GenTenantController extends Controller
                             'monthlyDiscount' => isset($rent->monthlyDiscount) ? $rent->monthlyDiscount : 'no data'
                         ],
                         'emergencyInfo' => $emer,
-                        'invoicesInfo' => $data,
+                        'invoicesInfo' => [
+                            'total' => $sumInvoices,
+                            'invoices' => $data
+                        ]
                 ],200);
             }
             else {
@@ -205,7 +210,10 @@ class GenTenantController extends Controller
                             'monthlyDiscount' => isset($rent->monthlyDiscount) ? $rent->monthlyDiscount : 'no data'
                         ],
                         'emergencyInfo' => $emer,
-                        'invoicesInfo' => $data,
+                        'invoicesInfo' => [
+                            'total' => $sumInvoices,
+                            'invoices' => $data
+                        ]
                 ],200);
 
             }

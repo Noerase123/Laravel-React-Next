@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Payment;
+use App\Models\Invoice;
 use League\Fractal\Serializer\ArraySerializer;
 use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 use App\Http\Requests\StorePaymentRequest;
@@ -13,9 +14,11 @@ use App\Transformers\PaymentTransformer;
 class PaymentController extends Controller
 {
     private $payment;
-    public function __construct(Payment $payment)
+    private $invoice;
+    public function __construct(Payment $payment, Invoice $invoice)
     {
         $this->payment = $payment;
+        $this->invoice = $invoice;
     }
     /**
      * Display a listing of the resource.
@@ -39,18 +42,20 @@ class PaymentController extends Controller
      */
     public function store(StorePaymentRequest $request)
     {
+        $invoice = $this->invoice->where('invoice_id', $request->invoice_id)->first();
+
         $input = new Payment;
         $input->tenant_id = $request->tenant_id;
         $input->invoice_id = $request->invoice_id;
         $input->paymentSlip = $request->paymentSlip;
-        $input->amount = $request->amount;
+        $input->amount = $invoice->amount;
         $input->amountByFinance = $request->amountByFinance;
         $input->approved = 0;
         $input->is_deleted = 0;
         $input->save();
 
         return response()->json([
-            'message' => 'Tenant\'s Payment Received'
+            'message' => 'Tenant\'s Payment Sent'
         ],201);
     }
 

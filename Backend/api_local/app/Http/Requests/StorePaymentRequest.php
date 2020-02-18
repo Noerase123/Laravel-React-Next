@@ -33,13 +33,7 @@ class StorePaymentRequest extends FormRequest
             'paymentSlip' => [
                 'required',
             ],
-            'amount' => [
-                'required',
-            ],
             'amountByFinance' => [
-                'required',
-            ],
-            'approved' => [
                 'required',
             ],
         ];

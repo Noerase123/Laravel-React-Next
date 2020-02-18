@@ -17,7 +17,6 @@ class CreatePaymentsTable extends Migration
             $table->bigIncrements('pay_id');
             $table->integer('tenant_id');
             $table->integer('invoice_id');
-            $table->string('tenant');
             $table->string('paymentSlip');
             $table->float('amount');
             $table->float('amountByFinance');
