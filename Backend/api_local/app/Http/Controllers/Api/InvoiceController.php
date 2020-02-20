@@ -49,6 +49,7 @@ class InvoiceController extends Controller
     {
         $ten = $this->tenant->find($request->tenant_id);
         $rent = $this->rent->where('tenant_id', $ten->tenant_id)->first();
+        $amount = $rent->monthlyDiscount - $request->amount;
 
         $input = new Invoice;
         $input->tenant_id = $request->tenant_id;
@@ -56,7 +57,7 @@ class InvoiceController extends Controller
         $input->unit_no = $rent->buildingName.' '.$rent->roomNumber;
         $input->billingDate = $request->billingDate;
         $input->dueDate = $request->dueDate;
-        $input->amount = $request->amount;
+        $input->amount = $amount;
         $input->remaining = $request->remaining;
         $input->payment_status = 0;
         $input->is_deleted = 0;

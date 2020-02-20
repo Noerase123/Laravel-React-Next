@@ -60,14 +60,14 @@ class RentController extends Controller
      */
     public function store(StoreRentRequest $request)
     {
-        $buildingName = $this->building->where(['is_deleted' => 0, 'buildingName' => $request->buildingName])->first();
+        $build = $this->building->where(['is_deleted' => 0, 'buildingName' => $request->buildingName])->first();
         $room = $this->room->where(['is_deleted' => 0, 'roomNum' => $request->roomNumber])->first();
         $bed = $this->bed->where(['is_deleted' => 0, 'bed_letter' => $request->bed])->first();
 
         $input = new Rent;
         $input->tenant_id = $request->tenant_id;
         $input->roomNumber = $request->roomNumber;
-        $input->buildingName = $request->buildingName;
+        $input->buildingName = $building->buildingName;
         $input->roomPrice = $request->roomPrice;
         $input->bed = $request->bed;
         $input->roomType = $request->roomType;

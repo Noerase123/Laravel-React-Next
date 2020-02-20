@@ -52,7 +52,25 @@ class PaymentController extends Controller
         $input->amountByFinance = $request->amountByFinance;
         $input->approved = 0;
         $input->is_deleted = 0;
-        $input->save();
+
+
+        if ($input->save()) {
+
+            $remaining = $invoice->remaining - $request->amountByFinance;
+
+            if ($remaining < 0) {
+                $invoice->update([
+                    'remaining' => $remaining,
+                    'payment_status' => 1
+                ]);
+            }
+            else {
+                $invoice->update([
+                    'remaining' => $remaining,
+                    'payment_status' => 2
+                ]);
+            }
+        }
 
         return response()->json([
             'message' => 'Tenant\'s Payment Sent'

@@ -46,6 +46,7 @@ class GenTenantController extends Controller
             $emergency = $this->emergency->where('tenant_id', $ten->tenant_id)->get();
 
             $sumInvoices = $this->invoice->sum('remaining');
+            $countInvoices = $this->invoice->count();
 
             $data = [];
             $emer = [];
@@ -58,7 +59,7 @@ class GenTenantController extends Controller
                     'dueDate' => $value->dueDate,
                     'amount' => $value->amount,
                     'remaining' => $value->remaining,
-                    'payment_status' => $value->payment_status,
+                    'payment_status' => $value->payment_status == 1 ? 'Paid' : 'Partial',
                     'datePosted' => $value->created_at->format('m/d/Y h:i a')
                 ];
             }
@@ -96,7 +97,7 @@ class GenTenantController extends Controller
                             'gender' => $ten->gender,
                             'birthdate' => $ten->birthdate,
                             'birthplace' => $ten->birthplace,
-                            'tenantType' => $ten->tenantType,
+                            'tenantType' => $ten->tenantType == 1 ? 'Student' : 'Employee',
                             'profilePic' => $ten->profilePic,
                         ],
                         'contactInfo' => [
@@ -141,6 +142,7 @@ class GenTenantController extends Controller
                         'emergencyInfo' => $emer,
                         'invoicesInfo' => [
                             'total' => $sumInvoices,
+                            'count' => $countInvoices,
                             'invoices' => $data
                         ]
                 ],200);
@@ -162,7 +164,7 @@ class GenTenantController extends Controller
                             'gender' => $ten->gender,
                             'birthdate' => $ten->birthdate,
                             'birthplace' => $ten->birthplace,
-                            'tenantType' => $ten->tenantType,
+                            'tenantType' => $ten->tenantType == 1 ? 'Student' : 'Employee',
                             'profilePic' => $ten->profilePic,
                         ],
                         'contactInfo' => [
@@ -212,6 +214,7 @@ class GenTenantController extends Controller
                         'emergencyInfo' => $emer,
                         'invoicesInfo' => [
                             'total' => $sumInvoices,
+                            'count' => $countInvoices,
                             'invoices' => $data
                         ]
                 ],200);
@@ -269,7 +272,7 @@ class GenTenantController extends Controller
                         'gender' => $ten->gender,
                         'birthdate' => $ten->birthdate,
                         'birthplace' => $ten->birthplace,
-                        'tenantType' => $ten->tenantType,
+                        'tenantType' => $ten->tenantType == 1 ? 'Student' : 'Employee',
                         'profilePic' => $ten->profilePic,
                     ],
                     'contactInfo' => [
