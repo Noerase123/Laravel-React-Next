@@ -46,14 +46,15 @@ class TenantContractController extends Controller
      */
     public function store(StoreContractRequest $request)
     {
-        $invoice_ref = $this->rent->where('tenant_id', $request->tenant_id)->first();
+        $tenant = $this->tenant->where(['is_deleted' => 0, 'tenant_id' => $request->tenant_id])->first();
+        $invoice_ref = $this->rent->where(['is_deleted' => 0, 'tenant_id' => $request->tenant_id])->first();
         $building = $invoice_ref->buildingName;
         $unit = $invoice_ref->roomNumber;
         $bed = $invoice_ref->bed;
 
 
         $input = new TenantContract;
-        $input->tenant_id = $request->tenant_id;
+        $input->tenant_id = $invoice_ref->tenant_id;
         $input->contractForm = $request->contractForm;
         $input->landingInvoiceRef = $building.$unit.$bed.'00001';
         $input->deposit = $request->deposit;
@@ -105,6 +106,7 @@ class TenantContractController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $tenant = $this->tenant->where(['is_deleted' => 0, 'tenant_id' => $request->tenant_id])->first();
         $input = $this->contract->where('is_deleted', 0)->find($id);
 
         if (is_null($input)) {
@@ -114,7 +116,7 @@ class TenantContractController extends Controller
         }
         else {
 
-            $input->tenant_id = $request->tenant_id;
+            $input->tenant_id = $tenant->tenant_id;
             $input->contractForm = $request->contractForm;
             $input->landingInvoiceRef = $request->landingInvoiceRef;
             $input->deposit = $request->deposit;

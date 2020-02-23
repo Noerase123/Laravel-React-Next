@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\tenantInfo\Emergency;
+use App\Models\tenantInfo\Tenant;
 use App\Transformers\EmergencyTransformer;
 use App\Http\Requests\StoreEmergencyRequest;
 use League\Fractal\Serializer\ArraySerializer;
@@ -13,10 +14,12 @@ use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 class EmergencyController extends Controller
 {
     private $emergency;
+    private $tenant;
 
-    public function __construct(Emergency $emergency)
+    public function __construct(Emergency $emergency, Tenant $tenant)
     {
         $this->emergency = $emergency;
+        $this->tenant = $tenant;
     }
     /**
      * Display a listing of the resource.
@@ -40,8 +43,10 @@ class EmergencyController extends Controller
      */
     public function store(StoreEmergencyRequest $request)
     {
+        $tenant = $this->tenant->where(['is_deleted' => 0, 'tenant_id' => $request->tenant_id])->first();
+
         $emer = new Emergency;
-        $emer->tenant_id = $request->tenant_id;
+        $emer->tenant_id = $tenant->tenant_id;
         $emer->name = $request->name;
         $emer->number = $request->number;
         $emer->relationship = $request->relationship;

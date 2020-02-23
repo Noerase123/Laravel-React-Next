@@ -9,6 +9,7 @@ use App\Transformers\BuildingTransformer;
 use App\Http\Requests\StoreBuildingRequest;
 use League\Fractal\Serializer\ArraySerializer;
 use League\Fractal\Pagination\IlluminatePaginatorAdapter;
+use Illuminate\Support\Facades\DB;
 
 class BuildingController extends Controller
 {
@@ -30,6 +31,46 @@ class BuildingController extends Controller
         return fractal($all, new BuildingTransformer)
                 ->serializeWith(new ArraySerializer)
                 ->respond(200);
+    }
+
+    public function insertAll() {
+
+        $buildingName = ['Sydney','Auckland','Amsterdam','Kyoto','Tokyo',
+                        'Seoul','New York','Milan','London','Singapore','Istanbul',
+                        'Athens','Hong Kong','Capetown','Rio','Paris'];
+        $buildingType = ['First Class','First Class','First Class','Deluxe','Deluxe',
+                        'Deluxe','First Class','Deluxe','Deluxe','Deluxe','Deluxe',
+                        'Deluxe','Deluxe','Deluxe','Deluxe','Deluxe'];
+        $buildingLocation = [
+            '3376 Harvard Street, Makati, 1213 Metro Manila',
+            'Harvard Street, Makati, Metro Manila',
+            '359 Panay St., Makati, Metro Manila',
+            '359 Panay St., Makati, Metro Manila',
+            'Panay St., Makati, Metro Manila',
+            '338 Panay St., Makati, Metro Manila',
+            '1244 Gen. Jacinto St., Makati, Metro Manila',
+            '23 Kalayaan Ave., Makati, Metro Manila',
+            '1224 Kalayaan Ave., Makati 1212 Metro Manila',
+            'Capas, Makati, Kalakhang Manila',
+            'Visaya, Makati, Kalakhang Manila',
+            '476 Narra St., Road lot 122, Brgy., Makati, Metro Manila',
+            '153 Lot 6 Teacher Cpmd, Makati, Metro Manila',
+            '204 Lot 14B, 13B, 16 & 15, Blk 36 Kalayaan Ave., Makati, 1214 Metro Manila',
+            '47 Lot 11 Blk 184, cor. Jasmin St. & C-5, Makati, Metro Manila',
+            'St. Extn, Camia, Makati, Metro Manila'
+        ];        
+        for ($i=0; $i < 17; $i++) { 
+            $build = new Building;
+            $build->buildingName = $buildingName[$i];
+            $build->category = $buildingType[$i];
+            $build->location = $buildingLocation[$i];
+            $build->is_deleted = 0;
+            $build->save();
+        }
+
+        return response()->json([
+            'message' => 'Test Success'
+        ],200);
     }
 
     /**
@@ -124,6 +165,15 @@ class BuildingController extends Controller
 
         return response()->json([
             'message' => 'Building removed successfully'
+        ],200);
+    }
+
+    public function deleteAll() 
+    {
+        DB::delete('delete from buildings');
+
+        return response()->json([
+            'message' => 'All Deleted'
         ],200);
     }
 }

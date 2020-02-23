@@ -9,6 +9,7 @@ use App\Models\tenantInfo\Rent;
 use App\Models\Room;
 use App\Models\Building;
 use App\Models\Bed;
+use App\Models\tenantInfo\Tenant;
 use League\Fractal\Serializer\ArraySerializer;
 use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 use App\Transformers\RentTransformer;
@@ -19,12 +20,14 @@ class RentController extends Controller
     private $room;
     private $building;
     private $bed;
+    private $tenant;
 
-    public function __construct(Rent $rent, Room $room, Building $building, Bed $bed){
+    public function __construct(Rent $rent, Room $room, Building $building, Bed $bed, Tenant $tenant){
         $this->rent = $rent;
         $this->room = $room;
         $this->building = $building;
         $this->bed = $bed;
+        $this->tenant = $tenant;
     }
     /**
      * Display a listing of the resource.
@@ -33,23 +36,21 @@ class RentController extends Controller
      */
     public function index()
     {
-        // $all = $this->rent->where('is_deleted', 0)->get();
+        $all = $this->rent->where('is_deleted', 0)->get();
 
-        $buildingName = $this->building->where(['is_deleted' => 0, 'buildingName' => 'Amsterdam'])->first();
-        $room = $this->room->where(['is_deleted' => 0, 'roomNum' => 203])->first();
-        $bed = $this->bed->where(['is_deleted' => 0, 'bed_letter' => 'A'])->first();
+        return fractal($all, new RentTransformer)
+                ->serializeWith(new ArraySerializer)
+                ->respond(200);
 
+        // $buildingName = $this->building->where(['is_deleted' => 0, 'buildingName' => 'Amsterdam'])->first();
+        // $room = $this->room->where(['is_deleted' => 0, 'roomNum' => 203])->first();
+        // $bed = $this->bed->where(['is_deleted' => 0, 'bed_letter' => 'A'])->first();
 
-
-        return response()->json([
-            'building' => $buildingName,
-            'room' => $room,
-            'bed' => $bed
-        ], 200);
-
-        // return fractal($all, new RentTransformer)
-        //         ->serializeWith(new ArraySerializer)
-        //         ->respond(200);
+        // return response()->json([
+        //     'building' => $buildingName,
+        //     'room' => $room,
+        //     'bed' => $bed
+        // ], 200);
     }
 
     /**
@@ -60,14 +61,15 @@ class RentController extends Controller
      */
     public function store(StoreRentRequest $request)
     {
+        $tenant = $this->tenant->where(['is_deleted' => 0, 'tenant_id' => $request->tenant_id])->first();
         $build = $this->building->where(['is_deleted' => 0, 'buildingName' => $request->buildingName])->first();
-        $room = $this->room->where(['is_deleted' => 0, 'roomNum' => $request->roomNumber])->first();
-        $bed = $this->bed->where(['is_deleted' => 0, 'bed_letter' => $request->bed])->first();
+        // $room = $this->room->where(['is_deleted' => 0, 'roomNum' => $request->roomNumber])->first();
+        // $bed = $this->bed->where(['is_deleted' => 0, 'bed_letter' => $request->bed])->first();
 
         $input = new Rent;
-        $input->tenant_id = $request->tenant_id;
+        $input->tenant_id = $tenant->tenant_id;
         $input->roomNumber = $request->roomNumber;
-        $input->buildingName = $building->buildingName;
+        $input->buildingName = $build->buildingName;
         $input->roomPrice = $request->roomPrice;
         $input->bed = $request->bed;
         $input->roomType = $request->roomType;
@@ -113,6 +115,10 @@ class RentController extends Controller
      */
     public function update(StoreRentRequest $request, $id)
     {
+        $tenant = $this->tenant->where(['is_deleted' => 0, 'tenant_id' => $request->tenant_id])->first();
+        $build = $this->building->where(['is_deleted' => 0, 'buildingName' => $request->buildingName])->first();
+        // $room = $this->room->where(['is_deleted' => 0, 'roomNum' => $request->roomNumber])->first();
+        // $bed = $this->bed->where(['is_deleted' => 0, 'bed_letter' => $request->bed])->first();
         $rent = $this->rent->where('is_deleted', 0)->find($id);
 
         if (is_null($rent)) {

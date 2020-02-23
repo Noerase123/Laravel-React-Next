@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCompanyRequest;
 use App\Models\tenantInfo\Company;
+use App\Models\tenantInfo\Tenant;
 use League\Fractal\Serializer\ArraySerializer;
 use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 use App\Transformers\CompanyTransformer;
@@ -13,10 +14,12 @@ use App\Transformers\CompanyTransformer;
 class CompanyController extends Controller
 {
     private $company;
+    private $tenant;
 
-    public function __construct(Company $company)
+    public function __construct(Company $company, Tenant $tenant)
     {
         $this->company = $company;
+        $this->tenant = $tenant;
     }
     /**
      * Display a listing of the resource.
@@ -40,8 +43,10 @@ class CompanyController extends Controller
      */
     public function store(StoreCompanyRequest $request)
     {
+        $tenant = $this->tenant->where(['is_deleted' => 0, 'tenant_id' => $request->tenant_id])->first();
+
         $input = new Company;
-        $input->tenant_id = $request->tenant_id;
+        $input->tenant_id = $tenant->tenant_id;
         $input->companyName = $request->companyName;
         $input->companyLocation = $request->companyLocation;
         $input->industry = $request->industry;
@@ -89,6 +94,7 @@ class CompanyController extends Controller
      */
     public function update(StoreCompanyRequest $request, $id)
     {
+        $tenant = $this->tenant->where(['is_deleted' => 0, 'tenant_id' => $request->tenant_id])->first();
         $input = $this->company->where('is_deleted', 0)->find($id);
 
         if (is_null($input)) {
@@ -98,7 +104,7 @@ class CompanyController extends Controller
         }
 
         $input->update([
-            'tenant_id' => $request->tenant_id,
+            'tenant_id' => $tenant->tenant_id,
             'companyName' => $request->companyName,
             'companyLocation' => $request->companyLocation,
             'industry' => $request->industry,

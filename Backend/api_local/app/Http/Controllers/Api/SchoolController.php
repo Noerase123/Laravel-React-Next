@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\tenantInfo\School;
+use App\Models\tenantInfo\Tenant;
 use League\Fractal\Serializer\ArraySerializer;
 use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 use App\Http\Requests\StoreSchoolRequest;
@@ -13,10 +14,12 @@ use App\Transformers\SchoolTransformer;
 class SchoolController extends Controller
 {
     private $school;
+    private $tenant;
 
-    public function __construct(School $school)
+    public function __construct(School $school, Tenant $tenant)
     {
         $this->school = $school;
+        $this->tenant = $tenant;
     }
     /**
      * Display a listing of the resource.
@@ -40,8 +43,10 @@ class SchoolController extends Controller
      */
     public function store(StoreSchoolRequest $request)
     {
+        $tenant = $this->tenant->where(['is_deleted' => 0, 'tenant_id' => $request->tenant_id])->first();
+
         $input = new School;
-        $input->tenant_id = $request->tenant_id;
+        $input->tenant_id = $tenant->tenant_id;
         $input->schoolName = $request->schoolName;
         $input->schoolLocation = $request->schoolLocation;
         $input->course = $request->course;
@@ -88,6 +93,7 @@ class SchoolController extends Controller
      */
     public function update(StoreSchoolRequest $request, $id)
     {
+        $tenant = $this->tenant->where(['is_deleted' => 0, 'tenant_id' => $request->tenant_id])->first();
         $input = $this->school->where('is_deleted', 0)->find($id);
 
         if (is_null($input)) {

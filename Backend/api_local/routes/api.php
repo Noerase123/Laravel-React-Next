@@ -121,6 +121,9 @@ use Illuminate\Http\Request;
             $route->get('/{id}', 'BuildingController@show');
             $route->patch('/{id}', 'BuildingController@update');
             $route->delete('/{id}','BuildingController@destroy');
+
+            $route->post('/l/insertAll', 'BuildingController@insertAll');
+            $route->delete('/l/deleteAll', 'BuildingController@deleteAll');
         });
 
         $route->group(['prefix' => '/room'], function ($route) {
