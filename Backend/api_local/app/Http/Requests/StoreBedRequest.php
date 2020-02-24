@@ -24,16 +24,10 @@ class StoreBedRequest extends FormRequest
     public function rules()
     {
         return [
-            'room_id' => [
-                'required',
-            ],
             'bed_letter' => [
                 'required',
             ],
             'bed_count' => [
-                'required',
-            ],
-            'bed_vacant' => [
                 'required',
             ],
         ];

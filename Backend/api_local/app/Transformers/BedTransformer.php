@@ -34,15 +34,10 @@ class BedTransformer extends TransformerAbstract
      */
     public function transform(Bed $bed)
     {
-        $room = Room::where('room_id', $bed->room_id)->first();
-        $build = Building::where('building_id', $room->building_id)->first();
-        $name = $build->buildingName;
         return [
             'bedID' => $bed->getKey(),
-            'room' => $name.' '.$room->roomNum,
             'bedLetter' => $bed->bed_letter,
             'bedCount' => $bed->bed_count,
-            'bedVacant' => $bed->bed_vacant
         ];
     }
 }

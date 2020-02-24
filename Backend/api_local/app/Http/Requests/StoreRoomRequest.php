@@ -39,6 +39,9 @@ class StoreRoomRequest extends FormRequest
             'maxPerson' => [
                 'required',
             ],
+            'vacant' => [
+                'required',
+            ],
         ];
     }
 }

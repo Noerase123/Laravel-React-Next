@@ -9,6 +9,7 @@ use App\Http\Requests\StoreBedRequest;
 use App\Transformers\BedTransformer;
 use League\Fractal\Serializer\ArraySerializer;
 use League\Fractal\Pagination\IlluminatePaginatorAdapter;
+use Illuminate\Support\Facades\DB;
 
 class BedController extends Controller
 {
@@ -32,6 +33,23 @@ class BedController extends Controller
                 ->respond(200);
     }
 
+    public function insertAll()
+    {
+        $bed_letters = ['A','B','C','D','E','F','G','H'];
+
+        for ($i=0; $i < count($bed_letters); $i++) {
+            $bed = new Bed;
+            $bed->bed_letter = $bed_letters[$i];
+            $bed->bed_count = $i;
+            $bed->is_deleted = 0;
+            $bed->save();
+        }
+
+        return response()->json([
+            'message' => 'Bed Successfully added'
+        ]);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -41,10 +59,8 @@ class BedController extends Controller
     public function store(StoreBedRequest $request)
     {
         $bed = new Bed;
-        $bed->room_id = $request->room_id;
         $bed->bed_letter = $request->bed_letter;
         $bed->bed_count = $request->bed_count;
-        $bed->bed_vacant = $request->bed_vacant;
         $bed->is_deleted = 0;
         $bed->save();
 
@@ -133,5 +149,14 @@ class BedController extends Controller
                 'message' => 'Bed Removed Successfully'
             ],200);
         }
+    }
+
+    public function deleteAll()
+    {
+        DB::delete('delete from beds');
+
+        return response()->json([
+            'message' => 'All Deleted Successfully'
+        ],200);
     }
 }

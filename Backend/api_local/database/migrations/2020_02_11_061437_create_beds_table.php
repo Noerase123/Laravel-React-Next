@@ -15,10 +15,8 @@ class CreateBedsTable extends Migration
     {
         Schema::create('beds', function (Blueprint $table) {
             $table->bigIncrements('bed_id');
-            $table->integer('room_id');
             $table->string('bed_letter');
             $table->integer('bed_count');
-            $table->integer('bed_vacant');
             $table->integer('is_deleted');
             $table->timestamps();
         });

@@ -45,13 +45,17 @@ class RoomController extends Controller
      */
     public function store(StoreRoomRequest $request)
     {
+        $build = $this->building->where(['is_deleted' => 0, 'building_id' => $request->building_id])->first();
+        $bed = $this->bed->where(['is_deleted' => 0, 'bed_id' => $request->bed_id])->first();
+
         $room = new Room;
-        $room->building_id = $request->building_id;
-        $room->bed_id = $request->bed_id;
+        $room->building_id = $build->building_id;
+        $room->bed_id = $bed->bed_id;
         $room->roomNum = $request->roomNum;
         $room->roomType = $request->roomType;
         $room->roomPrice = $request->roomPrice;
         $room->maxPerson = $request->maxPerson;
+        $room->vacant = $request->vacant;
         $room->is_deleted = 0;
         $room->save();
 

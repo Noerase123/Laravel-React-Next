@@ -112,6 +112,9 @@ use Illuminate\Http\Request;
             $route->get('/{id}', 'BedController@show');
             $route->patch('/{id}', 'BedController@update');
             $route->delete('/{id}','BedController@destroy');
+
+            $route->post('/extra/insertAll', 'BedController@insertAll');
+            $route->delete('/extra/deleteAll', 'BedController@deleteAll');
         });
 
         $route->group(['prefix' => '/building'], function ($route) {
@@ -122,8 +125,8 @@ use Illuminate\Http\Request;
             $route->patch('/{id}', 'BuildingController@update');
             $route->delete('/{id}','BuildingController@destroy');
 
-            $route->post('/l/insertAll', 'BuildingController@insertAll');
-            $route->delete('/l/deleteAll', 'BuildingController@deleteAll');
+            $route->post('/extra/insertAll', 'BuildingController@insertAll');
+            $route->delete('/extra/deleteAll', 'BuildingController@deleteAll');
         });
 
         $route->group(['prefix' => '/room'], function ($route) {

@@ -17,6 +17,7 @@ class Room extends Model
         'roomType',
         'roomPrice',
         'maxPerson',
+        'vacant',
         'is_deleted'
     ];
 }

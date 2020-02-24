@@ -11,10 +11,8 @@ class Bed extends Model
     protected $primaryKey = 'bed_id';
 
     protected $fillable = [
-        'room_id',
         'bed_letter',
         'bed_count',
-        'bed_vacant',
         'is_deleted'
     ];
 }

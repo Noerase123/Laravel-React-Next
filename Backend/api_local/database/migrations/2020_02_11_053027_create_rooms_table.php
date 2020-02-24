@@ -21,6 +21,7 @@ class CreateRoomsTable extends Migration
             $table->integer('roomType');
             $table->string('roomPrice');
             $table->string('maxPerson');
+            $table->integer('vacant');
             $table->integer('is_deleted');
             $table->timestamps();
         });
