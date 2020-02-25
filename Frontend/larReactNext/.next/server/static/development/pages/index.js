@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -125,7 +125,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_9__);
 /* harmony import */ var _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @material-ui/core/Button */ "@material-ui/core/Button");
 /* harmony import */ var _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_10__);
-var _jsxFileName = "C:\\Users\\IT PC\\Desktop\\Laravel-React-Next\\Frontend\\larReactNext\\components\\ComIndex.js";
+var _jsxFileName = "/home/isaac/Desktop/Laravel-React-Next/Frontend/larReactNext/components/ComIndex.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 
@@ -168,7 +168,7 @@ function ComIndex() {
   const [del, setDel] = react__WEBPACK_IMPORTED_MODULE_1___default.a.useState('');
   let ApiUrl = 'http://127.0.0.1:8000/';
   react__WEBPACK_IMPORTED_MODULE_1___default.a.useEffect(() => {
-    axios__WEBPACK_IMPORTED_MODULE_9___default.a.get(ApiUrl + 'api/post').then(res => {
+    axios__WEBPACK_IMPORTED_MODULE_9___default.a.get(ApiUrl + 'api/tenant').then(res => {
       console.log(res.data.data);
       setPost(res.data.data);
     }).catch(err => {
@@ -286,7 +286,7 @@ function ComIndex() {
       lineNumber: 96
     },
     __self: this
-  }, row.id), __jsx(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_5___default.a, {
+  }, row.tenant_id), __jsx(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_5___default.a, {
     align: "right",
     __source: {
       fileName: _jsxFileName,
@@ -306,14 +306,14 @@ function ComIndex() {
       lineNumber: 99
     },
     __self: this
-  }, row.title))), __jsx(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_5___default.a, {
+  }, row.name))), __jsx(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_5___default.a, {
     align: "right",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 100
     },
     __self: this
-  }, row.description), __jsx(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_5___default.a, {
+  }, row.tenantType), __jsx(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_5___default.a, {
     align: "right",
     __source: {
       fileName: _jsxFileName,
@@ -362,7 +362,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _material_ui_icons_Menu__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/icons/Menu */ "@material-ui/icons/Menu");
 /* harmony import */ var _material_ui_icons_Menu__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_Menu__WEBPACK_IMPORTED_MODULE_8__);
-var _jsxFileName = "C:\\Users\\IT PC\\Desktop\\Laravel-React-Next\\Frontend\\larReactNext\\components\\Header.js";
+var _jsxFileName = "/home/isaac/Desktop/Laravel-React-Next/Frontend/larReactNext/components/Header.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
@@ -452,7 +452,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Header */ "./components/Header.js");
-var _jsxFileName = "C:\\Users\\IT PC\\Desktop\\Laravel-React-Next\\Frontend\\larReactNext\\components\\Layout.js";
+var _jsxFileName = "/home/isaac/Desktop/Laravel-React-Next/Frontend/larReactNext/components/Layout.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
@@ -2224,7 +2224,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Layout */ "./components/Layout.js");
 /* harmony import */ var _components_ComIndex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/ComIndex */ "./components/ComIndex.js");
-var _jsxFileName = "C:\\Users\\IT PC\\Desktop\\Laravel-React-Next\\Frontend\\larReactNext\\pages\\index.js";
+var _jsxFileName = "/home/isaac/Desktop/Laravel-React-Next/Frontend/larReactNext/pages/index.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
@@ -2247,14 +2247,14 @@ function Index() {
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /*!******************************!*\
   !*** multi ./pages/index.js ***!
   \******************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\IT PC\Desktop\Laravel-React-Next\Frontend\larReactNext\pages\index.js */"./pages/index.js");
+module.exports = __webpack_require__(/*! /home/isaac/Desktop/Laravel-React-Next/Frontend/larReactNext/pages/index.js */"./pages/index.js");
 
 
 /***/ }),
