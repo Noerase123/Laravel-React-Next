@@ -48,7 +48,7 @@ export default function ComIndex() {
 
     React.useEffect(() => {
 
-        Axios.get(ApiUrl + 'api/post')
+        Axios.get(ApiUrl + 'api/tenant')
             .then(res => {
                 console.log(res.data.data)
                 setPost(res.data.data)
@@ -94,10 +94,10 @@ export default function ComIndex() {
                         {post.map(row => (
                             <TableRow key={row.id}>
                                 <TableCell component="th" scope="row">
-                                    {row.id}
+                                    {row.tenant_id}
                                 </TableCell>
-                                <TableCell align="right"><Link href={'/post?getId=' + row.id}><a>{row.title}</a></Link></TableCell>
-                                <TableCell align="right">{row.description}</TableCell>
+                                <TableCell align="right"><Link href={'/post?getId=' + row.id}><a>{row.name}</a></Link></TableCell>
+                                <TableCell align="right">{row.tenantType}</TableCell>
                                 <TableCell align="right">
                                     <Button variant="contained" color="secondary" onClick={() => deletePost(row.id)}>
                                         Delete Post

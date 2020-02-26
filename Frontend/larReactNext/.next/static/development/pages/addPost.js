@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static\\development\\pages\\addPost.js"],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static/development/pages/addPost.js"],{
 
 /***/ "./components/ComAddPost.js":
 /*!**********************************!*\
@@ -21,7 +21,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/TextField */ "./node_modules/@material-ui/core/esm/TextField/index.js");
 /* harmony import */ var _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js");
 
-var _jsxFileName = "C:\\Users\\IT PC\\Desktop\\Laravel-React-Next\\Frontend\\larReactNext\\components\\ComAddPost.js";
+var _jsxFileName = "/home/isaac/Desktop/Laravel-React-Next/Frontend/larReactNext/components/ComAddPost.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
 
 
@@ -185,7 +185,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core/IconButton */ "./node_modules/@material-ui/core/esm/IconButton/index.js");
 /* harmony import */ var _material_ui_icons_Menu__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/icons/Menu */ "./node_modules/@material-ui/icons/Menu.js");
 /* harmony import */ var _material_ui_icons_Menu__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_Menu__WEBPACK_IMPORTED_MODULE_8__);
-var _jsxFileName = "C:\\Users\\IT PC\\Desktop\\Laravel-React-Next\\Frontend\\larReactNext\\components\\Header.js";
+var _jsxFileName = "/home/isaac/Desktop/Laravel-React-Next/Frontend/larReactNext/components/Header.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
@@ -277,7 +277,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Header */ "./components/Header.js");
-var _jsxFileName = "C:\\Users\\IT PC\\Desktop\\Laravel-React-Next\\Frontend\\larReactNext\\components\\Layout.js";
+var _jsxFileName = "/home/isaac/Desktop/Laravel-React-Next/Frontend/larReactNext/components/Layout.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
@@ -25734,10 +25734,10 @@ var assign=Object.assign.bind(Object);function g(){return assign;}Object.defineP
 
 /***/ }),
 
-/***/ "./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2FaddPost&absolutePagePath=C%3A%5CUsers%5CIT%20PC%5CDesktop%5CLaravel-React-Next%5CFrontend%5ClarReactNext%5Cpages%5CaddPost.js!./":
-/*!************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2FaddPost&absolutePagePath=C%3A%5CUsers%5CIT%20PC%5CDesktop%5CLaravel-React-Next%5CFrontend%5ClarReactNext%5Cpages%5CaddPost.js ***!
-  \************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2FaddPost&absolutePagePath=%2Fhome%2Fisaac%2FDesktop%2FLaravel-React-Next%2FFrontend%2FlarReactNext%2Fpages%2FaddPost.js!./":
+/*!*****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2FaddPost&absolutePagePath=%2Fhome%2Fisaac%2FDesktop%2FLaravel-React-Next%2FFrontend%2FlarReactNext%2Fpages%2FaddPost.js ***!
+  \*****************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -32990,7 +32990,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Layout */ "./components/Layout.js");
 /* harmony import */ var _components_ComAddPost__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/ComAddPost */ "./components/ComAddPost.js");
-var _jsxFileName = "C:\\Users\\IT PC\\Desktop\\Laravel-React-Next\\Frontend\\larReactNext\\pages\\addPost.js";
+var _jsxFileName = "/home/isaac/Desktop/Laravel-React-Next/Frontend/larReactNext/pages/addPost.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
@@ -33013,14 +33013,14 @@ function About() {
 
 /***/ }),
 
-/***/ 1:
-/*!****************************************************************************************************************************************************************************!*\
-  !*** multi next-client-pages-loader?page=%2FaddPost&absolutePagePath=C%3A%5CUsers%5CIT%20PC%5CDesktop%5CLaravel-React-Next%5CFrontend%5ClarReactNext%5Cpages%5CaddPost.js ***!
-  \****************************************************************************************************************************************************************************/
+/***/ 2:
+/*!*********************************************************************************************************************************************************************!*\
+  !*** multi next-client-pages-loader?page=%2FaddPost&absolutePagePath=%2Fhome%2Fisaac%2FDesktop%2FLaravel-React-Next%2FFrontend%2FlarReactNext%2Fpages%2FaddPost.js ***!
+  \*********************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2FaddPost&absolutePagePath=C%3A%5CUsers%5CIT%20PC%5CDesktop%5CLaravel-React-Next%5CFrontend%5ClarReactNext%5Cpages%5CaddPost.js! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2FaddPost&absolutePagePath=C%3A%5CUsers%5CIT%20PC%5CDesktop%5CLaravel-React-Next%5CFrontend%5ClarReactNext%5Cpages%5CaddPost.js!./");
+module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2FaddPost&absolutePagePath=%2Fhome%2Fisaac%2FDesktop%2FLaravel-React-Next%2FFrontend%2FlarReactNext%2Fpages%2FaddPost.js! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2FaddPost&absolutePagePath=%2Fhome%2Fisaac%2FDesktop%2FLaravel-React-Next%2FFrontend%2FlarReactNext%2Fpages%2FaddPost.js!./");
 
 
 /***/ }),
@@ -33036,5 +33036,5 @@ module.exports = dll_ef0ff7c60362f24a921f;
 
 /***/ })
 
-},[[1,"static/runtime/webpack.js"]]]);
+},[[2,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=addPost.js.map

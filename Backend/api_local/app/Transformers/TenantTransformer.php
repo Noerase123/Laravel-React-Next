@@ -9,6 +9,7 @@ use App\Models\tenantInfo\Rent;
 class TenantTransformer extends TransformerAbstract
 {
     public $baseUrl = 'http://localhost:8000/api/tenant/';
+    public $viewUrl = 'http://localhost:8000/api/tenant/full/';
     /**
      * List of resources to automatically include
      *
@@ -41,6 +42,7 @@ class TenantTransformer extends TransformerAbstract
             'name' => $val->firstname . ' ' . strtoupper(substr($val->middlename, 0, 1)) . '. ' . $val->lastname,
             'tenantType' => $val->tenantType == 1 ? 'Student' : 'Employee',
             'url' => $this->baseUrl.$val->tenant_id,
+            'fullDetails' => $this->viewUrl.$val->tenant_id,
             'bedPrice' => $rent['roomPrice'],
             'roomNumber' => $rent['buildingName'].' '.$rent['roomNumber'].' '.$rent['bed'],
             'moveIn' => $rent['startDate'],
