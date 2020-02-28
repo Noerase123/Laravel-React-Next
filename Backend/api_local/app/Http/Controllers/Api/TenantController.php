@@ -11,6 +11,7 @@ use League\Fractal\Serializer\ArraySerializer;
 use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 use App\Transformers\TenantTransformer;
 use App\Models\tenantInfo\Tenant;
+use App\Models\User;
 use Carbon\Carbon;
 
 class TenantController extends Controller
@@ -19,9 +20,11 @@ class TenantController extends Controller
     private $company;
     private $rent;
     private $tenRepo;
+    private $user;
 
-    public function __construct(Tenant $tenant) {
+    public function __construct(Tenant $tenant, User $user) {
         $this->tenants = $tenant;
+        $this->user = $user;
     }
     /**
      * Display a listing of the resource.

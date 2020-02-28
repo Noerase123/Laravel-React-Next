@@ -4797,7 +4797,7 @@ function connect(options) {
       error.name = err.name;
       error.stack = err.stack; // __NEXT_DIST_DIR is provided by webpack
 
-      (0, _sourceMapSupport.rewriteStacktrace)(error, "/home/isaac/Desktop/Laravel-React-Next/Client/.next");
+      (0, _sourceMapSupport.rewriteStacktrace)(error, "C:\\Users\\IT PC\\Desktop\\Laravel-React-Next\\Client\\.next");
       return error;
     }
   };

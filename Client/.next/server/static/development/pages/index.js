@@ -103,98 +103,354 @@ module.exports =
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Home; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "axios");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-var _jsxFileName = "/home/isaac/Desktop/Laravel-React-Next/Client/components/Home.js";
-var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/styles */ "@material-ui/core/styles");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core/TextField */ "@material-ui/core/TextField");
+/* harmony import */ var _material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/Button */ "@material-ui/core/Button");
+/* harmony import */ var _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _material_ui_core_FormControl__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/FormControl */ "@material-ui/core/FormControl");
+/* harmony import */ var _material_ui_core_FormControl__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_FormControl__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _material_ui_core_InputLabel__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core/InputLabel */ "@material-ui/core/InputLabel");
+/* harmony import */ var _material_ui_core_InputLabel__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_InputLabel__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _material_ui_core_Select__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core/Select */ "@material-ui/core/Select");
+/* harmony import */ var _material_ui_core_Select__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_Select__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @material-ui/core/MenuItem */ "@material-ui/core/MenuItem");
+/* harmony import */ var _material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_9__);
+var _jsxFileName = "C:\\Users\\IT PC\\Desktop\\Laravel-React-Next\\Client\\components\\Home.js";
+var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 
 
+
+
+
+
+
+
+
+const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__["makeStyles"])(theme => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+      width: 200
+    }
+  },
+  formControl: {
+    marginTop: '-16px',
+    minWidth: 100
+  }
+}));
 function Home() {
-  const server = 'http://127.0.0.1:8000/';
-  const [tenants, setTenants] = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState([]);
-  react__WEBPACK_IMPORTED_MODULE_0___default.a.useEffect(() => {
-    axios__WEBPACK_IMPORTED_MODULE_2___default.a.get(server + 'api/tenant').then(res => {
-      console.log(res.data.data);
-      setTenants(res.data.data);
-    }).catch(err => {
-      console.log(err);
-    });
-  }, []);
-  return __jsx("div", {
+  const classes = useStyles();
+  const [openGender, setOpenGender] = react__WEBPACK_IMPORTED_MODULE_1___default.a.useState(false);
+
+  const handleClose = () => {
+    setOpenGender(false);
+  };
+
+  const handleOpen = () => {
+    setOpenGender(true);
+  };
+
+  const [openGender1, setOpenGender1] = react__WEBPACK_IMPORTED_MODULE_1___default.a.useState(false);
+
+  const handleClose1 = () => {
+    setOpenGender1(false);
+  };
+
+  const handleOpen1 = () => {
+    setOpenGender1(true);
+  };
+
+  const [userID, setUserID] = react__WEBPACK_IMPORTED_MODULE_1___default.a.useState(0);
+  const [time, setTime] = react__WEBPACK_IMPORTED_MODULE_1___default.a.useState('');
+  const [bookingDate, setBookingDate] = react__WEBPACK_IMPORTED_MODULE_1___default.a.useState('');
+  const [replicate, setReplicate] = react__WEBPACK_IMPORTED_MODULE_1___default.a.useState('');
+
+  const addpost = () => {
+    const ApiUrl = 'https://mytown-app.com/api/cleaning_test';
+    const data = new FormData();
+    data.append('userID', userID);
+    data.append('time', time);
+    data.append('bookingDate', bookingDate);
+    data.append('replicate', replicate);
+    const header = {
+      headers: {
+        'content-type': 'multipart/form-data'
+      }
+    };
+
+    if (userID == '' || time == '' || bookingDate == '' || replicate == '') {
+      alert('fill up the blanks');
+    } else {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.post(ApiUrl, data, header).then(res => {
+        console.log(res);
+        alert(res);
+        setTimeout(() => {
+          location.reload();
+        }, 1000);
+      }).catch(err => {
+        console.log(err);
+        alert('success');
+        setTimeout(() => {
+          location.reload();
+        }, 1000);
+      });
+    }
+  };
+
+  return __jsx(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 24
+      lineNumber: 95
     },
     __self: this
-  }, __jsx("h2", {
+  }, __jsx("h1", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 25
+      lineNumber: 97
     },
     __self: this
-  }, "Sample Test"), tenants.map(tenant => __jsx("div", {
-    key: tenant.tenantID,
+  }, "Add 2x 4x to book cleaning"), __jsx("form", {
+    className: classes.root,
+    noValidate: true,
+    autoComplete: "off",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 27
+      lineNumber: 99
     },
     __self: this
   }, __jsx("h4", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 28
+      lineNumber: 101
     },
     __self: this
-  }, " Fullname : ", tenant.name, " "), __jsx("h4", {
+  }, "User ID"), __jsx(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_4___default.a, {
+    id: "filled-basic",
+    label: "User ID",
+    type: "number",
+    variant: "filled",
+    onChange: event => setUserID(event.target.value),
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 29
+      lineNumber: 102
     },
     __self: this
-  }, " Tenant Type : ", tenant.tenantType, " "), __jsx("h4", {
+  }), __jsx("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 30
+      lineNumber: 109
     },
     __self: this
-  }, " Unit No. : ", tenant.roomNumber, " "), __jsx("h4", {
+  }), __jsx("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 31
+      lineNumber: 109
     },
     __self: this
-  }, " Bed Price : ", tenant.bedPrice, " "), __jsx("h4", {
+  }), __jsx("h4", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 32
+      lineNumber: 111
     },
     __self: this
-  }, " Move-In Date : ", tenant.moveIn, " "), __jsx("h4", {
+  }, "Time"), __jsx(_material_ui_core_FormControl__WEBPACK_IMPORTED_MODULE_6___default.a, {
+    className: classes.formControl,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 33
+      lineNumber: 112
     },
     __self: this
-  }, " Move-Out Date : ", tenant.moveOut, " "), __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-    href: "/profile",
+  }, __jsx(_material_ui_core_InputLabel__WEBPACK_IMPORTED_MODULE_7___default.a, {
+    id: "demo-controlled-open-select-label",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 34
+      lineNumber: 113
     },
     __self: this
-  }, __jsx("a", {
+  }, "Select Time"), __jsx(_material_ui_core_Select__WEBPACK_IMPORTED_MODULE_8___default.a, {
+    labelId: "demo-controlled-open-select-label",
+    id: "demo-controlled-open-select",
+    open: openGender,
+    onClose: handleClose,
+    onOpen: handleOpen,
+    value: time // fullWidth
+    ,
+    onChange: event => setTime(event.target.value),
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 34
+      lineNumber: 114
     },
     __self: this
-  }, "See more")))));
+  }, __jsx(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_9___default.a, {
+    value: "",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 124
+    },
+    __self: this
+  }, __jsx("em", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 125
+    },
+    __self: this
+  }, "None")), __jsx(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_9___default.a, {
+    value: '8:00 am - 12:00 pm',
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 127
+    },
+    __self: this
+  }, "8:00 am - 12:00 pm"), __jsx(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_9___default.a, {
+    value: '1:00 pm - 5:00 pm',
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 128
+    },
+    __self: this
+  }, "1:00 pm - 5:00 pm"))), __jsx("br", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 131
+    },
+    __self: this
+  }), __jsx("br", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 131
+    },
+    __self: this
+  }), __jsx("h4", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 133
+    },
+    __self: this
+  }, "Booking Date"), __jsx(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_4___default.a, {
+    id: "filled-basic",
+    type: "date",
+    variant: "filled",
+    onChange: event => setBookingDate(event.target.value),
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 134
+    },
+    __self: this
+  }), __jsx("br", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 140
+    },
+    __self: this
+  }), __jsx("br", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 140
+    },
+    __self: this
+  }), __jsx("h4", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 142
+    },
+    __self: this
+  }, "Schedule Replicates"), __jsx(_material_ui_core_FormControl__WEBPACK_IMPORTED_MODULE_6___default.a, {
+    className: classes.formControl,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 143
+    },
+    __self: this
+  }, __jsx(_material_ui_core_InputLabel__WEBPACK_IMPORTED_MODULE_7___default.a, {
+    id: "demo-controlled-open-select-label",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 144
+    },
+    __self: this
+  }, "Select Replicate"), __jsx(_material_ui_core_Select__WEBPACK_IMPORTED_MODULE_8___default.a, {
+    labelId: "demo-controlled-open-select-label",
+    id: "demo-controlled-open-select",
+    open: openGender1,
+    onClose: handleClose1,
+    onOpen: handleOpen1,
+    value: replicate // fullWidth
+    ,
+    onChange: event => setReplicate(event.target.value),
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 145
+    },
+    __self: this
+  }, __jsx(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_9___default.a, {
+    value: "",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 155
+    },
+    __self: this
+  }, __jsx("em", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 156
+    },
+    __self: this
+  }, "None")), __jsx(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_9___default.a, {
+    value: '2x',
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 158
+    },
+    __self: this
+  }, "2x"), __jsx(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_9___default.a, {
+    value: '4x',
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 159
+    },
+    __self: this
+  }, "4x"))), __jsx("br", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 162
+    },
+    __self: this
+  }), __jsx("br", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 162
+    },
+    __self: this
+  }), __jsx(next_link__WEBPACK_IMPORTED_MODULE_0___default.a, {
+    href: "/",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 164
+    },
+    __self: this
+  }, __jsx(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_5___default.a, {
+    variant: "contained",
+    color: "primary",
+    onClick: () => addpost(),
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 165
+    },
+    __self: this
+  }, "Book to Cleaning Calendar"))));
 }
+const btnStyle = {
+  width: '100%'
+};
 
 /***/ }),
 
@@ -1913,7 +2169,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_Home__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Home */ "./components/Home.js");
-var _jsxFileName = "/home/isaac/Desktop/Laravel-React-Next/Client/pages/index.js";
+var _jsxFileName = "C:\\Users\\IT PC\\Desktop\\Laravel-React-Next\\Client\\pages\\index.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
@@ -1942,8 +2198,85 @@ function index() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/isaac/Desktop/Laravel-React-Next/Client/pages/index.js */"./pages/index.js");
+module.exports = __webpack_require__(/*! C:\Users\IT PC\Desktop\Laravel-React-Next\Client\pages\index.js */"./pages/index.js");
 
+
+/***/ }),
+
+/***/ "@material-ui/core/Button":
+/*!*******************************************!*\
+  !*** external "@material-ui/core/Button" ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/Button");
+
+/***/ }),
+
+/***/ "@material-ui/core/FormControl":
+/*!************************************************!*\
+  !*** external "@material-ui/core/FormControl" ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/FormControl");
+
+/***/ }),
+
+/***/ "@material-ui/core/InputLabel":
+/*!***********************************************!*\
+  !*** external "@material-ui/core/InputLabel" ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/InputLabel");
+
+/***/ }),
+
+/***/ "@material-ui/core/MenuItem":
+/*!*********************************************!*\
+  !*** external "@material-ui/core/MenuItem" ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/MenuItem");
+
+/***/ }),
+
+/***/ "@material-ui/core/Select":
+/*!*******************************************!*\
+  !*** external "@material-ui/core/Select" ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/Select");
+
+/***/ }),
+
+/***/ "@material-ui/core/TextField":
+/*!**********************************************!*\
+  !*** external "@material-ui/core/TextField" ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/TextField");
+
+/***/ }),
+
+/***/ "@material-ui/core/styles":
+/*!*******************************************!*\
+  !*** external "@material-ui/core/styles" ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/styles");
 
 /***/ }),
 

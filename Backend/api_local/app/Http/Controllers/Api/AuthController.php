@@ -7,16 +7,22 @@ use App\Http\Controllers\Api\ResponseController as ResponseController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\tenantInfo\Tenant;
 use Validator;
 
 class AuthController extends ResponseController
 {
+    private $tenant;
+    public function __construct(Tenant $tenant)
+    {
+        $this->tenant = $tenant;
+    }
     //create user
     public function signup(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|',
-            'email' => 'required|string|email|unique:users',
+            'tenant_id' => 'required',
+            // 'email' => 'required|string|email|unique:users',
             'password' => 'required',
             'confirm_password' => 'required|same:password'
         ]);
@@ -25,7 +31,11 @@ class AuthController extends ResponseController
             return $this->sendError($validator->errors());
         }
 
+        $tenant = $this->tenant->where('tenant_id', $request->tenant_id)->first();
+
         $input = $request->all();
+        $input['name'] = $tenant->firstname.' '.$tenant->middlename.' '.$tenant->lastname;
+        $input['email'] = $tenant->primaryEmail;
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
         if($user){
