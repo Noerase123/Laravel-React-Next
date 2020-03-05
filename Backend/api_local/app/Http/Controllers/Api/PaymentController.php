@@ -42,7 +42,7 @@ class PaymentController extends Controller
      */
     public function store(StorePaymentRequest $request)
     {
-        $invoice = $this->invoice->where('invoice_id', $request->invoice_id)->first();
+        $invoice = $this->invoice->where(['is_deleted' => 0, 'invoice_id' => $request->invoice_id])->first();
 
         $input = new Payment;
         $input->tenant_id = $request->tenant_id;

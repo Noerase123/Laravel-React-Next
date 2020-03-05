@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Transformers\InvoiceTransformer;
+use App\Transformers\invoice\InvoiceTransformer;
+use App\Transformers\invoice\TenantInvoiceTransformer;
 use League\Fractal\Serializer\ArraySerializer;
 use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 use App\Http\Requests\StoreInvoiceRequest;
@@ -39,6 +40,15 @@ class InvoiceController extends Controller
 
     }
 
+    public function getTenantInvoice($id)
+    {
+        $tenInvoice = $this->invoice->where(['is_deleted' => 0,'tenant_id' => $id])->get();
+
+        return fractal($tenInvoice, new TenantInvoiceTransformer)
+                ->serializeWith(new ArraySerializer)
+                ->respond(200);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -49,7 +59,7 @@ class InvoiceController extends Controller
     {
         $ten = $this->tenant->find($request->tenant_id);
         $rent = $this->rent->where('tenant_id', $ten->tenant_id)->first();
-        $amount = $rent->monthlyDiscount - $request->amount;
+        $amount = $request->amount - $rent->monthlyDiscount;
 
         $input = new Invoice;
         $input->tenant_id = $request->tenant_id;
@@ -58,7 +68,7 @@ class InvoiceController extends Controller
         $input->billingDate = $request->billingDate;
         $input->dueDate = $request->dueDate;
         $input->amount = $amount;
-        $input->remaining = $request->remaining;
+        $input->remaining = $amount;
         $input->payment_status = 0;
         $input->is_deleted = 0;
         $input->save();

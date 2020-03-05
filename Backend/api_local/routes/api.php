@@ -138,6 +138,15 @@ use Illuminate\Http\Request;
             $route->delete('/{id}','RoomController@destroy');
         });
 
+        $route->group(['prefix' => '/role'], function ($route) {
+
+            $route->get('/', 'RoleController@index');
+            $route->post('/', 'RoleController@store');
+            $route->get('/{id}', 'RoleController@show');
+            $route->patch('/{id}', 'RoleController@update');
+            $route->delete('/{id}','RoleController@destroy');
+        });
+
         $route->group(['prefix' => '/payment'], function ($route) {
 
             $route->get('/', 'PaymentController@index');
@@ -154,6 +163,8 @@ use Illuminate\Http\Request;
             $route->get('/{id}', 'InvoiceController@show');
             $route->patch('/{id}', 'InvoiceController@update');
             $route->delete('/{id}','InvoiceController@destroy');
+
+            $route->get('/getTenant/{id}', 'InvoiceController@getTenantInvoice');
         });
 
         $route->group(['prefix' => '/issue'], function ($route) {

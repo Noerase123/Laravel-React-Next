@@ -36,9 +36,6 @@ class StoreInvoiceRequest extends FormRequest
             'amount' => [
                 'required',
             ],
-            'remaining' => [
-                'required',
-            ],
         ];
     }
 }

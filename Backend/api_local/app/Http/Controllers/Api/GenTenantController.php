@@ -37,16 +37,16 @@ class GenTenantController extends Controller
 
     public function getRenter($tenantId)
     {
-        $ten = $this->tenant->find($tenantId);
+        $ten = $this->tenant->where('is_deleted', 0)->find($tenantId);
         if ($ten) {
-            $com = $this->company->where('tenant_id',$ten->tenant_id)->first();
-            $rent = $this->rent->where('tenant_id',$ten->tenant_id)->first();
-            $invoice = $this->invoice->where('tenant_id', $ten->tenant_id)->orderBy('invoice_id', 'DESC')->get();
-            $school = $this->school->where('tenant_id', $ten->tenant_id)->first();
-            $emergency = $this->emergency->where('tenant_id', $ten->tenant_id)->get();
+            $com = $this->company->where(['is_deleted' => 0, 'tenant_id' => $ten->tenant_id])->first();
+            $rent = $this->rent->where(['is_deleted' => 0, 'tenant_id' => $ten->tenant_id])->first();
+            $invoice = $this->invoice->where(['is_deleted' => 0, 'tenant_id' => $ten->tenant_id])->orderBy('invoice_id', 'DESC')->get();
+            $school = $this->school->where(['is_deleted' => 0, 'tenant_id' => $ten->tenant_id])->first();
+            $emergency = $this->emergency->where(['is_deleted' => 0, 'tenant_id' => $ten->tenant_id])->get();
 
-            $sumInvoices = $this->invoice->sum('remaining');
-            $countInvoices = $this->invoice->count();
+            $sumInvoices = $this->invoice->where('is_deleted', 0)->sum('remaining');
+            $countInvoices = $this->invoice->where('is_deleted', 0)->count();
 
             $data = [];
             $emer = [];
@@ -227,9 +227,9 @@ class GenTenantController extends Controller
     {
         $ten = $this->tenant->find($tenantId);
         if ($ten) {
-            $com = $this->company->where('tenant_id',$ten->tenant_id)->first();
-            $rent = $this->rent->where('tenant_id',$ten->tenant_id)->first();
-            $cont = $this->tenantContract->where('tenant_id', $ten->tenant_id)->first();
+            $com = $this->company->where(['is_deleted' => 0, 'tenant_id' => $ten->tenant_id])->first();
+            $rent = $this->rent->where(['is_deleted' => 0, 'tenant_id' => $ten->tenant_id])->first();
+            $cont = $this->tenantContract->where(['is_deleted' => 0, 'tenant_id' => $ten->tenant_id])->first();
 
             $con = [
                 'contractForm' => $cont->contractForm,
