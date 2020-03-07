@@ -17,6 +17,7 @@ class PaymentController extends Controller
     private $invoice;
     public function __construct(Payment $payment, Invoice $invoice)
     {
+        $this->middleware('auth:api');
         $this->payment = $payment;
         $this->invoice = $invoice;
     }

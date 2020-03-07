@@ -26,6 +26,7 @@ class GenTenantController extends Controller
             Company $company, Rent $rent, Invoice $invoice,
             TenantContract $tenantContract, School $school)
     {
+        $this->middleware('auth:api');
         $this->tenant = $tenant;
         $this->company = $company;
         $this->rent = $rent;

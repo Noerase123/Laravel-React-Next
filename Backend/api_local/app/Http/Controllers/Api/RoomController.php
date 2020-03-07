@@ -19,6 +19,7 @@ class RoomController extends Controller
     private $bed;
     public function __construct(Room $room, Building $building, Bed $bed)
     {
+        $this->middleware('auth:api');
         $this->room = $room;
         $this->building = $building;
         $this->bed = $bed;

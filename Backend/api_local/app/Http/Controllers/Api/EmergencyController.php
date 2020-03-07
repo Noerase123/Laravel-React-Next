@@ -18,6 +18,7 @@ class EmergencyController extends Controller
 
     public function __construct(Emergency $emergency, Tenant $tenant)
     {
+        $this->middleware('auth:api');
         $this->emergency = $emergency;
         $this->tenant = $tenant;
     }

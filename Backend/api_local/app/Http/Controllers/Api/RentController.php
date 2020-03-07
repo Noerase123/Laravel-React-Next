@@ -23,6 +23,7 @@ class RentController extends Controller
     private $tenant;
 
     public function __construct(Rent $rent, Room $room, Building $building, Bed $bed, Tenant $tenant){
+        $this->middleware('auth:api');
         $this->rent = $rent;
         $this->room = $room;
         $this->building = $building;

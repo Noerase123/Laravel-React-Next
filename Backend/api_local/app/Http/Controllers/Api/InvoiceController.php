@@ -21,6 +21,7 @@ class InvoiceController extends Controller
 
     public function __construct(Invoice $invoice, Tenant $tenant, Rent $rent)
     {
+        $this->middleware('auth:api');
         $this->invoice = $invoice;
         $this->tenant = $tenant;
         $this->rent = $rent;

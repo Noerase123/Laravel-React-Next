@@ -21,8 +21,7 @@ class AuthController extends ResponseController
     public function signup(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'tenant_id' => 'required',
-            // 'email' => 'required|string|email|unique:users',
+            'email' => 'required|string|email|unique:users',
             'password' => 'required',
             'confirm_password' => 'required|same:password'
         ]);
@@ -31,11 +30,7 @@ class AuthController extends ResponseController
             return $this->sendError($validator->errors());
         }
 
-        $tenant = $this->tenant->where('tenant_id', $request->tenant_id)->first();
-
         $input = $request->all();
-        $input['name'] = $tenant->firstname.' '.$tenant->middlename.' '.$tenant->lastname;
-        $input['email'] = $tenant->primaryEmail;
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
         if($user){

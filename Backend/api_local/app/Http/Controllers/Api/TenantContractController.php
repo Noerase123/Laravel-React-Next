@@ -20,6 +20,7 @@ class TenantContractController extends Controller
 
     public function __construct(TenantContract $contract, Tenant $tenant, Rent $rent)
     {
+        $this->middleware('auth:api');
         $this->contract = $contract;
         $this->tenant = $tenant;
         $this->rent = $rent;

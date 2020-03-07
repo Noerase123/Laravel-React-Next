@@ -18,6 +18,7 @@ class CompanyController extends Controller
 
     public function __construct(Company $company, Tenant $tenant)
     {
+        $this->middleware('auth:api');
         $this->company = $company;
         $this->tenant = $tenant;
     }

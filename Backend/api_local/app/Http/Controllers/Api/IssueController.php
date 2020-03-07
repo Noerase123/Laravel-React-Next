@@ -20,6 +20,7 @@ class IssueController extends Controller
 
     public function __construct(Issues $issues, Tenant $tenant, Rent $rent)
     {
+        $this->middleware('auth:api');
         $this->issues = $issues;
         $this->tenant = $tenant;
         $this->rent = $rent;

@@ -17,6 +17,7 @@ class BedController extends Controller
 
     public function __construct(Bed $bed)
     {
+        $this->middleware('auth:api');
         $this->bed = $bed;
     }
     /**
@@ -104,6 +105,10 @@ class BedController extends Controller
 
         if (is_null($bed)) {
             $message = 'Not Found';
+
+            return response()->json([
+                'message' => $message
+            ]);
         }
         else {
 
@@ -116,6 +121,10 @@ class BedController extends Controller
             ]);
 
             $message = 'Bed Updated Successfully';
+
+            return response()->json([
+                'message' => $message
+            ]);
         }
 
         return response()->json([

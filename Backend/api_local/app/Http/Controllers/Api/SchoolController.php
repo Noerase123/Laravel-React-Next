@@ -18,6 +18,7 @@ class SchoolController extends Controller
 
     public function __construct(School $school, Tenant $tenant)
     {
+        $this->middleware('auth:api');
         $this->school = $school;
         $this->tenant = $tenant;
     }

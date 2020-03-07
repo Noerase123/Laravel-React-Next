@@ -23,6 +23,7 @@ class TenantController extends Controller
     private $user;
 
     public function __construct(Tenant $tenant, User $user) {
+        $this->middleware('auth:api');
         $this->tenants = $tenant;
         $this->user = $user;
     }
