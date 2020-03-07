@@ -11,6 +11,8 @@ use League\Fractal\Serializer\ArraySerializer;
 use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 use App\Transformers\TenantTransformer;
 use App\Models\tenantInfo\Tenant;
+use App\Models\tenantInfo\Rent;
+use App\Models\Building;
 use App\Models\User;
 use Carbon\Carbon;
 
@@ -40,6 +42,35 @@ class TenantController extends Controller
             ->serializeWith(new ArraySerializer)
             // ->paginateWith(new IlluminatePaginatorAdapter($all))
             ->respond(200);
+    }
+
+    public function accessMembership($id) 
+    {
+        $rent = Rent::where(['is_deleted' => 0, 'tenant_id' => $id])->first();
+
+        if (is_null($rent)) {
+            
+            return response()->json([
+                'message' => 'Not Found'
+            ],404);
+        } 
+        else {
+
+            $build = Building::where(['is_deleted' => 0, 'buildingName' => $rent->buildingName])->first();
+            $access = [];
+    
+            if ($build->category == 'First Class') {
+                $access['validAccess'] = 1;
+                $access['message'] = $build->category;
+                $access['payment'] = 0;
+            } else {
+                $access['validAccess'] = 0;
+                $access['message'] = $build->category;
+                $access['payment'] = 250;
+            }
+            return response()->json($access,200);
+        }
+
     }
 
     /**

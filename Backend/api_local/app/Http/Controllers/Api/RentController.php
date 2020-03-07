@@ -107,6 +107,24 @@ class RentController extends Controller
         }
     }
 
+    public function getTenantRent($id)
+    {
+        $rent = $this->rent->where(['is_deleted' => 0, 'tenant_id' => $id])->get();
+
+        if (is_null($rent)) {
+            return response()->json([
+                'message' => 'Tenant not found'
+            ],404);
+        }
+        else {
+
+            return fractal($rent, new RentTransformer)
+            ->serializeWith(new ArraySerializer)
+            ->respond(200);
+        }
+
+    }
+
     /**
      * Update the specified resource in storage.
      *

@@ -56,6 +56,7 @@ use Illuminate\Http\Request;
             $route->patch('/{id}', 'TenantController@update');
             $route->delete('/{id}','TenantController@destroy');
 
+            $route->get('/club/{id}','TenantController@accessMembership');
             $route->get('/full/{tenantId}', 'GenTenantController@getRenter');
             $route->get('/contract/{tenantId}', 'GenTenantController@getContract');
         });
@@ -103,6 +104,8 @@ use Illuminate\Http\Request;
             $route->get('/{id}', 'RentController@show');
             $route->patch('/{id}', 'RentController@update');
             $route->delete('/{id}','RentController@destroy');
+
+            $route->get('/getTenant/{id}', 'RentController@getTenantRent');
         });
 
         $route->group(['prefix' => '/bed'], function ($route) {
