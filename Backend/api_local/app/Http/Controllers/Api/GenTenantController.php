@@ -51,8 +51,20 @@ class GenTenantController extends Controller
 
             $data = [];
             $emer = [];
+            $payment = '';
 
             foreach ($invoice as $key => $value) {
+
+                if ($value->payment_status != 0) {
+                    if ($value->payment_status == 1) {
+                        $payment = 'Paid';
+                    } else {
+                        $payment = 'Partial';
+                    }
+                } else {
+                    $payment = 'Unpaid';
+                }
+
                 $data[] = [
                     'invoice_id' => $value->invoice_id,
                     'ref_no' => $value->ref_no,
@@ -60,7 +72,7 @@ class GenTenantController extends Controller
                     'dueDate' => $value->dueDate,
                     'amount' => $value->amount,
                     'remaining' => $value->remaining,
-                    'payment_status' => $value->payment_status == 1 ? 'Paid' : 'Partial',
+                    'payment_status' => $payment,
                     'datePosted' => $value->created_at->format('m/d/Y h:i a')
                 ];
             }

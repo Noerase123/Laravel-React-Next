@@ -165,6 +165,7 @@ use Illuminate\Http\Request;
             $route->delete('/{id}','InvoiceController@destroy');
 
             $route->get('/getTenant/{id}', 'InvoiceController@getTenantInvoice');
+            $route->post('/extra/addInvoice', 'InvoiceController@sampleInvoice');
         });
 
         $route->group(['prefix' => '/issue'], function ($route) {

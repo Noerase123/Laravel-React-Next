@@ -44,10 +44,50 @@ class InvoiceController extends Controller
     public function getTenantInvoice($id)
     {
         $tenInvoice = $this->invoice->where(['is_deleted' => 0,'tenant_id' => $id])->get();
+        $tenInvoiceCount = $this->invoice->where(['is_deleted' => 0,'tenant_id' => $id])->count();
+        $summation = $this->invoice->where(['is_deleted' => 0, 'tenant_id' => $id])->sum('remaining');
 
-        return fractal($tenInvoice, new TenantInvoiceTransformer)
-                ->serializeWith(new ArraySerializer)
-                ->respond(200);
+        $invoice_unpaid = $this->invoice->where(['is_deleted' => 0,'tenant_id' => $id, 'payment_status' => 0])->count();
+        $invoice_paid = $this->invoice->where(['is_deleted' => 0,'tenant_id' => $id, 'payment_status' => 1])->count();
+        $invoice_partial = $this->invoice->where(['is_deleted' => 0,'tenant_id' => $id, 'payment_status' => 2])->count();
+        
+        // return fractal($tenInvoice, new TenantInvoiceTransformer)
+        //         ->serializeWith(new ArraySerializer)
+        //         ->respond(200);
+
+        return response()->json([
+            'unpaidInvoices' => $invoice_unpaid,
+            'paidInvoices' => $invoice_paid,
+            'partialInvoices' => $invoice_partial,
+            'totalInvoices' => $tenInvoiceCount,
+            'remainingInvoice' => $summation,
+            'data' => $tenInvoice
+        ],200);
+    }
+
+    public function sampleInvoice()
+    {
+        $data = [
+            'tenant_id' => 1,
+            'ref_no' => 'AMS202000156',
+            'unit_no' => 'Amsterdam 201',
+            'billingDate' => '2020-09-15',
+            'dueDate' => '2020-09-30',
+            'amount' => 5345.67,
+            'remaining' => 5345.67,
+            'payment_status' => 0,
+            'is_deleted' => 0,
+            'updated_at' => date('Y-m-d H:i:s'),
+            'created_at' => date('Y-m-d H:i:s')
+        ];
+        
+        $invoice = new Invoice;
+        $invoice->create($data);
+        $invoice->save();
+
+        return response()->json([
+            'message' => 'sameple invoice added'
+        ],200);
     }
 
     /**
