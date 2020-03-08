@@ -12,11 +12,6 @@ use Validator;
 
 class AuthController extends ResponseController
 {
-    private $tenant;
-    public function __construct(Tenant $tenant)
-    {
-        $this->tenant = $tenant;
-    }
     //create user
     public function signup(Request $request)
     {

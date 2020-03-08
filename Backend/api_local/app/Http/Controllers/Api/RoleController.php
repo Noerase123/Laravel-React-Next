@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Role;
 use App\Http\Requests\StoreRoleRequest;
+use App\Transformers\RoleTransformer;
 use League\Fractal\Serializer\ArraySerializer;
 use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 
@@ -14,7 +15,7 @@ class RoleController extends Controller
     private $role;
     public function __construct(Role $role)
     {
-        $this->middleware('auth:api');
+        // $this->middleware('auth:api');
         $this->role = $role;
     }
     /**
@@ -26,7 +27,28 @@ class RoleController extends Controller
     {
         $all = $this->role->where('is_deleted', 0)->get();
 
-        return response()->json($all, 200);
+        return fractal($all, new RoleTransformer)
+                ->serializeWith(new ArraySerializer)
+                ->respond(200);
+    }
+
+    public function addDefaultRoles() 
+    {
+        $role_names = ['Administrator','Finance','Maintenance',
+                'Property Management','Sales/Marketing','Security',
+                'Tenant Engagement','Housekeeping'];
+
+        for ($i=0; $i < count($role_names); $i++) { 
+            $role = new Role;
+            $role->role_name = $role_names[$i];
+            $role->is_deleted = 0;
+            $role->save();
+        }
+
+        return response()->json([
+            'message' => 'Default Roles Added'
+        ],200);
+
     }
 
     /**

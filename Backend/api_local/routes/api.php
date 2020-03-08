@@ -148,6 +148,8 @@ use Illuminate\Http\Request;
             $route->get('/{id}', 'RoleController@show');
             $route->patch('/{id}', 'RoleController@update');
             $route->delete('/{id}','RoleController@destroy');
+
+            $route->post('/extra/addRoles', 'RoleController@addDefaultRoles');
         });
 
         $route->group(['prefix' => '/payment'], function ($route) {
@@ -180,6 +182,14 @@ use Illuminate\Http\Request;
             $route->delete('/{id}','IssueController@destroy');
         });
 
+        $route->group(['prefix' => '/page'], function ($route) {
+
+            $route->get('/', 'PagesController@index');
+            $route->post('/', 'PagesController@store');
+            $route->get('/{id}', 'PagesController@show');
+            $route->patch('/{id}', 'PagesController@update');
+            $route->delete('/{id}','PagesController@destroy');
+        });
 
 
     });
