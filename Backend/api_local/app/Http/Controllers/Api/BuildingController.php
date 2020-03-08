@@ -17,7 +17,7 @@ class BuildingController extends Controller
 
     public function __construct(Building $building)
     {
-        $this->middleware('auth:api');
+        $this->middleware('auth:api')->except('insertAll');
         $this->building = $building;
     }
     /**

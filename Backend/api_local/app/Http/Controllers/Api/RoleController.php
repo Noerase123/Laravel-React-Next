@@ -15,7 +15,7 @@ class RoleController extends Controller
     private $role;
     public function __construct(Role $role)
     {
-        // $this->middleware('auth:api');
+        $this->middleware('auth:api')->except('addDefaultRoles');
         $this->role = $role;
     }
     /**
