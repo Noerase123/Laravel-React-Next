@@ -9,16 +9,23 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Role;
 use Validator;
+use Laravel\Passport\Client;
 
 class AuthController extends ResponseController
 {
+    private $client;
+
+    public function __construct() {
+        $this->client = Client::find(1);
+    }
+
     //create user
     public function signup(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'email' => 'required|string|email|unique:users',
             'password' => 'required',
-            // 'role_id' => 'required',
+            'role_id' => 'required',
             'confirm_password' => 'required|same:password'
         ]);
 
@@ -26,11 +33,10 @@ class AuthController extends ResponseController
             return $this->sendError($validator->errors());
         }
 
-        $role = Role::where(['is_deleted' => 0])->find($request->role_id);
+        // $role = Role::where(['is_deleted' => 0])->find($request->role_id);
 
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
-        $input['role_id'] = $role->role_id;
         $user = User::create($input);
         if($user){
             $success['token'] =  $user->createToken('token')->accessToken;
