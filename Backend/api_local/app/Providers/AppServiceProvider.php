@@ -13,8 +13,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if ($this->app->environment() == 'local') {
+        // if ($this->app->environment() == 'local') {
+        if ($this->app->isLocal()) {
             $this->app->register('Kurt\Repoist\RepoistServiceProvider');
+        } else {
+            $this->app['request']->server->set('HTTPS',true);
         }
     }
 

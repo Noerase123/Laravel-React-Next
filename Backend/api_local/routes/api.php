@@ -29,24 +29,6 @@ use Illuminate\Http\Request;
     });
 
     Route::group(['namespace' => 'Api'],function ($route) {
-        $route->group(['prefix' => 'post'], function ($route) {
-
-            $route->get('/', 'PostController@index');
-            $route->post('/', 'PostController@store');
-            $route->get('/{id}', 'PostController@show');
-            $route->patch('/{id}', 'PostController@update');
-            $route->delete('/{id}','PostController@destroy');
-        });
-
-
-        $route->group(['prefix' => 'comment'], function ($route) {
-
-            $route->get('/viewPost/{postid}','CommentController@viewComments');
-            $route->post('/addComment/{postid}', 'CommentController@addComment');
-            $route->delete('/deleteComment/{postid}', 'CommentController@deleteComment');
-
-            $route->get('/viewPost', 'Api\CommentController@viewAllComments');
-        });
 
         $route->group(['prefix' => '/tenant'], function ($route) {
 
@@ -180,15 +162,6 @@ use Illuminate\Http\Request;
             $route->get('/{id}', 'IssueController@show');
             $route->patch('/{id}', 'IssueController@update');
             $route->delete('/{id}','IssueController@destroy');
-        });
-
-        $route->group(['prefix' => '/page'], function ($route) {
-
-            $route->get('/', 'PagesController@index');
-            $route->post('/', 'PagesController@store');
-            $route->get('/{id}', 'PagesController@show');
-            $route->patch('/{id}', 'PagesController@update');
-            $route->delete('/{id}','PagesController@destroy');
         });
 
 
