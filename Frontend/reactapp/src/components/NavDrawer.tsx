@@ -23,7 +23,6 @@ import AssessmentIcon from '@material-ui/icons/Assessment';
 import HomeIcon from '@material-ui/icons/Home';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import StarBorder from '@material-ui/icons/StarBorder';
 import Collapse from '@material-ui/core/Collapse';
 import ApartmentIcon from '@material-ui/icons/Apartment';
 import HotelIcon from '@material-ui/icons/Hotel';
