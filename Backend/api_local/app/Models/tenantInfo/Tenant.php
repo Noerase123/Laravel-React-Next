@@ -10,6 +10,7 @@ class Tenant extends Model
     protected $primaryKey = 'tenant_id';
     protected $fillable = [
         'profilePic',
+        'push_token',
         'firstname',
         'middlename',
         'lastname',

@@ -25,9 +25,34 @@ class TenantController extends Controller
     private $user;
 
     public function __construct(Tenant $tenant, User $user) {
-        $this->middleware('auth:api')->except('show');
+        $this->middleware('auth:api')->except('registerTokenfcm');
         $this->tenants = $tenant;
         $this->user = $user;
+    }
+
+    public function registerTokenfcm(Request $request, $id) {
+        
+        $validatedData = $request->validate([
+            'push_token' => 'required',
+        ]);
+
+        $input = $this->tenants->where(['is_deleted'=> 0, 'tenant_id' => $id]);
+
+        if (is_null($input)) {
+            return response()->json([
+                'message' => 'No tenant Data'
+            ],404);
+        }
+        else {
+
+            $input->update([
+                'push_token' => $request->push_token
+            ]);
+
+            return response()->json([
+                'message' => 'tenant token updated successfully'
+            ],200);
+        }
     }
     /**
      * Display a listing of the resource.
@@ -83,6 +108,7 @@ class TenantController extends Controller
     {
         $input = new Tenant;
         $input->profilePic = $request->profilePic;
+        $input->push_token = "";
         $input->firstname = $request->firstname;
         $input->middlename = $request->middlename;
         $input->lastname = $request->lastname;
@@ -189,7 +215,7 @@ class TenantController extends Controller
         }
 
         $tenant->update([
-            'is_deleted' => 0
+            'is_deleted' => 1
         ]);
 
         return response()->json([

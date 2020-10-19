@@ -16,6 +16,7 @@ class CreateTenantsTable extends Migration
         Schema::create('tenant', function (Blueprint $table) {
             $table->bigIncrements('tenant_id');
             $table->string('profilePic');
+            $table->string('push_token');
             $table->string('firstname');
             $table->string('middlename');
             $table->string('lastname');

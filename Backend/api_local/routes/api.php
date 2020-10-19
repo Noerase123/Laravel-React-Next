@@ -39,6 +39,8 @@ use Illuminate\Http\Request;
             $route->delete('/{id}','TenantController@destroy');
 
             $route->get('/club/{id}','TenantController@accessMembership');
+            $route->post('/registerfcm/{id}', 'TenantController@registerTokenfcm');
+
             $route->get('/full/{tenantId}', 'GenTenantController@getRenter');
             $route->get('/contract/{tenantId}', 'GenTenantController@getContract');
         });

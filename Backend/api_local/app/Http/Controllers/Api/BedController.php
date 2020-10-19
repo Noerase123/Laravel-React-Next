@@ -17,7 +17,7 @@ class BedController extends Controller
 
     public function __construct(Bed $bed)
     {
-        $this->middleware('auth:api')->except('insertAll');
+        $this->middleware('auth:api')->except('insertAll','index');
         $this->bed = $bed;
     }
     /**
