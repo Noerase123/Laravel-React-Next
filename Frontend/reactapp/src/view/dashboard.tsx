@@ -1,7 +1,7 @@
 import React from 'react'
 import Container from '@material-ui/core/Container';
-import NavDrawer from '../components/NavDrawer'
-import HomePage from '../components/HomePage'
+import NavDrawer from '../components/dashboard/NavDrawer'
+import HomePage from '../components/dashboard/HomePage'
 
 export default function Dashboard() {
     return (
