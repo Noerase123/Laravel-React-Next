@@ -29,7 +29,10 @@ import ApartmentIcon from '@material-ui/icons/Apartment';
 import HotelIcon from '@material-ui/icons/Hotel';
 import GroupIcon from '@material-ui/icons/Group';
 import FlashOnIcon from '@material-ui/icons/FlashOn';
-import { AuxProps } from '../../interface/Interfaces'
+import { INavProps } from '../../interface/Interfaces'
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
 
 const drawerWidth = 250;
 
@@ -100,7 +103,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function NavDrawer(props:AuxProps) {
+export default function NavDrawer(props:INavProps) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
@@ -127,6 +130,7 @@ export default function NavDrawer(props:AuxProps) {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
+        style={{backgroundColor:'#5e35b1'}}
         position="fixed"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
