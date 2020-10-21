@@ -3,7 +3,15 @@ export interface INavProps  {
     children: React.ReactNode
 }
 
-export interface ITable {
-  title: string
-  columns: any
+export interface IBuilding {
+  name: string
+  type: string
+  capacity: number
+  vacancy: number
+  occupancy: number
+}
+
+export interface IColumn {
+  id: number
+  label: string
 }
