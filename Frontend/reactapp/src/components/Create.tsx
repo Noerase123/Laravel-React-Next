@@ -13,9 +13,20 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography'
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+
+import {IBuilding} from '../interface/Interfaces'
+import {DEFAULT_COLOR, BLDGS} from '../defaults/default'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    formControl: {
+      margin: theme.spacing(1),
+      minWidth: 120,
+    },
     modal: {
       display: 'flex',
       alignItems: 'center',
@@ -35,13 +46,8 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const columns = ['Building Name', 'Building Type', 'Capacity', 'Vacancy', 'Occupancy']
-const title = 'Building'
-// const helperTxt = 'Fill up details'
-const helperTxt = ''
-
 interface IData {
-  columns: string[]
+  fields: string[]
   title: string
   helperTxt: string
 }
@@ -49,6 +55,12 @@ interface IData {
 export default function Create(props: IData) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+
+  const [building, setBuilding] = React.useState('');
+
+  const handleChangeBuilding = (event: React.ChangeEvent<{ value: unknown }>) => {
+    setBuilding(event.target.value as string);
+  };
 
   const handleOpen = () => {
     setOpen(true);
@@ -58,11 +70,13 @@ export default function Create(props: IData) {
     setOpen(false);
   };
 
+  const bldgs:IBuilding[] = BLDGS
+
   return (
     <div>
-      <Button variant="contained" style={{backgroundColor:'#5e35b1',color:'#fff'}} onClick={handleOpen}>
+      <Button variant="contained" style={{backgroundColor:DEFAULT_COLOR,color:'#fff'}} onClick={handleOpen}>
         <AddIcon/>
-        Create
+        Create {props.title}
       </Button>
       <Modal
         aria-labelledby="transition-modal-title"
@@ -79,12 +93,12 @@ export default function Create(props: IData) {
         <Fade in={open}>
           <div className={classes.paper}>
             <Typography variant="h5" gutterBottom>
-              Create {title} component
+              Create {props.title} component
             </Typography>
             <TableContainer component={Paper}>
                 <Table className={classes.table} aria-label="simple table">
                   <TableBody>
-                  {columns.map(col => {
+                  {props.fields.map(col => {
                     return (
                       <TableRow>
                         <TableCell>
@@ -94,9 +108,27 @@ export default function Create(props: IData) {
                             </Typography>
                           </div>
                         </TableCell>
-                        <TableCell>
-                          <TextField size="small" autoComplete="off" id="standard-basic" label={col.toLowerCase} fullWidth helperText={helperTxt}/>
+                        {col === 'Building' ? (
+                          <TableCell>
+                            <FormControl className={classes.formControl} fullWidth>
+                              <InputLabel id="demo-simple-select-label">select building</InputLabel>
+                              <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                value={building}
+                                onChange={handleChangeBuilding}
+                              >
+                                {bldgs.map(res => (
+                                  <MenuItem value={res.name}>{res.name}</MenuItem>
+                                ))}
+                              </Select>
+                            </FormControl>
+                          </TableCell>
+                        ) : (
+                          <TableCell>
+                            <TextField size="small" autoComplete="off" id="standard-basic" label={col.toLowerCase} fullWidth helperText={props.helperTxt}/>
                         </TableCell>
+                        )}
                       </TableRow>
                     )
                   })}
@@ -106,7 +138,7 @@ export default function Create(props: IData) {
                     </TableCell>
                     <TableCell>
                       <div style={{float:'right'}}>
-                        <Button variant="contained" color="primary">
+                        <Button variant="contained" style={{backgroundColor:DEFAULT_COLOR, color:'#fff'}}>
                           Create
                         </Button>
                       </div>

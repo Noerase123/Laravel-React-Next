@@ -44,13 +44,20 @@ export default function table(props: ITable) {
     setPage(0);
   };
 
+  const create = {
+    fields: ['Building Name', 'Building Type', 'Capacity', 'Vacancy', 'Occupancy'],
+    title: 'Building',
+    //helperTxt: 'Fill up details',
+    helperTxt: '',
+  }
+
   return (
     <div>
       <Typography variant="h5" gutterBottom>
           {props.title}
       </Typography>
       <br/>
-      <CreateButton/>
+      <CreateButton fields={create.fields} title={create.title} helperTxt={create.helperTxt}/>
       <br/>
       <Paper className={classes.root}>
         <TableContainer className={classes.container}>
@@ -69,7 +76,7 @@ export default function table(props: ITable) {
             <TableBody>
               {props.rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.name}>
+                  <TableRow hover role="checkbox" tabIndex={-1} key={row.name} onClick={() => console.log(row.name)}>
                     <TableCell>
                       {row.name}
                     </TableCell>

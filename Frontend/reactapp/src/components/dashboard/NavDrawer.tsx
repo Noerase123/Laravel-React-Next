@@ -33,6 +33,7 @@ import { INavProps } from '../../interface/Interfaces'
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import {DEFAULT_COLOR} from '../../defaults/default'
 
 const drawerWidth = 250;
 
@@ -130,7 +131,7 @@ export default function NavDrawer(props:INavProps) {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
-        style={{backgroundColor:'#5e35b1'}}
+        style={{backgroundColor:DEFAULT_COLOR}}
         position="fixed"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
@@ -189,6 +190,46 @@ export default function NavDrawer(props:INavProps) {
                 <ListItemText primary="Register"/>
               </ListItem>
             </Link>
+            
+            <ListItem button onClick={handleClickRoom}>
+              <ListItemIcon>
+                <HomeIcon />
+              </ListItemIcon>
+              <ListItemText primary="Rooms" />
+              {openRoom ? <ExpandLess /> : <ExpandMore />}
+            </ListItem>
+            <Collapse in={openRoom} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
+                <Link href={pages.buildings}>
+                  <ListItem button className={classes.nested}>
+                    <ListItemIcon>
+                      <ApartmentIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Buildings" />
+                  </ListItem>
+                </Link>
+              </List>
+              <List component="div" disablePadding>
+                <Link href={pages.units}>
+                  <ListItem button className={classes.nested}>
+                    <ListItemIcon>
+                      <HomeIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Units" />
+                  </ListItem>
+                </Link>
+              </List>
+              <List component="div" disablePadding>
+                <Link href={pages.beds}>
+                  <ListItem button className={classes.nested}>
+                    <ListItemIcon>
+                      <HotelIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Beds" />
+                  </ListItem>
+                </Link>
+              </List>
+            </Collapse>
 
             <ListItem button onClick={handleClickReport}>
               <ListItemIcon>
@@ -229,45 +270,7 @@ export default function NavDrawer(props:INavProps) {
                 </Link>
               </List>
             </Collapse>
-            <ListItem button onClick={handleClickRoom}>
-              <ListItemIcon>
-                <HomeIcon />
-              </ListItemIcon>
-              <ListItemText primary="Rooms" />
-              {openRoom ? <ExpandLess /> : <ExpandMore />}
-            </ListItem>
-            <Collapse in={openRoom} timeout="auto" unmountOnExit>
-              <List component="div" disablePadding>
-                <Link href={pages.buildings}>
-                  <ListItem button className={classes.nested}>
-                    <ListItemIcon>
-                      <ApartmentIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Buildings" />
-                  </ListItem>
-                </Link>
-              </List>
-              <List component="div" disablePadding>
-                <Link href={pages.units}>
-                  <ListItem button className={classes.nested}>
-                    <ListItemIcon>
-                      <HomeIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Units" />
-                  </ListItem>
-                </Link>
-              </List>
-              <List component="div" disablePadding>
-                <Link href={pages.beds}>
-                  <ListItem button className={classes.nested}>
-                    <ListItemIcon>
-                      <HotelIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Beds" />
-                  </ListItem>
-                </Link>
-              </List>
-            </Collapse>
+
         </List>
         <Divider />
         <List>
