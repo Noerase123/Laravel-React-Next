@@ -11,7 +11,9 @@ export interface IBuilding {
   occupancy: number
 }
 
-export interface IColumn {
-  id: number
-  label: string
+export interface IRoom {
+  bldg: string,
+  number: number
+  type: string
+  percentageCapacity: string
 }
