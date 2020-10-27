@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -28,8 +29,6 @@ interface ITable {
 }
 
 export default function table(props: ITable) {
-
-  // const {title, columns, rows } = props
 
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
@@ -76,23 +75,26 @@ export default function table(props: ITable) {
             <TableBody>
               {props.rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.name} onClick={() => console.log(row.name)}>
-                    <TableCell>
-                      {row.name}
-                    </TableCell>
-                    <TableCell>
-                      {row.type}
-                    </TableCell>
-                    <TableCell>
-                      {row.capacity}
-                    </TableCell>
-                    <TableCell>
-                      {row.occupancy}
-                    </TableCell>
-                    <TableCell>
-                      {row.vacancy}
-                    </TableCell>
-                  </TableRow>
+                  <Link href={`buildings?details=${row.name}`}>
+                    <TableRow hover role="checkbox" tabIndex={-1} key={row.name} onClick={() => console.log(row.name)}>
+                      <TableCell>
+                        {row.name}
+                      </TableCell>
+                      <TableCell>
+                        {row.type}
+                      </TableCell>
+                      <TableCell>
+                        {row.capacity}
+                      </TableCell>
+                      <TableCell>
+                        {row.occupancy}
+                      </TableCell>
+                      <TableCell>
+                        {row.vacancy}
+                      </TableCell>
+                    </TableRow>
+                  </Link>
+                  
                 );
               })}
             </TableBody>

@@ -24,70 +24,70 @@ export const BLDGS = [
     },
     {
         name: 'Tokyo',
-        type: 'First Class',
+        type: 'Deluxe',
         capacity: 100,
         vacancy: 30,
         occupancy: 70
     },
     {
         name: 'Seoul',
+        type: 'Deluxe',
+        capacity: 100,
+        vacancy: 30,
+        occupancy: 70
+    },
+    {
+        name: 'Kyoto',
         type: 'First Class',
         capacity: 100,
         vacancy: 30,
         occupancy: 70
     },
     {
-        name: 'Amsterdam',
+        name: 'New York',
         type: 'First Class',
         capacity: 100,
         vacancy: 30,
         occupancy: 70
     },
     {
-        name: 'Amsterdam',
-        type: 'First Class',
+        name: 'London',
+        type: 'Deluxe',
         capacity: 100,
         vacancy: 30,
         occupancy: 70
     },
     {
-        name: 'Amsterdam',
-        type: 'First Class',
+        name: 'Singapore',
+        type: 'Deluxe',
         capacity: 100,
         vacancy: 30,
         occupancy: 70
     },
     {
-        name: 'Amsterdam',
-        type: 'First Class',
+        name: 'Athens',
+        type: 'Deluxe',
         capacity: 100,
         vacancy: 30,
         occupancy: 70
     },
     {
-        name: 'Amsterdam',
-        type: 'First Class',
+        name: 'Hong Kong',
+        type: 'Deluxe',
         capacity: 100,
         vacancy: 30,
         occupancy: 70
     },
     {
-        name: 'Amsterdam',
-        type: 'First Class',
+        name: 'Paris',
+        type: 'Deluxe',
         capacity: 100,
         vacancy: 30,
         occupancy: 70
     },
     {
-        name: 'Amsterdam',
-        type: 'First Class',
-        capacity: 100,
-        vacancy: 30,
-        occupancy: 70
-    },
-    {
-        name: 'Amsterdam',
-        type: 'First Class',
+        name: 'Capetown',
+        type: 'Deluxe',
         capacity: 100,
         vacancy: 30,
         occupancy: 70
