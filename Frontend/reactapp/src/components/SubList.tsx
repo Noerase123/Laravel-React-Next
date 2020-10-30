@@ -5,21 +5,21 @@ import Link from 'next/link'
 
 interface IList {
     link: string
-    subLink: string
+    item: string
 }
 
 export default function SubList(props: IList) {
     return (
         <React.Fragment>
             <Breadcrumbs aria-label="breadcrumb">
-                <Link href={props.link}>
-                    <span style={{textDecoration:'none', color:'#808080'}}>Dashboard</span>
+                <Link href="/">
+                    <span style={{textDecoration:'none', color:'#808080'}}>dashboard</span>
                 </Link>
-                <Link href={props.subLink}>
-                    <span style={{textDecoration:'none', color:'#808080'}}>{props.subLink}</span>
+                <Link href={`/${props.link}`}>
+                    <span style={{textDecoration:'none', color:'#808080'}}>{props.link}</span>
                 </Link>
                 <Typography>
-                    <span style={{textDecoration:'none', color:'#808080'}}>Details</span>
+                    <span style={{textDecoration:'none', color:'#808080'}}>{props.item}</span>
                 </Typography>
             </Breadcrumbs>
         </React.Fragment>

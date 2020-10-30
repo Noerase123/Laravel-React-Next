@@ -1,7 +1,7 @@
 import React from "react";
 import Container from '@material-ui/core/Container'
 import NavDrawer from '../../components/dashboard/NavDrawer'
-import TableDetails from '../../components/TableDetails'
+import BuildingView from '../../components/BuildingView'
 import Typography from '@material-ui/core/Typography'
 import SubList from '../../components/SubList'
 
@@ -17,10 +17,10 @@ export default function BuildingsDetails(props: IDetails) {
                     <Typography variant="h5" gutterBottom>
                         Building Details
                     </Typography>
-                    <SubList link={'/'} subLink={'/buildings'}/>
+                    <SubList link={'buildings'} item={props.itemID}/>
                     <br/>
                     <br/>
-                    <TableDetails itemID={props.itemID}/>
+                    <BuildingView itemID={props.itemID}/>
                 </Container>
             </NavDrawer>
         </div>

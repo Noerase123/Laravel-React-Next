@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -76,20 +77,22 @@ export default function table(props: ITable) {
             <TableBody>
               {props.rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.bldg}>
-                    <TableCell>
-                      {row.bldg}
-                    </TableCell>
-                    <TableCell>
-                      {row.number}
-                    </TableCell>
-                    <TableCell>
-                      {row.type}
-                    </TableCell>
-                    <TableCell>
-                      {row.percentageCapacity}
-                    </TableCell>
-                  </TableRow>
+                  <Link href={`units?details=${row.bldg}`}>
+                    <TableRow hover role="checkbox" tabIndex={-1} key={row.bldg}>
+                      <TableCell>
+                        {row.bldg}
+                      </TableCell>
+                      <TableCell>
+                        {row.number}
+                      </TableCell>
+                      <TableCell>
+                        {row.type}
+                      </TableCell>
+                      <TableCell>
+                        {row.percentageCapacity}
+                      </TableCell>
+                    </TableRow>
+                  </Link>
                 );
               })}
             </TableBody>
