@@ -7,6 +7,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import TenantDetails from './tenants/tenantDetails'
+import {ITenant} from '../interface/Interfaces'
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -49,7 +50,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 interface IDetails {
-    itemID: string
+  tenantData: ITenant[]
 }
 
 export default function UnitView(props: IDetails) {
@@ -77,7 +78,7 @@ export default function UnitView(props: IDetails) {
             aria-label="full width tabs example"
           >
             <Tab label="Tenants" {...a11yProps(0)} />
-            <Tab label="Rents" {...a11yProps(1)} />
+            <Tab label="Contracts" {...a11yProps(1)} />
             <Tab label="Utilities" {...a11yProps(2)} />
           </Tabs>
         </AppBar>
@@ -87,13 +88,13 @@ export default function UnitView(props: IDetails) {
           onChangeIndex={handleChangeIndex}
         >
           <TabPanel value={value} index={0} dir={theme.direction}>
-            <TenantDetails/>
+            <TenantDetails tenants={props.tenantData}/>
           </TabPanel>
           <TabPanel value={value} index={1} dir={theme.direction}>
-            <TenantDetails/>
+            {/* <TenantDetails/> */}
           </TabPanel>
           <TabPanel value={value} index={2} dir={theme.direction}>
-            <TenantDetails/>
+            {/* <TenantDetails/> */}
           </TabPanel>
         </SwipeableViews>
     </div>

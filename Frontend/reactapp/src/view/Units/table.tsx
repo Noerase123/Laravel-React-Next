@@ -77,8 +77,8 @@ export default function table(props: ITable) {
             <TableBody>
               {props.rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
                 return (
-                  <Link href={`units?details=${row.bldg}`}>
-                    <TableRow hover role="checkbox" tabIndex={-1} key={row.bldg}>
+                  <Link href={`units?v=${row.id}&building=${row.bldg}&unit=${row.number}`}>
+                    <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
                       <TableCell>
                         {row.bldg}
                       </TableCell>

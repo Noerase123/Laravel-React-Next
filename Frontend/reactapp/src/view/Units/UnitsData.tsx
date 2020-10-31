@@ -13,36 +13,42 @@ const columns = [
 
 const rows: IRoom[] = [
   {
+    id: 11,
     bldg: 'Amsterdam',
     number: 101,
     type: '2',
     percentageCapacity:'35%'
   },
   {
-    bldg: 'Amsterdam',
+    id: 12,
+    bldg: 'New York',
     number: 102,
     type: '2',
     percentageCapacity:'35%'
   },
   {
+    id: 13,
     bldg: 'Amsterdam',
     number: 103,
     type: '2',
     percentageCapacity:'35%'
   },
   {
+    id: 14,
     bldg: 'Amsterdam',
     number: 104,
     type: '2',
     percentageCapacity:'35%'
   },
   {
+    id: 15,
     bldg: 'Amsterdam',
     number: 105,
     type: '2',
     percentageCapacity:'35%'
   },
   {
+    id: 16,
     bldg: 'Amsterdam',
     number: 106,
     type: '2',

@@ -86,10 +86,10 @@ export default function BuildingView(props: IDetails) {
           onChangeIndex={handleChangeIndex}
         >
           <TabPanel value={value} index={0} dir={theme.direction}>
-            <TenantDetails/>
+            {/* <TenantDetails/> */}
           </TabPanel>
           <TabPanel value={value} index={1} dir={theme.direction}>
-            <TenantDetails/>
+            {/* <TenantDetails/> */}
           </TabPanel>
         </SwipeableViews>
     </div>

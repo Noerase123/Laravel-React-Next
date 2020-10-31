@@ -1,18 +1,29 @@
-import Unit from '../view/Units/UnitsData'
 import UnitsDetails from '../view/Units/UnitsDetails'
 
 export default function units() {
-  
-  const urlParams = new URLSearchParams(global.window.location.search)
-  const params = urlParams.get('details') as string
+  var bldg: string = ''
+  var id: string = ''
+  var unit: string = ''
+
+  try {
+    const urlParams = new URLSearchParams(window.location.search)
+    bldg = urlParams.get('building') as string
+    unit = urlParams.get('unit') as string
+    id = urlParams.get('v') as string
+
+  } catch (e) {
+    console.log('====================================');
+    console.log(e);
+    console.log('====================================');
+  }
   
   return (
     <div>
-      {params === null ? (
-        <Unit/>
-      ) : (
-          <UnitsDetails itemID={params}/>
-      )}
+      <UnitsDetails
+        id={id}
+        building={bldg}
+        unit={unit}
+      />
     </div>
   )
 }
