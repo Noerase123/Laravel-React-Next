@@ -27,10 +27,13 @@ export default function UnitsDetails(props: IDetails) {
             city: 'Calamba',
             houseNum: '#123 st',
             bed: 'A',
-            tenantType: 'Individual'
+            tenantType: 'Individual',
+            rentalRate: '4,100',
+            moveIn: 'January 15, 2020',
+            moveOut: 'January 14, 2021'
         },
         {
-            name: 'John Isaac',
+            name: 'John Pedro',
             email: 'noerase12@gmail.com',
             contactNum: '09770466342',
             company: 'PULS',
@@ -39,10 +42,13 @@ export default function UnitsDetails(props: IDetails) {
             city: 'Calamba',
             houseNum: '#123 st',
             bed: 'B',
-            tenantType: 'Individual'
+            tenantType: 'Individual',
+            rentalRate: '4,100',
+            moveIn: 'January 15, 2020',
+            moveOut: 'January 14, 2021'
         },
         {
-            name: 'John Isaac',
+            name: 'John Patrick',
             email: 'noerase12@gmail.com',
             contactNum: '09770466342',
             company: 'PULS',
@@ -51,10 +57,13 @@ export default function UnitsDetails(props: IDetails) {
             city: 'Calamba',
             houseNum: '#123 st',
             bed: 'C',
-            tenantType: 'Individual'
+            tenantType: 'Individual',
+            rentalRate: '4,100',
+            moveIn: 'January 15, 2020',
+            moveOut: 'January 14, 2021'
         },
         {
-            name: 'John Isaac',
+            name: 'John Andrew',
             email: 'noerase12@gmail.com',
             contactNum: '09770466342',
             company: 'PULS',
@@ -63,7 +72,10 @@ export default function UnitsDetails(props: IDetails) {
             city: 'Calamba',
             houseNum: '#123 st',
             bed: 'D',
-            tenantType: 'Individual'
+            tenantType: 'Individual',
+            rentalRate: '4,100',
+            moveIn: 'January 15, 2020',
+            moveOut: 'January 14, 2021'
         }
     ]
 

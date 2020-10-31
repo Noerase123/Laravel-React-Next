@@ -27,8 +27,9 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     paperModal: {
       backgroundColor: theme.palette.background.paper,
-      minWidth: 500,
-      padding: 30
+      minWidth: 800,
+      minHeight: 500,
+      padding: 20
     },
   }),
 );
@@ -50,32 +51,24 @@ export default function TenantDetails(props: IData) {
 
                 <Grid container justify="flex-start" alignItems="flex-start" spacing={3}>
 
-                  <Grid item xs={12} style={{backgroundColor:'#dedede'}}>
-                      <Avatar style={{ float: 'left' }} alt={res.bed} src="/static/images/avatar/1.jpg" />
+                  <Grid item xs={12} style={{ backgroundColor: '#dedede' }}>
+                      <SpringModal tenant={res}>
+                        <Avatar style={{ float: 'left' }} alt={res.bed} src="/static/images/avatar/1.jpg" />
+                      </SpringModal>
                       <div>
-                        <SpringModal tenant={res}>
-                          <Typography style={{color:'#000'}}>{res.name}</Typography>
-                        </SpringModal>
+                        <Typography style={{color:'#000'}}>{res.name}</Typography>
                         <Typography color="inherit">{res.email}</Typography>
                       </div>
                   </Grid>
-
-                  <Grid item xs={6}>
-                      <div style={{float:'left'}}>
-                          <Typography>Province: {res.province}</Typography>
-                          <Typography>City: {res.city}</Typography>
-                          <Typography>House no.: {res.houseNum}</Typography>
+                  
+                  <Grid item xs={12} style={{textAlign:'left'}}>
+                      <div>
+                        <Typography>Bed Rate : {res.rentalRate}</Typography>
+                          <Typography>Move In: {res.moveIn}</Typography>
+                          <Typography>Move Out: {res.moveOut}</Typography>
                       </div>
                   </Grid>
                   
-                  <Grid item xs={6}>
-                  <div style={{float:'left'}}>
-                      <Typography>Company : {res.company}</Typography>
-                      <Typography>Occupation : {res.occupation}</Typography>
-                      <Typography>Contact no.: {res.contactNum}</Typography>
-                  </div>
-                  </Grid>
-
                 </Grid>
 
               </Paper>
@@ -134,6 +127,50 @@ export function SpringModal(props: IModal) {
     setOpen(false);
   };
 
+  const name = props.tenant.name
+  const contactNum = props.tenant.contactNum
+  const email = props.tenant.email
+  const city = props.tenant.city
+  const province = props.tenant.province
+  const houseNum = props.tenant.houseNum
+  const company = props.tenant.company
+  const occupation = props.tenant.occupation
+
+  const arrData = [
+    {
+      label: 'Name',
+      value: name
+    },
+    {
+      label: 'Phone',
+      value: contactNum
+    },
+    {
+      label: 'Email',
+      value: email
+    },
+    {
+      label: 'City',
+      value: city
+    },
+    {
+      label: 'Province',
+      value: province
+    },
+    {
+      label: 'House No.',
+      value: houseNum
+    },
+    {
+      label: 'Company',
+      value: company
+    },
+    {
+      label: 'Occupation',
+      value: occupation
+    },
+  ]
+
   return (
     <div>
       <div onClick={handleOpen}>
@@ -153,20 +190,18 @@ export function SpringModal(props: IModal) {
       >
         <Fade in={open}>
           <div className={classes.paperModal}>
-            <Grid container xs={12}>
-                <Grid item xs={6}>
-                  xs 6
-                </Grid>
-                <Grid item xs={6}>
-                  xs 6
-                </Grid>
-                <Grid item xs={6}>
-                  xs 6
-                </Grid>
-                <Grid item xs={6}>
-                  xs 6
-                </Grid>
-            </Grid>
+            
+            {arrData.map(res => (
+              <Grid container xs={12} style={{ backgroundColor: '#e1e1e1', textAlign:'left'}}>
+                  <Grid item xs={6}>
+                    <Typography style={{float:'right',marginRight:10}}> {res.label} </Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography> {res.value} </Typography>
+                  </Grid>
+              </Grid>
+            ))}
+
           </div>
         </Fade>
       </Modal>

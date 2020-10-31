@@ -30,6 +30,9 @@ export interface ITenant {
   houseNum: string
   bed: string
   tenantType: string
+  rentalRate: string
+  moveIn: string
+  moveOut: string
 }
 
 export interface ITenantInfo {
