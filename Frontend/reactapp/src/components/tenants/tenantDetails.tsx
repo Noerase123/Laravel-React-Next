@@ -192,14 +192,17 @@ export function SpringModal(props: IModal) {
           <div className={classes.paperModal}>
             
             <Grid container xs={12}>
+              <Grid item xs={3}>
+                <Avatar alt="Title" src="/static/images/avatar/1.jpg" />
+              </Grid>
               {arrData.map(res => (
-                <div style={{ backgroundColor: '#e1e1e1', textAlign:'left'}}>
+                <div>
                   <Grid item xs={6}>
                       <Typography style={{float:'right',marginRight:10}}> {res.label} </Typography>
                     </Grid>
                     <Grid item xs={6}>
                       <Typography> {res.value} </Typography>
-                    </Grid>  
+                    </Grid>
                 </div>
               ))}
             </Grid>
