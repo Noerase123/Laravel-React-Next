@@ -19,6 +19,15 @@ export interface IRoom {
   percentageCapacity: string
 }
 
+export interface IBeds {
+  name: string
+  building: string
+  unit: string
+  letter: string
+  moveIn: string
+  moveOut: string
+}
+
 export interface ITenant {
   name: string
   email: string

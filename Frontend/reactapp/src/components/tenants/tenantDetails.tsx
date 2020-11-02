@@ -198,12 +198,8 @@ export function SpringModal(props: IModal) {
               <Grid style={{ backgroundColor: '#cecece' }} item xs={9}>
                 {arrData.map(res => (
                   <div>
-                    <Grid item xs={12}>
-                        <Typography style={{float:'right',marginRight:10}}> {res.label} </Typography>
-                      </Grid>
-                      <Grid item xs={12}>
-                        <Typography> {res.value} </Typography>
-                      </Grid>
+                    {/* <Typography> {res.label} </Typography> */}
+                    <Typography> {res.value} </Typography>
                   </div>
                 ))}
               </Grid>

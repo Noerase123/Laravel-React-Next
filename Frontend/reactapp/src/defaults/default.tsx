@@ -93,3 +93,214 @@ export const BLDGS = [
         occupancy: 70
     },
 ]
+
+export const TENANTS = [
+    {
+        name: 'John Isaac',
+        building: 'Sydney',
+        unit: '101',
+        letter: 'A',
+        moveIn: 'January 13, 2020',
+        moveOut: 'January 13, 2021'
+    },
+    {
+        name: 'John Isaac',
+        building: 'Sydney',
+        unit: '101',
+        letter: 'A',
+        moveIn: 'January 13, 2020',
+        moveOut: 'January 13, 2021'
+    },
+    {
+        name: 'John Isaac',
+        building: 'Sydney',
+        unit: '101',
+        letter: 'A',
+        moveIn: 'January 13, 2020',
+        moveOut: 'January 13, 2021'
+    },
+    {
+        name: 'John Isaac',
+        building: 'Sydney',
+        unit: '101',
+        letter: 'A',
+        moveIn: 'January 13, 2020',
+        moveOut: 'January 13, 2021'
+    },
+    {
+        name: 'John Isaac',
+        building: 'Sydney',
+        unit: '101',
+        letter: 'A',
+        moveIn: 'January 13, 2020',
+        moveOut: 'January 13, 2021'
+    },
+    {
+        name: 'John Isaac',
+        building: 'Sydney',
+        unit: '101',
+        letter: 'A',
+        moveIn: 'January 13, 2020',
+        moveOut: 'January 13, 2021'
+    },
+    {
+        name: 'John Isaac',
+        building: 'Sydney',
+        unit: '101',
+        letter: 'A',
+        moveIn: 'January 13, 2020',
+        moveOut: 'January 13, 2021'
+    },
+    {
+        name: 'John Isaac',
+        building: 'Sydney',
+        unit: '101',
+        letter: 'A',
+        moveIn: 'January 13, 2020',
+        moveOut: 'January 13, 2021'
+    },
+    {
+        name: 'John Isaac',
+        building: 'Sydney',
+        unit: '101',
+        letter: 'A',
+        moveIn: 'January 13, 2020',
+        moveOut: 'January 13, 2021'
+    },
+    {
+        name: 'John Isaac',
+        building: 'Sydney',
+        unit: '101',
+        letter: 'A',
+        moveIn: 'January 13, 2020',
+        moveOut: 'January 13, 2021'
+    },
+    {
+        name: 'John Isaac',
+        building: 'Sydney',
+        unit: '101',
+        letter: 'A',
+        moveIn: 'January 13, 2020',
+        moveOut: 'January 13, 2021'
+    },
+    {
+        name: 'John Isaac',
+        building: 'Sydney',
+        unit: '101',
+        letter: 'A',
+        moveIn: 'January 13, 2020',
+        moveOut: 'January 13, 2021'
+    },
+    {
+        name: 'John Isaac',
+        building: 'Sydney',
+        unit: '101',
+        letter: 'A',
+        moveIn: 'January 13, 2020',
+        moveOut: 'January 13, 2021'
+    },
+    {
+        name: 'John Isaac',
+        building: 'Sydney',
+        unit: '101',
+        letter: 'A',
+        moveIn: 'January 13, 2020',
+        moveOut: 'January 13, 2021'
+    },
+    {
+        name: 'John Isaac',
+        building: 'Sydney',
+        unit: '101',
+        letter: 'A',
+        moveIn: 'January 13, 2020',
+        moveOut: 'January 13, 2021'
+    },
+    {
+        name: 'John Isaac',
+        building: 'Sydney',
+        unit: '101',
+        letter: 'A',
+        moveIn: 'January 13, 2020',
+        moveOut: 'January 13, 2021'
+    },
+    {
+        name: 'John Isaac',
+        building: 'Sydney',
+        unit: '101',
+        letter: 'A',
+        moveIn: 'January 13, 2020',
+        moveOut: 'January 13, 2021'
+    },
+    {
+        name: 'John Isaac',
+        building: 'Sydney',
+        unit: '101',
+        letter: 'A',
+        moveIn: 'January 13, 2020',
+        moveOut: 'January 13, 2021'
+    },
+    {
+        name: 'John Isaac',
+        building: 'Sydney',
+        unit: '101',
+        letter: 'A',
+        moveIn: 'January 13, 2020',
+        moveOut: 'January 13, 2021'
+    },
+    {
+        name: 'John Isaac',
+        building: 'Sydney',
+        unit: '101',
+        letter: 'A',
+        moveIn: 'January 13, 2020',
+        moveOut: 'January 13, 2021'
+    },
+    {
+        name: 'John Isaac',
+        building: 'Sydney',
+        unit: '101',
+        letter: 'A',
+        moveIn: 'January 13, 2020',
+        moveOut: 'January 13, 2021'
+    },
+    {
+        name: 'John Isaac',
+        building: 'Sydney',
+        unit: '101',
+        letter: 'A',
+        moveIn: 'January 13, 2020',
+        moveOut: 'January 13, 2021'
+    },
+    {
+        name: 'John Isaac',
+        building: 'Sydney',
+        unit: '101',
+        letter: 'A',
+        moveIn: 'January 13, 2020',
+        moveOut: 'January 13, 2021'
+    },
+    {
+        name: 'John Isaac',
+        building: 'Sydney',
+        unit: '101',
+        letter: 'A',
+        moveIn: 'January 13, 2020',
+        moveOut: 'January 13, 2021'
+    },
+    {
+        name: 'John Isaac',
+        building: 'Sydney',
+        unit: '101',
+        letter: 'A',
+        moveIn: 'January 13, 2020',
+        moveOut: 'January 13, 2021'
+    },
+    {
+        name: 'John Isaac',
+        building: 'Sydney',
+        unit: '101',
+        letter: 'A',
+        moveIn: 'January 13, 2020',
+        moveOut: 'January 13, 2021'
+    },
+]
