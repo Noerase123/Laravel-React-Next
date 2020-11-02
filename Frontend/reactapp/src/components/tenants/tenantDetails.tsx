@@ -191,16 +191,18 @@ export function SpringModal(props: IModal) {
         <Fade in={open}>
           <div className={classes.paperModal}>
             
-            {arrData.map(res => (
-              <Grid container xs={12} style={{ backgroundColor: '#e1e1e1', textAlign:'left'}}>
+            <Grid container xs={12}>
+              {arrData.map(res => (
+                <div style={{ backgroundColor: '#e1e1e1', textAlign:'left'}}>
                   <Grid item xs={6}>
-                    <Typography style={{float:'right',marginRight:10}}> {res.label} </Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography> {res.value} </Typography>
-                  </Grid>
-              </Grid>
-            ))}
+                      <Typography style={{float:'right',marginRight:10}}> {res.label} </Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                      <Typography> {res.value} </Typography>
+                    </Grid>  
+                </div>
+              ))}
+            </Grid>
 
           </div>
         </Fade>

@@ -11,6 +11,8 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import CreateButton from '../../components/Create'
 import Typography from '@material-ui/core/Typography'
+import SettingsApplicationsIcon from '@material-ui/icons/SettingsApplications';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 import {IRoom} from '../../interface/Interfaces'
 
 const useStyles = makeStyles({
@@ -29,8 +31,6 @@ interface ITable {
 }
 
 export default function table(props: ITable) {
-
-  // const {title, columns, rows } = props
 
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
@@ -72,27 +72,34 @@ export default function table(props: ITable) {
                     {column}
                   </TableCell>
                 ))}
+                <TableCell>
+                  Option
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {props.rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
                 return (
-                  <Link href={`units?v=${row.id}&building=${row.bldg}&unit=${row.number}`}>
                     <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
+                        <TableCell>
+                          {row.bldg}
+                        </TableCell>
+                        <TableCell>
+                          {row.number}
+                        </TableCell>
+                        <TableCell>
+                          {row.type}
+                        </TableCell>
+                        <TableCell>
+                          {row.percentageCapacity}
+                        </TableCell>
                       <TableCell>
-                        {row.bldg}
-                      </TableCell>
-                      <TableCell>
-                        {row.number}
-                      </TableCell>
-                      <TableCell>
-                        {row.type}
-                      </TableCell>
-                      <TableCell>
-                        {row.percentageCapacity}
+                      <Link href={`units?v=${row.id}&building=${row.bldg}&unit=${row.number}`}>
+                        <VisibilityIcon/>
+                      </Link>
+                        <SettingsApplicationsIcon onClick={() => roomSettings()}/>
                       </TableCell>
                     </TableRow>
-                  </Link>
                 );
               })}
             </TableBody>
@@ -110,4 +117,10 @@ export default function table(props: ITable) {
       </Paper>  
     </div>
   );
+}
+
+const roomSettings = () => {
+  console.log('====================================');
+  console.log('hello world');
+  console.log('====================================');
 }
