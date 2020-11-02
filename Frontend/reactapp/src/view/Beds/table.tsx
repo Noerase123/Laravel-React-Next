@@ -11,6 +11,7 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import CreateButton from '../../components/Create'
 import Typography from '@material-ui/core/Typography'
+import TextField from '@material-ui/core/TextField'
 import {IBeds} from '../../interface/Interfaces'
 
 const useStyles = makeStyles({
@@ -55,9 +56,10 @@ export default function table(props: ITable) {
       <Typography variant="h5" gutterBottom>
           {props.title}
       </Typography>
-      <br/>
-      <CreateButton fields={create.fields} title={create.title} helperTxt={create.helperTxt}/>
-      <br/>
+      <form>
+        <TextField id="standard-basic" label="Advance search" variant="filled"/>
+      </form>
+      <br />
       <Paper className={classes.root}>
         <TableContainer className={classes.container}>
           <Table stickyHeader aria-label="sticky table">

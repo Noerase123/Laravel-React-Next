@@ -5,6 +5,7 @@ import NavDrawer from '../../components/dashboard/NavDrawer'
 import UnitView from '../../components/UnitView'
 import Typography from '@material-ui/core/Typography'
 import SubList from '../../components/SubList'
+import {TENANTPERROOM} from '../../defaults/default'
 import { ITenant, ISubs } from '../../interface/Interfaces'
 import Unit from './UnitsData'
 
@@ -16,68 +17,7 @@ interface IDetails {
 
 export default function UnitsDetails(props: IDetails) {
 
-    const tenants: ITenant[] = [
-        {
-            name: 'John Isaac',
-            email: 'noerase12@gmail.com',
-            contactNum: '09770466342',
-            company: 'PULS',
-            occupation: 'Software Engineer',
-            province: 'Laguna',
-            city: 'Calamba',
-            houseNum: '#123 st',
-            bed: 'A',
-            tenantType: 'Individual',
-            rentalRate: '4,100',
-            moveIn: 'January 15, 2020',
-            moveOut: 'January 14, 2021'
-        },
-        {
-            name: 'John Pedro',
-            email: 'noerase12@gmail.com',
-            contactNum: '09770466342',
-            company: 'PULS',
-            occupation: 'Software Engineer',
-            province: 'Laguna',
-            city: 'Calamba',
-            houseNum: '#123 st',
-            bed: 'B',
-            tenantType: 'Individual',
-            rentalRate: '4,100',
-            moveIn: 'January 15, 2020',
-            moveOut: 'January 14, 2021'
-        },
-        {
-            name: 'John Patrick',
-            email: 'noerase12@gmail.com',
-            contactNum: '09770466342',
-            company: 'PULS',
-            occupation: 'Software Engineer',
-            province: 'Laguna',
-            city: 'Calamba',
-            houseNum: '#123 st',
-            bed: 'C',
-            tenantType: 'Individual',
-            rentalRate: '4,100',
-            moveIn: 'January 15, 2020',
-            moveOut: 'January 14, 2021'
-        },
-        {
-            name: 'John Andrew',
-            email: 'noerase12@gmail.com',
-            contactNum: '09770466342',
-            company: 'PULS',
-            occupation: 'Software Engineer',
-            province: 'Laguna',
-            city: 'Calamba',
-            houseNum: '#123 st',
-            bed: 'D',
-            tenantType: 'Individual',
-            rentalRate: '4,100',
-            moveIn: 'January 15, 2020',
-            moveOut: 'January 14, 2021'
-        }
-    ]
+    const tenants: ITenant[] = TENANTPERROOM
 
     const subs: ISubs[] = [
         {

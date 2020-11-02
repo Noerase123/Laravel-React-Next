@@ -8,6 +8,7 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import { useSpring, animated } from 'react-spring/web.cjs';
 import Button from '@material-ui/core/Button'
+import PersonIcon from '@material-ui/icons/Person';
 import { ITenant } from '../../interface/Interfaces'
  
 const useStyles = makeStyles((theme: Theme) =>
@@ -29,7 +30,7 @@ const useStyles = makeStyles((theme: Theme) =>
       backgroundColor: theme.palette.background.paper,
       minWidth: 800,
       minHeight: 500,
-      padding: 20
+      padding: 20,
     },
   }),
 );
@@ -136,40 +137,7 @@ export function SpringModal(props: IModal) {
   const company = props.tenant.company
   const occupation = props.tenant.occupation
 
-  const arrData = [
-    {
-      label: 'Name',
-      value: name
-    },
-    {
-      label: 'Phone',
-      value: contactNum
-    },
-    {
-      label: 'Email',
-      value: email
-    },
-    {
-      label: 'City',
-      value: city
-    },
-    {
-      label: 'Province',
-      value: province
-    },
-    {
-      label: 'House No.',
-      value: houseNum
-    },
-    {
-      label: 'Company',
-      value: company
-    },
-    {
-      label: 'Occupation',
-      value: occupation
-    },
-  ]
+  const arrData = [name,contactNum,email,city]
 
   return (
     <div>
@@ -192,17 +160,27 @@ export function SpringModal(props: IModal) {
           <div className={classes.paperModal}>
             
             <Grid container xs={12}>
-              <Grid item xs={3} style={{backgroundColor:'#e1e1e1'}}>
-                <Avatar alt="John" src="/static/images/avatar/1.jpg" />
+              <Grid item xs={3} style={{backgroundColor:'#e1e1e1', padding:15}}>
+                <PersonIcon style={{height:'100%',width:'100%',display:'block', backgroundColor:'#fefefe'}}/>
               </Grid>
-              <Grid style={{ backgroundColor: '#cecece' }} item xs={9}>
-                {arrData.map(res => (
+              <Grid item xs={9} style={{ backgroundColor: '#cdcdcd', padding: 30 }}>
+                {arrData.map(response => (
                   <div>
-                    {/* <Typography> {res.label} </Typography> */}
-                    <Typography> {res.value} </Typography>
+                    <Typography>{response}</Typography>
                   </div>
                 ))}
               </Grid>
+            </Grid>
+            <br/>
+            <Grid xs={12}>
+              <div style={{backgroundColor:'#808080'}}>
+                <Typography variant="overline" display="block" style={{padding:10, color:'#fff'}} gutterBottom>
+                  Basic Information
+                </Typography>
+              </div>
+              <div style={{backgroundColor:'#e1e1e1', height:300, overflow:'scroll'}}>
+                  
+              </div>
             </Grid>
 
           </div>
