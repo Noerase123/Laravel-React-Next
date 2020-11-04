@@ -34,6 +34,8 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import {DEFAULT_COLOR} from '../../defaults/default'
+import Backdrop from '@material-ui/core/Backdrop'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 const drawerWidth = 250;
 
@@ -101,6 +103,10 @@ const useStyles = makeStyles((theme: Theme) =>
       flexGrow: 1,
       padding: theme.spacing(3),
     },
+    backdrop: {
+      zIndex: theme.zIndex.drawer + 1,
+      color: '#fff',
+    },
   }),
 );
 
@@ -108,6 +114,9 @@ export default function NavDrawer(props:INavProps) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
+  const [openRoom, setOpenRoom] = React.useState(false);
+  const [openReport, setOpenReport] = React.useState(false);
+  const [openBackDrop, setOpenBackDrop] = React.useState(false)
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -117,18 +126,31 @@ export default function NavDrawer(props:INavProps) {
     setOpen(false);
   };
 
-  const [openRoom, setOpenRoom] = React.useState(false);
-  const [openReport, setOpenReport] = React.useState(false);
-
   const handleClickRoom = () => {
     setOpenRoom(!openRoom);
   };
+
   const handleClickReport = () => {
     setOpenReport(!openReport);
   };
 
+  const handleCloseDrop = () => {
+    setOpenBackDrop(false)
+  }
+
+  const backDrop = () => {
+    return (
+      <div>
+        <Backdrop className={classes.backdrop} open={openBackDrop} onClick={handleCloseDrop}>
+          <CircularProgress color="inherit" />
+        </Backdrop>
+      </div>
+    )
+  }
+
   return (
     <div className={classes.root}>
+      {backDrop}
       <CssBaseline />
       <AppBar
         style={{backgroundColor:DEFAULT_COLOR}}
