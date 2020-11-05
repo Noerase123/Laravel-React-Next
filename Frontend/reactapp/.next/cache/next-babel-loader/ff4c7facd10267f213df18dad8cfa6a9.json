@@ -1,1 +1,0 @@
-{"ast":null,"code":"export const DEFAULT_COLOR = '#5e35b1';","map":{"version":3,"sources":["/Users/johnisaaccaasi/Desktop/Laravel-React-Next/Frontend/reactapp/src/defaults/default.tsx"],"names":["DEFAULT_COLOR"],"mappings":"AAAA,OAAO,MAAMA,aAAa,GAAG,SAAtB","sourcesContent":["export const DEFAULT_COLOR = '#5e35b1'"]},"metadata":{},"sourceType":"module"}

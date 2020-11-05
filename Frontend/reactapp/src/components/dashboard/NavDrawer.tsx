@@ -147,6 +147,116 @@ export default function NavDrawer(props:INavProps) {
       </div>
     )
   }
+  interface IItemList {
+    link: string
+    iconName: any
+    name: string
+  }
+
+  const navItems: IItemList[] = [
+    {
+      link : '/',
+      iconName: <DashboardIcon/>,
+      name: 'Dashboard'
+    },
+    {
+      link : '/register/',
+      iconName: <PersonAddIcon/>,
+      name: 'Register'
+    },
+  ]
+
+  const roomItems: IItemList[] = [
+    {
+      link : '/buildings/',
+      iconName: <ApartmentIcon/>,
+      name: 'Buildings'
+    },
+    {
+      link : '/units/',
+      iconName: <HomeIcon/>,
+      name: 'Rooms'
+    },
+    {
+      link : '/beds/',
+      iconName: <HotelIcon/>,
+      name: 'Beds'
+    },
+  ]
+
+  const reportItems: IItemList[] = [
+    {
+      link : '/tenantsReports/',
+      iconName: <GroupIcon/>,
+      name: 'Tenant Reports'
+    },
+    {
+      link : '/roomReports/',
+      iconName: <HotelIcon/>,
+      name: 'Room Reports'
+    },
+    {
+      link : '/utilityReports/',
+      iconName: <FlashOnIcon/>,
+      name: 'Flash Reports'
+    },
+  ]
+
+  const mailItems: IItemList[] = [
+    {
+      link: '/allMails',
+      iconName: <MailIcon />,
+      name: 'All mail'
+    },
+    {
+      link: '/trash',
+      iconName: <MailIcon />,
+      name: 'Trash'
+    },
+    {
+      link: '/spam',
+      iconName: <MailIcon />,
+      name: 'Spam'
+    },
+  ]
+
+  const ItemList = (dataArr: IItemList[],navType: number) => {
+    // navType 1 = without subnavigation
+    // navType 2 = with subnavigation
+    if (navType !== 2) {
+      return (
+        <React.Fragment>
+          {dataArr.map(data => (
+            <Link href={data.link}>
+              <ListItem button>
+                <ListItemIcon>
+                  {data.iconName}
+                </ListItemIcon>
+                <ListItemText primary={data.name}/>
+              </ListItem>
+            </Link>
+          ))}
+        </React.Fragment>
+      )
+    } else {
+      return (
+        <React.Fragment>
+          {dataArr.map(data => (
+            <List component="div" disablePadding>
+              <Link href={data.link}>
+                <ListItem button className={classes.nested}>
+                  <ListItemIcon>
+                    {data.iconName}
+                  </ListItemIcon>
+                  <ListItemText primary={data.name} />
+                </ListItem>
+              </Link>
+            </List>
+          ))}
+        </React.Fragment>
+      )
+    }
+  }
 
   return (
     <div className={classes.root}>
@@ -189,68 +299,25 @@ export default function NavDrawer(props:INavProps) {
           }),
         }}
       >
-        <div className={classes.toolbar}>
+        <div className={classes.toolbar} >
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </div>
         <Divider />
         <List>
-            <Link href={pages.dashboard}>
-              <ListItem button>
-                <ListItemIcon>
-                  <DashboardIcon />
-                </ListItemIcon>
-                <ListItemText primary="Dashboard"/>
-              </ListItem>
-            </Link>
-            <Link href={pages.register}>
-              <ListItem button>
-                <ListItemIcon>
-                  <PersonAddIcon />
-                </ListItemIcon>
-                <ListItemText primary="Register"/>
-              </ListItem>
-            </Link>
+
+            {ItemList(navItems,1)}
             
             <ListItem button onClick={handleClickRoom}>
               <ListItemIcon>
                 <HomeIcon />
               </ListItemIcon>
-              <ListItemText primary="Rooms" />
+              <ListItemText primary="Rooms" color="inherit" />
               {openRoom ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
             <Collapse in={openRoom} timeout="auto" unmountOnExit>
-              <List component="div" disablePadding>
-                <Link href={pages.buildings}>
-                  <ListItem button className={classes.nested}>
-                    <ListItemIcon>
-                      <ApartmentIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Buildings" />
-                  </ListItem>
-                </Link>
-              </List>
-              <List component="div" disablePadding>
-                <Link href={pages.units}>
-                  <ListItem button className={classes.nested}>
-                    <ListItemIcon>
-                      <HomeIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Units" />
-                  </ListItem>
-                </Link>
-              </List>
-              <List component="div" disablePadding>
-                <Link href={pages.beds}>
-                  <ListItem button className={classes.nested}>
-                    <ListItemIcon>
-                      <HotelIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Beds" />
-                  </ListItem>
-                </Link>
-              </List>
+              {ItemList(roomItems,2)}
             </Collapse>
 
             <ListItem button onClick={handleClickReport}>
@@ -261,49 +328,13 @@ export default function NavDrawer(props:INavProps) {
               {openReport ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
             <Collapse in={openReport} timeout="auto" unmountOnExit>
-              <List component="div" disablePadding>
-                <Link href={pages.tenantReports}>
-                  <ListItem button className={classes.nested}>
-                    <ListItemIcon>
-                      <GroupIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Tenants" />
-                  </ListItem>
-                </Link>
-              </List>
-              <List component="div" disablePadding>
-                <Link href={pages.roomsReports}>
-                  <ListItem button className={classes.nested}>
-                    <ListItemIcon>
-                      <HotelIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Rooms" />
-                  </ListItem>
-                </Link>
-              </List>
-              <List component="div" disablePadding>
-                <Link href={pages.utilityReports}>
-                  <ListItem button className={classes.nested}>
-                    <ListItemIcon>
-                      <FlashOnIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Utilities" />
-                  </ListItem>
-                </Link>
-              </List>
+              {ItemList(reportItems,2)}
             </Collapse>
 
         </List>
         <Divider />
         <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                <MailIcon />
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+          {ItemList(mailItems,1)}
         </List>
       </Drawer>
       <main className={classes.content}>
@@ -312,16 +343,4 @@ export default function NavDrawer(props:INavProps) {
       </main>
     </div>
   );
-}
-
-
-const pages = {
-  dashboard: '/',
-  register: '/register/',
-  tenantReports: '/tenantReports/',
-  roomsReports: '/roomReports/',
-  utilityReports: '/utilityReports/',
-  buildings: '/buildings/',
-  units: '/units/',
-  beds: '/beds/'
 }
