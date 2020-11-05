@@ -1,4 +1,5 @@
-import Link from 'next/link'
+// import Link from 'next/link'
+import { useRouter } from 'next/router'
 import React from 'react';
 import clsx from 'clsx';
 import { createStyles, makeStyles, useTheme, Theme } from '@material-ui/core/styles';
@@ -29,7 +30,7 @@ import ApartmentIcon from '@material-ui/icons/Apartment';
 import HotelIcon from '@material-ui/icons/Hotel';
 import GroupIcon from '@material-ui/icons/Group';
 import FlashOnIcon from '@material-ui/icons/FlashOn';
-import { INavProps } from '../../interface/Interfaces'
+import { INavProps, ILink } from '../../interface/Interfaces'
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
@@ -109,6 +110,26 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   }),
 );
+
+
+export const Link = (props: ILink) => {
+  const router = useRouter()
+  return (
+    <a
+      style={{textDecoration:'none',color:'#000'}}
+      href="#"
+      onClick={(e) => {
+        e.preventDefault()
+        // typically you want to use `next/link` for this usecase
+        // but this example shows how you can also access the router
+        // and use it manually
+        router.push(props.href)
+      }}
+    >
+      {props.children}
+    </a>
+  )
+}
 
 export default function NavDrawer(props:INavProps) {
   const classes = useStyles();
@@ -339,7 +360,9 @@ export default function NavDrawer(props:INavProps) {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        {props.children}
+        {/* <div style={{margin:100}}> */}
+          {props.children}
+        {/* </div> */}
       </main>
     </div>
   );

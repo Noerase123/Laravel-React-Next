@@ -13,7 +13,7 @@ export default function Buildings() {
         <div>
             <NavDrawer title="MyTown">
                 <Container>
-                    <Table title="MyTown Buildings" columns={columns} rows={rows} />
+                    <Table title="Building List" columns={columns} rows={rows} />
                 </Container>
             </NavDrawer>
         </div>

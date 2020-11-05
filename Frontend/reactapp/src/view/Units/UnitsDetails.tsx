@@ -8,6 +8,7 @@ import SubList from '../../components/SubList'
 import {TENANTPERROOM} from '../../defaults/default'
 import { ITenant, ISubs } from '../../interface/Interfaces'
 import Unit from './UnitsData'
+import {DEFAULT_TITLE} from '../../defaults/default'
 
 interface IDetails {
     id: string
@@ -43,7 +44,7 @@ export default function UnitsDetails(props: IDetails) {
             {props.id === null ? (
                 <Unit/>
             ): (
-                <NavDrawer title="MyTown">
+                <NavDrawer title={DEFAULT_TITLE}>
                 <Container>
                     <Typography variant="h5" gutterBottom>
                         Room Information

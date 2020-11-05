@@ -1,5 +1,7 @@
 export const DEFAULT_COLOR = '#5e35b1'
 
+export const DEFAULT_TITLE = 'PMS'
+
 export const ROOMS = [
     {
       id: 11,

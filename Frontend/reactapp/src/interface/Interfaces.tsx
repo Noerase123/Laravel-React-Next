@@ -3,6 +3,11 @@ export interface INavProps  {
     children: React.ReactNode
 }
 
+export interface ILink {
+  children: React.ReactNode
+  href: string
+}
+
 export interface IBuilding {
   name: string
   type: string

@@ -137,7 +137,46 @@ export function SpringModal(props: IModal) {
   const company = props.tenant.company
   const occupation = props.tenant.occupation
 
+  interface IAllData {
+    label: string
+    title: string
+  }
+
   const arrData = [name,contactNum,email,city]
+  const allData:IAllData[] = [
+    {
+      label: 'Name',
+      title: name 
+    },
+    {
+      label: 'Phone',
+      title: contactNum 
+    },
+    {
+      label: 'Email',
+      title: email 
+    },
+    {
+      label: 'City',
+      title: city
+    },
+    {
+      label: 'Province',
+      title: province 
+    },
+    {
+      label: 'House #',
+      title: houseNum 
+    },
+    {
+      label: 'Company',
+      title: company 
+    },
+    {
+      label: 'Occupation',
+      title: occupation 
+    },
+  ]
 
   return (
     <div>
@@ -178,8 +217,14 @@ export function SpringModal(props: IModal) {
                   Basic Information
                 </Typography>
               </div>
-              <div style={{backgroundColor:'#e1e1e1', height:300, overflow:'scroll'}}>
-                  
+              <div style={{backgroundColor:'#e1e1e1', height:400, overflow:'scroll'}}>
+                  <div style={{margin:20}}>
+                    {allData.map(data => (
+                      <div>
+                        <Typography>{data.label} {data.title}</Typography><br/>
+                      </div>
+                    ))}
+                  </div>
               </div>
             </Grid>
 

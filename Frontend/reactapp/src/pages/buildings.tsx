@@ -3,8 +3,14 @@ import BuildingsDetails from '../view/Buildings/buildingsDetails'
 
 export default function buildings() {
 
-    const urlParams = new URLSearchParams(global.window.location.search);
-    const params = urlParams.get('details') as string;
+    var params:string = ''
+
+    if (window !== undefined) {
+        const urlParams = new URLSearchParams(window.location.search);
+        params = urlParams.get('details') as string;
+    } else {
+        params = ''
+    }
 
     return (
         <div>
@@ -14,5 +20,6 @@ export default function buildings() {
                 <BuildingsDetails itemID={params}/>
             )}
         </div>
+        // <Buildings/>
     )
 }

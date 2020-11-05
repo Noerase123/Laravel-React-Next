@@ -6,7 +6,7 @@ import HomePage from '../components/dashboard/HomePage'
 export default function Dashboard() {
     return (
         <div>
-            <NavDrawer title="MyTown">
+            <NavDrawer title="PMS">
                 <Container>
                     <HomePage/>
                 </Container>

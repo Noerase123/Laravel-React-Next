@@ -3,4 +3,5 @@ module.exports = {
     devIndicators: {
         autoPrerender: false,
       },
+    hmr: false
   }
