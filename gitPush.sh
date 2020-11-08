@@ -1,3 +1,11 @@
+git add . -A
+
+echo 'All changes added'
+
+git commit -m "updates"
+
+echo 'git commit updates successfully!'
+
 git pull origin master
 
 echo 'git update done!'

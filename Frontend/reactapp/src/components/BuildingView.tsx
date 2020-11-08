@@ -135,6 +135,10 @@ export function MyCard() {
       label: '131 - 140',
       slug: '30'
     },
+    {
+      label: '141 - 150',
+      slug: '30'
+    },
   ]
 
   return (
