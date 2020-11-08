@@ -7,6 +7,14 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import TenantDetails from './tenants/tenantDetails'
+import Floor from '../components/floors/floor'
+
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Button from '@material-ui/core/Button';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -46,6 +54,10 @@ const useStyles = makeStyles((theme: Theme) => ({
   root: {
     backgroundColor: theme.palette.background.paper,
   },
+  rootPaper: {
+    maxWidth: 345,
+    margin: 10
+  },
 }));
 
 interface IDetails {
@@ -76,8 +88,8 @@ export default function BuildingView(props: IDetails) {
             variant="fullWidth"
             aria-label="full width tabs example"
           >
-            <Tab label="Tenants" {...a11yProps(0)} />
-            <Tab label="Units" {...a11yProps(1)} />
+            <Tab label="Floors" {...a11yProps(0)} />
+            {/* <Tab label="Units" {...a11yProps(1)} /> */}
           </Tabs>
         </AppBar>
         <SwipeableViews
@@ -86,12 +98,58 @@ export default function BuildingView(props: IDetails) {
           onChangeIndex={handleChangeIndex}
         >
           <TabPanel value={value} index={0} dir={theme.direction}>
-            {/* <TenantDetails/> */}
+            <Floor>
+              <MyCard/>
+            </Floor>
           </TabPanel>
           <TabPanel value={value} index={1} dir={theme.direction}>
             {/* <TenantDetails/> */}
           </TabPanel>
         </SwipeableViews>
     </div>
+  );
+}
+
+export function MyCard() {
+  const classes = useStyles();
+
+  interface IRoom {
+    label: string
+    slug: string
+  }
+
+  const rooms: IRoom[] = [
+    {
+      label: '101 - 110',
+      slug: '1'
+    },
+    {
+      label: '111 - 120',
+      slug: '10'
+    },
+    {
+      label: '121 - 130',
+      slug: '20'
+    },
+    {
+      label: '131 - 140',
+      slug: '30'
+    },
+  ]
+
+  return (
+    <React.Fragment>
+      {rooms.map(room => (
+        <Card className={classes.rootPaper} onClick={() => console.log(room.slug)}>
+          <CardActionArea>
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="h2">
+                {room.label}
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+        </Card>
+      ))}
+    </React.Fragment>
   );
 }

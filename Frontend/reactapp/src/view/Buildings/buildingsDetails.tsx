@@ -6,8 +6,7 @@ import Typography from '@material-ui/core/Typography'
 import SubList from '../../components/SubList'
 import { ISubs } from '../../interface/Interfaces'
 import Buildings from '../Buildings/buildingsData'
-import {DEFAULT_TITLE} from '../../defaults/default'
-
+import { DEFAULT_TITLE } from '../../defaults/default'
 
 interface IDetails {
     itemID: string

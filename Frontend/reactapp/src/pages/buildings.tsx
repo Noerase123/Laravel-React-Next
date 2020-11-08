@@ -5,20 +5,22 @@ export default function buildings() {
 
     var params:string = ''
 
-    if (window !== undefined) {
-        const urlParams = new URLSearchParams(window.location.search);
-        params = urlParams.get('details') as string;
-    } else {
-        params = ''
+    try {
+        if (window !== undefined) {
+            const urlParams = new URLSearchParams(window.location.search);
+            params = urlParams.get('details') as string;
+        } else {
+            params = ''
+        }
+    } catch (e) {
+        console.log('====================================');
+        console.log(e);
+        console.log('====================================');
     }
 
     return (
         <div>
-            {params === null ? (
-                <Buildings/>
-            ) : (
-                <BuildingsDetails itemID={params}/>
-            )}
+            <BuildingsDetails itemID={params}/>
         </div>
         // <Buildings/>
     )
