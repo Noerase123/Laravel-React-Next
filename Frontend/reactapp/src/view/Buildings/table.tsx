@@ -47,7 +47,7 @@ export default function table(props: ITable) {
     fields: ['Building Name', 'Building Type', 'Capacity', 'Vacancy', 'Occupancy'],
     title: 'Building',
     //helperTxt: 'Fill up details',
-    helperTxt: '',
+    helperTxt: 'Minimum of 8 characters',
   }
 
   return (

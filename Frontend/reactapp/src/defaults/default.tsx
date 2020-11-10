@@ -2,6 +2,12 @@ export const DEFAULT_COLOR = '#5e35b1'
 
 export const DEFAULT_TITLE = 'PMS'
 
+export const FLOORS = ['1st floor','2nd floor','3rd floor','4th floor','5th floor','6th floor']
+
+export const ROOMTYPE = ['Private', 'Double bed', '4-bed', '6-bed', '8-bed']
+
+export const BLDGTYPE = ['First Class','Deluxe']
+
 export const ROOMS = [
     {
       id: 11,
