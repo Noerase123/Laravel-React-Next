@@ -181,7 +181,7 @@ export default function NavDrawer(props:INavProps) {
       name: 'Dashboard'
     },
     {
-      link : '/register/',
+      link : '/register',
       iconName: <PersonAddIcon/>,
       name: 'Register'
     },
@@ -189,17 +189,18 @@ export default function NavDrawer(props:INavProps) {
 
   const roomItems: IItemList[] = [
     {
-      link : '/buildings/',
+      link : '/buildings',
       iconName: <ApartmentIcon/>,
       name: 'Buildings'
     },
     {
-      link : '/units/',
+      // link : '/units/',
+      link : '/#',
       iconName: <HomeIcon/>,
       name: 'Rooms'
     },
     {
-      link : '/beds/',
+      link : '/beds',
       iconName: <HotelIcon/>,
       name: 'Beds'
     },

@@ -8,6 +8,378 @@ export const ROOMTYPE = ['Private', 'Double bed', '4-bed', '6-bed', '8-bed']
 
 export const BLDGTYPE = ['First Class','Deluxe']
 
+export const ROOMS1st = [
+    {
+      label: '101',
+      status: 'occupied',
+      slug: 'units?v=1&building=Amsterdam&unit=101',
+      roomAccount: '4-bed',
+      data: [
+        {
+          name: 'John Isaac Caasi',
+          moveOut: '09/22/20',
+          bedLetter: 'A'
+        },
+        {
+          name: 'Kirk Mercado',
+          moveOut: '07/16/20',
+          bedLetter: 'B'
+        },
+        {
+          name: 'Kathlyn Grace Ventures',
+          moveOut: '03/16/20',
+          bedLetter: 'C'
+        },
+        {
+          name: 'Maria Carmela Dugay',
+          moveOut: '09/11/20',
+          bedLetter: 'D'
+        },
+      ]
+    },
+    {
+      label: '101',
+      status: 'occupied',
+      slug: '1',
+      roomAccount: '4-bed',
+      data: [
+        {
+          name: 'John Isaac Caasi',
+          moveOut: '09/22/20',
+          bedLetter: 'A'
+        },
+        {
+          name: 'Kirk Mercado',
+          moveOut: '07/16/20',
+          bedLetter: 'B'
+        },
+        {
+          name: 'Kathlyn Grace Ventures',
+          moveOut: '03/16/20',
+          bedLetter: 'C'
+        },
+        {
+          name: 'Maria Carmela Dugay',
+          moveOut: '09/11/20',
+          bedLetter: 'D'
+        },
+      ]
+    },
+    {
+      label: '101',
+      status: 'occupied',
+      slug: '1',
+      roomAccount: '4-bed',
+      data: [
+        {
+          name: 'John Isaac Caasi',
+          moveOut: '09/22/20',
+          bedLetter: 'A'
+        },
+        {
+          name: 'Kirk Mercado',
+          moveOut: '07/16/20',
+          bedLetter: 'B'
+        },
+        {
+          name: 'Kathlyn Grace Ventures',
+          moveOut: '03/16/20',
+          bedLetter: 'C'
+        },
+        {
+          name: 'Maria Carmela Dugay',
+          moveOut: '09/11/20',
+          bedLetter: 'D'
+        },
+      ]
+    },
+    {
+      label: '101',
+      status: 'occupied',
+      slug: '1',
+      roomAccount: '4-bed',
+      data: [
+        {
+          name: 'John Isaac Caasi',
+          moveOut: '09/22/20',
+          bedLetter: 'A'
+        },
+        {
+          name: 'Kirk Mercado',
+          moveOut: '07/16/20',
+          bedLetter: 'B'
+        },
+        {
+          name: 'Kathlyn Grace Ventures',
+          moveOut: '03/16/20',
+          bedLetter: 'C'
+        },
+        {
+          name: 'Maria Carmela Dugay',
+          moveOut: '09/11/20',
+          bedLetter: 'D'
+        },
+      ]
+    },
+    {
+      label: '121',
+      status: 'vacant',
+      slug: '1',
+      roomAccount: '4-bed',
+      data: []
+    },
+    {
+      label: '101',
+      status: 'occupied',
+      slug: '1',
+      roomAccount: '4-bed',
+      data: [
+        {
+          name: 'John Isaac Caasi',
+          moveOut: '09/22/20',
+          bedLetter: 'A'
+        },
+        {
+          name: 'Kirk Mercado',
+          moveOut: '07/16/20',
+          bedLetter: 'B'
+        },
+        {
+          name: 'Kathlyn Grace Ventures',
+          moveOut: '03/16/20',
+          bedLetter: 'C'
+        },
+        {
+          name: 'Maria Carmela Dugay',
+          moveOut: '09/11/20',
+          bedLetter: 'D'
+        },
+      ]
+    },
+    {
+      label: '101',
+      status: 'occupied',
+      slug: '1',
+      roomAccount: '4-bed',
+      data: [
+        {
+          name: 'John Isaac Caasi',
+          moveOut: '09/22/20',
+          bedLetter: 'A'
+        },
+        {
+          name: 'Kirk Mercado',
+          moveOut: '07/16/20',
+          bedLetter: 'B'
+        },
+        {
+          name: 'Kathlyn Grace Ventures',
+          moveOut: '03/16/20',
+          bedLetter: 'C'
+        },
+        {
+          name: 'Maria Carmela Dugay',
+          moveOut: '09/11/20',
+          bedLetter: 'D'
+        },
+      ]
+    },
+    {
+      label: '102',
+      status: 'partial',
+      slug: '1',
+      roomAccount: '2-bed',
+      data: [
+        {
+          name: 'John Isaac Caasi',
+          moveOut: '09/22/20',
+          bedLetter: 'A'
+        },
+      ]
+    },
+    {
+      label: '103',
+      status: 'partial',
+      slug: '1',
+      roomAccount: '4-bed',
+      data: [
+        {
+          name: 'John Isaac Caasi',
+          moveOut: '09/22/20',
+          bedLetter: 'A'
+        },
+        {
+          name: 'Kathlyn Grace Ventures',
+          moveOut: '03/16/20',
+          bedLetter: 'C'
+        },
+        {
+          name: 'Maria Carmela Dugay',
+          moveOut: '09/11/20',
+          bedLetter: 'D'
+        },
+      ]
+    },
+]
+  
+export const ROOMS2nd = [
+    {
+      label: '101',
+      status: 'occupied',
+      slug: 'units?v=1&building=Amsterdam&unit=101',
+      roomAccount: '4-bed',
+      data: [
+        {
+          name: 'John Isaac Caasi',
+          moveOut: '09/22/20',
+          bedLetter: 'A'
+        },
+        {
+          name: 'Kirk Mercado',
+          moveOut: '07/16/20',
+          bedLetter: 'B'
+        },
+        {
+          name: 'Kathlyn Grace Ventures',
+          moveOut: '03/16/20',
+          bedLetter: 'C'
+        },
+        {
+          name: 'Maria Carmela Dugay',
+          moveOut: '09/11/20',
+          bedLetter: 'D'
+        },
+      ]
+    },
+    {
+      label: '101',
+      status: 'occupied',
+      slug: '1',
+      roomAccount: '4-bed',
+      data: [
+        {
+          name: 'John Isaac Caasi',
+          moveOut: '09/22/20',
+          bedLetter: 'A'
+        },
+        {
+          name: 'Kirk Mercado',
+          moveOut: '07/16/20',
+          bedLetter: 'B'
+        },
+        {
+          name: 'Kathlyn Grace Ventures',
+          moveOut: '03/16/20',
+          bedLetter: 'C'
+        },
+        {
+          name: 'Maria Carmela Dugay',
+          moveOut: '09/11/20',
+          bedLetter: 'D'
+        },
+      ]
+    },
+    {
+      label: '121',
+      status: 'vacant',
+      slug: '1',
+      roomAccount: '4-bed',
+      data: []
+    },
+    {
+      label: '101',
+      status: 'occupied',
+      slug: '1',
+      roomAccount: '4-bed',
+      data: [
+        {
+          name: 'John Isaac Caasi',
+          moveOut: '09/22/20',
+          bedLetter: 'A'
+        },
+        {
+          name: 'Kirk Mercado',
+          moveOut: '07/16/20',
+          bedLetter: 'B'
+        },
+        {
+          name: 'Kathlyn Grace Ventures',
+          moveOut: '03/16/20',
+          bedLetter: 'C'
+        },
+        {
+          name: 'Maria Carmela Dugay',
+          moveOut: '09/11/20',
+          bedLetter: 'D'
+        },
+      ]
+    },
+    {
+      label: '101',
+      status: 'occupied',
+      slug: '1',
+      roomAccount: '4-bed',
+      data: [
+        {
+          name: 'John Isaac Caasi',
+          moveOut: '09/22/20',
+          bedLetter: 'A'
+        },
+        {
+          name: 'Kirk Mercado',
+          moveOut: '07/16/20',
+          bedLetter: 'B'
+        },
+        {
+          name: 'Kathlyn Grace Ventures',
+          moveOut: '03/16/20',
+          bedLetter: 'C'
+        },
+        {
+          name: 'Maria Carmela Dugay',
+          moveOut: '09/11/20',
+          bedLetter: 'D'
+        },
+      ]
+    },
+    {
+      label: '102',
+      status: 'partial',
+      slug: '1',
+      roomAccount: '2-bed',
+      data: [
+        {
+          name: 'John Isaac Caasi',
+          moveOut: '09/22/20',
+          bedLetter: 'A'
+        },
+      ]
+    },
+    {
+      label: '103',
+      status: 'partial',
+      slug: '1',
+      roomAccount: '4-bed',
+      data: [
+        {
+          name: 'John Isaac Caasi',
+          moveOut: '09/22/20',
+          bedLetter: 'A'
+        },
+        {
+          name: 'Kathlyn Grace Ventures',
+          moveOut: '03/16/20',
+          bedLetter: 'C'
+        },
+        {
+          name: 'Maria Carmela Dugay',
+          moveOut: '09/11/20',
+          bedLetter: 'D'
+        },
+      ]
+    },
+  ]
+
 export const ROOMS = [
     {
       id: 11,

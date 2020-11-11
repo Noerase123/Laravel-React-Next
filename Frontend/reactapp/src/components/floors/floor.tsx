@@ -46,11 +46,11 @@ const AccordionDetails = withStyles((theme) => ({
   },
 }))(MuiAccordionDetails);
 
-interface IData {
+interface IFloor {
   children: React.ReactNode
 }
 
-export default function Floor(props: IData) {
+export default function Floor(props: IFloor) {
   const [expanded, setExpanded] = React.useState<string | false>('panel1');
 
   const handleChange = (panel: string) => (event: React.ChangeEvent<{}>, newExpanded: boolean) => {
