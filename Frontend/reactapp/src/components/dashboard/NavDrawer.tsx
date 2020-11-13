@@ -210,17 +210,17 @@ export default function NavDrawer(props:INavProps) {
     {
       link : '/tenantsReports/',
       iconName: <GroupIcon/>,
-      name: 'Tenant Reports'
+      name: 'Tenants Report'
     },
     {
       link : '/roomReports/',
       iconName: <HotelIcon/>,
-      name: 'Room Reports'
+      name: 'Rooms Report'
     },
     {
       link : '/utilityReports/',
       iconName: <FlashOnIcon/>,
-      name: 'Flash Reports'
+      name: 'Utilities Report'
     },
   ]
 

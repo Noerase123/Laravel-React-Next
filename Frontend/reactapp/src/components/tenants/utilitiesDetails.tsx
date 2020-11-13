@@ -39,7 +39,7 @@ interface IData {
   tenants: ITenant[]
 }
 
-export default function TenantDetails(props: IData) {
+export default function UtilityDetails(props: IData) {
   const classes = useStyles();
   
   return (
@@ -63,11 +63,11 @@ export default function TenantDetails(props: IData) {
                   </Grid>
                   
                   <Grid item xs={12} style={{textAlign:'left'}}>
-                      <div>
+                      {/* <div>
                         <Typography>Bed Rate : {res.rentalRate}</Typography>
                           <Typography>Move In: {res.moveIn}</Typography>
                           <Typography>Move Out: {res.moveOut}</Typography>
-                      </div>
+                      </div> */}
                   </Grid>
                   
                 </Grid>

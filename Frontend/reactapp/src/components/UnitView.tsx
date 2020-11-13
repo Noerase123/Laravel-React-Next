@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import TenantDetails from './tenants/tenantDetails'
 import ContractDetails from './tenants/contractDetails'
+import UtilityDetails from './tenants/utilitiesDetails'
 import {ITenant} from '../interface/Interfaces'
 
 interface TabPanelProps {
@@ -94,9 +95,9 @@ export default function UnitView(props: IDetails) {
           <TabPanel value={value} index={1} dir={theme.direction}>
             <ContractDetails tenants={props.tenantData}/>
           </TabPanel>
-          {/* <TabPanel value={value} index={2} dir={theme.direction}>
-            <TenantDetails/>
-          </TabPanel> */}
+          <TabPanel value={value} index={2} dir={theme.direction}>
+            <UtilityDetails tenants={props.tenantData}/>
+          </TabPanel>
         </SwipeableViews>
     </div>
   );

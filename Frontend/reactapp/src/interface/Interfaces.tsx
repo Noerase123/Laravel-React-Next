@@ -38,6 +38,12 @@ export interface IUnit {
   percentageCapacity: string
 }
 
+export interface IFloor {
+  title: string
+  panel: string
+  data: IRoom[]
+}
+
 export interface IBeds {
   name: string
   building: string

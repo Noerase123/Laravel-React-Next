@@ -6,9 +6,8 @@ import Typography from '@material-ui/core/Typography'
 import SubList from '../../components/SubList'
 import { ISubs,IFloor } from '../../interface/Interfaces'
 import Buildings from '../Buildings/buildingsData'
-import { DEFAULT_TITLE } from '../../defaults/restData'
+import { DEFAULT_TITLE, FLOORINFO } from '../../defaults/restData'
 import CreateButton from '../../components/Create'
-import {FLOORINFO} from '../../defaults/restData'
 
 interface IDetails {
     itemID: string
