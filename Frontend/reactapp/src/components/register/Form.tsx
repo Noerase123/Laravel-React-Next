@@ -10,6 +10,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import {useRouter} from 'next/router';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -39,8 +40,14 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function Form() {
+interface IProps {
+    country: string[]
+    province: string[]
+}
+
+export default function Form(props:IProps) {
     const classes = useStyles();
+    const router = useRouter()
 
     const [age, setAge] = React.useState('');
     const [gender, setGender] = React.useState('')
@@ -67,6 +74,11 @@ export default function Form() {
     const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
         setAge(event.target.value as string);
     };
+
+    const next = () => {
+
+        router.push('/buildings')
+    }
 
     return (
         <div>
@@ -175,7 +187,9 @@ export default function Form() {
                             value={country}
                             onChange={handleChangeCountry}
                             >
-                            <MenuItem value={'Philippines'}>Philippines</MenuItem>
+                            {props.country.map(coun => (
+                                <MenuItem value={coun.toLowerCase()}>{coun}</MenuItem> 
+                            ))}
                             </Select>
                         </FormControl>
 
@@ -190,7 +204,9 @@ export default function Form() {
                             value={province}
                             onChange={handleChangeProvince}
                             >
-                            <MenuItem value={'metro manila'}>Metro manila</MenuItem>
+                            {props.province.map(coun => (
+                                <MenuItem value={coun.toLowerCase()}>{coun}</MenuItem> 
+                            ))}
                             </Select>
                         </FormControl>
 
@@ -230,7 +246,7 @@ export default function Form() {
 
                         <br/>
                         <br/>
-                        <Button variant="contained" color="primary">
+                        <Button variant="contained" color="primary" onClick={() => next()}>
                             Next
                         </Button>
 

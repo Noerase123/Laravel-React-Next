@@ -23,6 +23,7 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import AssessmentIcon from '@material-ui/icons/Assessment';
 import HomeIcon from '@material-ui/icons/Home';
+import SettingsIcon from '@material-ui/icons/Settings'
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Collapse from '@material-ui/core/Collapse';
@@ -34,7 +35,7 @@ import { INavProps, ILink } from '../../interface/Interfaces'
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import {DEFAULT_COLOR} from '../../defaults/default'
+import {DEFAULT_COLOR} from '../../defaults/restData'
 import Backdrop from '@material-ui/core/Backdrop'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
@@ -194,10 +195,9 @@ export default function NavDrawer(props:INavProps) {
       name: 'Buildings'
     },
     {
-      // link : '/units/',
-      link : '/#',
+      link : '/units',
       iconName: <HomeIcon/>,
-      name: 'Rooms'
+      name: 'Units'
     },
     {
       link : '/beds',
@@ -306,6 +306,9 @@ export default function NavDrawer(props:INavProps) {
           <Typography variant="h6" noWrap>
             {props.title}
           </Typography>
+          <div style={{float:'right'}}>
+            <SettingsIcon/>
+          </div>
         </Toolbar>
       </AppBar>
       <Drawer

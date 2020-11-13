@@ -3,7 +3,7 @@ import Container from '@material-ui/core/Container'
 import NavDrawer from '../../components/dashboard/NavDrawer'
 import Table from './table'
 import {IBeds} from '../../interface/Interfaces'
-import { TENANTS, DEFAULT_TITLE } from '../../defaults/default'
+import { TENANTS, DEFAULT_TITLE } from '../../defaults/restData'
 
 
 const columns = ['Name', 'Building', 'Unit', 'Letter', 'Move In', 'Move Out']

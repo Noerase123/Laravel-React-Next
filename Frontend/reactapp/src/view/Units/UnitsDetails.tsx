@@ -5,10 +5,10 @@ import NavDrawer from '../../components/dashboard/NavDrawer'
 import UnitView from '../../components/UnitView'
 import Typography from '@material-ui/core/Typography'
 import SubList from '../../components/SubList'
-import {TENANTPERROOM} from '../../defaults/default'
+import {TENANTPERROOM} from '../../defaults/restData'
 import { ITenant, ISubs } from '../../interface/Interfaces'
 import Unit from './UnitsData'
-import {DEFAULT_TITLE} from '../../defaults/default'
+import {DEFAULT_TITLE} from '../../defaults/restData'
 
 interface IDetails {
     id: string

@@ -94,9 +94,9 @@ export default function UnitView(props: IDetails) {
           <TabPanel value={value} index={1} dir={theme.direction}>
             <ContractDetails tenants={props.tenantData}/>
           </TabPanel>
-          <TabPanel value={value} index={2} dir={theme.direction}>
-            {/* <TenantDetails/> */}
-          </TabPanel>
+          {/* <TabPanel value={value} index={2} dir={theme.direction}>
+            <TenantDetails/>
+          </TabPanel> */}
         </SwipeableViews>
     </div>
   );

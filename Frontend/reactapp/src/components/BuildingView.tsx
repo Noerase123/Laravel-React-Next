@@ -7,7 +7,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Floor from '../components/floors/floor'
-import RoomCard from '../components/roomCard'
+import { IFloor } from '../interface/Interfaces';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -54,7 +54,8 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 interface IDetails {
-    itemID: string
+  itemID: string
+  itemData: IFloor[]
 }
 
 export default function BuildingView(props: IDetails) {
@@ -91,9 +92,7 @@ export default function BuildingView(props: IDetails) {
           onChangeIndex={handleChangeIndex}
         >
           <TabPanel value={value} index={0} dir={theme.direction}>
-            <Floor>
-              <RoomCard/>
-            </Floor>
+          <Floor itemFloor={props.itemData} />
           </TabPanel>
           {/* <TabPanel value={value} index={1} dir={theme.direction}>
             <TenantDetails/>

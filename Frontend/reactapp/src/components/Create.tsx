@@ -19,7 +19,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
 import {IBuilding} from '../interface/Interfaces'
-import {DEFAULT_COLOR, BLDGS, FLOORS, ROOMTYPE, BLDGTYPE} from '../defaults/default'
+import {DEFAULT_COLOR, BLDGS, FLOORS, ROOMTYPE, BLDGTYPE} from '../defaults/restData'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

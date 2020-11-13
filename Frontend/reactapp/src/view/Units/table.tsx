@@ -21,7 +21,7 @@ import FormControl from '@material-ui/core/FormControl'
 import InputLabel from '@material-ui/core/InputLabel'
 import MenuItem from '@material-ui/core/MenuItem'
 import Select from '@material-ui/core/Select'
-import {IRoom} from '../../interface/Interfaces'
+import {IUnit} from '../../interface/Interfaces'
 import { Button } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme: Theme) =>
 interface ITable {
   title: string
   columns: string[]
-  rows: IRoom[]
+  rows: IUnit[]
 }
 
 export default function table(props: ITable) {

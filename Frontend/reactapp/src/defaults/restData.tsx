@@ -1,13 +1,23 @@
+//////////////////////////////////////////start create components//////////////////////////////////////////
+
 export const DEFAULT_COLOR = '#5e35b1'
 
 export const DEFAULT_TITLE = 'PMS'
 
-export const FLOORS = ['1st floor','2nd floor','3rd floor','4th floor','5th floor','6th floor']
-
 export const ROOMTYPE = ['Private', 'Double bed', '4-bed', '6-bed', '8-bed']
 
-export const BLDGTYPE = ['First Class','Deluxe']
+export const BLDGTYPE = ['First Class', 'Deluxe']
 
+export const FLOORS = ['1st floor', '2nd floor', '3rd floor', '4th floor', '5th floor', '6th floor']
+
+export const COUNTRY = ['Philippines', 'China', 'Indonesia']
+
+export const PROVINCE = ['Metro manila','Laguna','Cavite','Pampanga','Tarlac','Quezon']
+
+//////////////////////////////////////////end create components//////////////////////////////////////////
+
+
+//////////////////////////////////////////start json objects //////////////////////////////////////////
 export const ROOMS1st = [
     {
       label: '101',
@@ -379,51 +389,6 @@ export const ROOMS2nd = [
       ]
     },
   ]
-
-export const ROOMS = [
-    {
-      id: 11,
-      bldg: 'Amsterdam',
-      number: 101,
-      type: '2',
-      percentageCapacity:'35%'
-    },
-    {
-      id: 12,
-      bldg: 'New York',
-      number: 102,
-      type: '2',
-      percentageCapacity:'35%'
-    },
-    {
-      id: 13,
-      bldg: 'Sydney',
-      number: 103,
-      type: '2',
-      percentageCapacity:'35%'
-    },
-    {
-      id: 14,
-      bldg: 'Auckland',
-      number: 104,
-      type: '2',
-      percentageCapacity:'35%'
-    },
-    {
-      id: 15,
-      bldg: 'Amsterdam',
-      number: 105,
-      type: '2',
-      percentageCapacity:'35%'
-    },
-    {
-      id: 16,
-      bldg: 'Amsterdam',
-      number: 106,
-      type: '2',
-      percentageCapacity:'35%'
-    },
-]
   
 export const BLDGS = [
     {
@@ -591,100 +556,65 @@ export const TENANTS = [
         moveIn: 'January 13, 2020',
         moveOut: 'January 13, 2021'
     },
-    {
-        name: 'John Isaac B Caasi',
-        building: 'Sydney',
-        unit: '101',
-        letter: 'A',
-        moveIn: 'January 13, 2020',
-        moveOut: 'January 13, 2021'
-    },
-    {
-        name: 'John Isaac B Caasi',
-        building: 'Sydney',
-        unit: '101',
-        letter: 'A',
-        moveIn: 'January 13, 2020',
-        moveOut: 'January 13, 2021'
-    },
-    {
-        name: 'John Isaac B Caasi',
-        building: 'Sydney',
-        unit: '101',
-        letter: 'A',
-        moveIn: 'January 13, 2020',
-        moveOut: 'January 13, 2021'
-    },
-    {
-        name: 'John Isaac B Caasi',
-        building: 'Sydney',
-        unit: '101',
-        letter: 'A',
-        moveIn: 'January 13, 2020',
-        moveOut: 'January 13, 2021'
-    },
-    {
-        name: 'John Isaac B Caasi',
-        building: 'Sydney',
-        unit: '101',
-        letter: 'A',
-        moveIn: 'January 13, 2020',
-        moveOut: 'January 13, 2021'
-    },
-    {
-        name: 'John Isaac B Caasi',
-        building: 'Sydney',
-        unit: '101',
-        letter: 'A',
-        moveIn: 'January 13, 2020',
-        moveOut: 'January 13, 2021'
-    },
-    {
-        name: 'John Isaac B Caasi',
-        building: 'Sydney',
-        unit: '101',
-        letter: 'A',
-        moveIn: 'January 13, 2020',
-        moveOut: 'January 13, 2021'
-    },
-    {
-        name: 'John Isaac B Caasi',
-        building: 'Sydney',
-        unit: '101',
-        letter: 'A',
-        moveIn: 'January 13, 2020',
-        moveOut: 'January 13, 2021'
-    },
-    {
-        name: 'John Isaac B Caasi',
-        building: 'Sydney',
-        unit: '101',
-        letter: 'A',
-        moveIn: 'January 13, 2020',
-        moveOut: 'January 13, 2021'
-    },
-    {
-        name: 'John Isaac B Caasi',
-        building: 'Sydney',
-        unit: '101',
-        letter: 'A',
-        moveIn: 'January 13, 2020',
-        moveOut: 'January 13, 2021'
-    },
-    {
-        name: 'John Isaac B Caasi',
-        building: 'Sydney',
-        unit: '101',
-        letter: 'A',
-        moveIn: 'January 13, 2020',
-        moveOut: 'January 13, 2021'
-    },
-    {
-        name: 'John Isaac B Caasi',
-        building: 'Sydney',
-        unit: '101',
-        letter: 'A',
-        moveIn: 'January 13, 2020',
-        moveOut: 'January 13, 2021'
-    },
 ]
+
+export const UNITS = [
+  {
+    id: 101,
+    bldg: 'Amsterdam',
+    number: 101,
+    type: 'Private Bed',
+    percentageCapacity:'100%'
+  },
+  {
+    id: 101,
+    bldg: 'Amsterdam',
+    number: 101,
+    type: 'Private Bed',
+    percentageCapacity:'100%'
+  },
+  {
+    id: 101,
+    bldg: 'Amsterdam',
+    number: 101,
+    type: 'Private Bed',
+    percentageCapacity:'100%'
+  },
+  {
+    id: 101,
+    bldg: 'Amsterdam',
+    number: 101,
+    type: 'Private Bed',
+    percentageCapacity:'100%'
+  },
+]
+
+export const FLOORINFO = [
+  {
+    title: 'First Floor',
+    panel: 'panel1',
+    data: ROOMS1st,
+  },
+  {
+    title: 'Second Floor',
+    panel: 'panel2',
+    data: ROOMS2nd,
+  },
+  {
+    title: 'Third Floor',
+    panel: 'panel3',
+    data: [],
+  },
+  {
+    title: 'Fourth Floor',
+    panel: 'panel4',
+    data: [],
+  },
+  {
+    title: 'Five Floor',
+    panel: 'panel5',
+    data: [],
+  },
+]
+
+//////////////////////////////////////////end json objects //////////////////////////////////////////

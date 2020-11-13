@@ -4,6 +4,9 @@ import MuiAccordion from '@material-ui/core/Accordion';
 import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
 import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
+import {IRoom, ITenantData, IFloor} from '../../interface/Interfaces'
+import { ROOMS1st, ROOMS2nd } from '../../defaults/restData'
+import RoomCard from '../roomCard'
 
 const Accordion = withStyles({
   root: {
@@ -46,54 +49,30 @@ const AccordionDetails = withStyles((theme) => ({
   },
 }))(MuiAccordionDetails);
 
-interface IFloor {
-  children: React.ReactNode
+interface IProps {
+  itemFloor: IFloor[]
 }
 
-export default function Floor(props: IFloor) {
+export default function Floor(props: IProps) {
   const [expanded, setExpanded] = React.useState<string | false>('panel1');
 
   const handleChange = (panel: string) => (event: React.ChangeEvent<{}>, newExpanded: boolean) => {
     setExpanded(newExpanded ? panel : false);
   };
 
-  interface IItem {
-    title: string
-    panel: string
-  }
-
-  const ITEMS: IItem[] = [
-    {
-      title: 'First Floor',
-      panel: 'panel1'
-    },
-    {
-      title: 'Second Floor',
-      panel: 'panel2'
-    },
-    {
-      title: 'Third Floor',
-      panel: 'panel3'
-    },
-    {
-      title: 'Fourth Floor',
-      panel: 'panel4'
-    },
-    {
-      title: 'Five Floor',
-      panel: 'panel5'
-    },
-  ]
-
   return (
     <div>
-      {ITEMS.map(item => (
+      {props.itemFloor.map(item => (
         <Accordion square expanded={expanded === item.panel} onChange={handleChange(item.panel)}>
           <AccordionSummary>
             <Typography>{item.title}</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            {props.children}
+            {item.data.length > 0 ? (
+              <RoomCard data={item.data}/>
+            ): (
+              'No Units Available'
+            )}
           </AccordionDetails>
         </Accordion>
       ))}

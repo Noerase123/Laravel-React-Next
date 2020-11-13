@@ -2,8 +2,8 @@ import React from 'react';
 import Container from '@material-ui/core/Container'
 import NavDrawer from '../../components/dashboard/NavDrawer'
 import Table from './table'
-import {ROOMS, DEFAULT_TITLE} from '../../defaults/default'
-import { IRoom } from '../../interface/Interfaces'
+import {UNITS, DEFAULT_TITLE} from '../../defaults/restData'
+import { IUnit } from '../../interface/Interfaces'
 
 const columns = [
   'Building',
@@ -12,7 +12,7 @@ const columns = [
   'Percentage Capacity'
 ]
 
-const rows: IRoom[] = ROOMS
+const rows: IUnit[] = UNITS
 
 export default function Units() {
   return (

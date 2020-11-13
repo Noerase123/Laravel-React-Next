@@ -217,7 +217,7 @@ export function SpringModal(props: IModal) {
                   Basic Information
                 </Typography>
               </div>
-              <div style={{backgroundColor:'#e1e1e1', height:400, overflow:'scroll'}}>
+              <div style={{backgroundColor:'#e1e1e1', height:330, overflow:'scroll'}}>
                   <div style={{margin:20}}>
                     {allData.map(data => (
                       <div>

@@ -7,8 +7,8 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid'
 import Tooltip from '@material-ui/core/Tooltip'
-
-import {ROOMS1st} from '../defaults/default'
+import {IRoom, ITenantData} from '../interface/Interfaces'
+import {ROOMS1st} from '../defaults/restData'
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -20,24 +20,14 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-interface ITenantData {
-  name: string
-  moveOut: string
-  bedLetter: string
+interface IProps {
+  data: IRoom[]
 }
 
-interface IRoom {
-  label: string
-  status: string
-  slug: string
-  roomAccount: string
-  data: ITenantData[]
-}
-
-export default function RoomCard() {
+export default function RoomCard(props: IProps) {
   const classes = useStyles();
 
-  const rooms: IRoom[] = ROOMS1st
+  // const rooms: IRoom[] = ROOMS1st
 
   const toolTipItem = (tenantData: ITenantData[], account: string) => {
     return (
@@ -60,7 +50,7 @@ export default function RoomCard() {
     <React.Fragment>
       <div style={{height:375, overflow:'scroll'}}>
         <Grid container xs={12}>
-        {rooms.map(room => (
+        {props.data.map(room => (
         <Grid item xs={2}>
             {room.status === 'vacant' ? (
               <Tooltip title={

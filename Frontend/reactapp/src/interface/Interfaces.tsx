@@ -16,7 +16,21 @@ export interface IBuilding {
   occupancy: number
 }
 
+export interface ITenantData {
+  name: string
+  moveOut: string
+  bedLetter: string
+}
+
 export interface IRoom {
+  label: string
+  status: string
+  slug: string
+  roomAccount: string
+  data: ITenantData[]
+}
+
+export interface IUnit {
   id: number
   bldg: string
   number: number
