@@ -48,7 +48,7 @@ export default function RoomCard(props: IProps) {
 
   return (
     <React.Fragment>
-      <div style={{height:375, overflow:'scroll'}}>
+      <div style={{height:375, width:900, overflow:'scroll'}}>
         <Grid container xs={12}>
         {props.data.map(room => (
         <Grid item xs={2}>
