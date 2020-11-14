@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 import SubList from '../../components/SubList'
 import { TENANTPERROOM } from '../../defaults/restData'
-import UtilityDetails from '../../components/tenants/ActivityLogs'
+import ActivityLogs from '../../components/tenants/ActivityLogs'
 import { ITenant, ISubs, IDataLog } from '../../interface/Interfaces'
 import Unit from './UnitsData'
 import {DEFAULT_TITLE, DATALOGS} from '../../defaults/restData'
@@ -61,10 +61,10 @@ export default function UnitsDetails(props: IDetails) {
                     <Grid item xs={3}>
                         <Container>
                             <Typography variant="h5" gutterBottom>
-                                Activity Logs
+                                Unit Activities
                             </Typography>
                             <br/>
-                            <UtilityDetails dataLog={dataLogs}/>
+                            <ActivityLogs dataLog={dataLogs}/>
                         </Container>
                     </Grid>
                 </Grid>

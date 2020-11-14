@@ -21,6 +21,10 @@ const useStyles = makeStyles((theme: Theme) =>
       textAlign: 'center',
       color: theme.palette.text.secondary,
     },
+    paperContract: {
+      padding: theme.spacing(2),
+      color: theme.palette.text.secondary,
+    },
     modal: {
       display: 'flex',
       alignItems: 'center',
@@ -39,35 +43,60 @@ interface IData {
   tenants: ITenant[]
 }
 
+interface IContract {
+
+}
+
+const tenantContract = [
+  {
+    title: "Bed A's contract",
+    contract: 'https://localhost:3000/'
+  },
+  {
+    title: "Bed A's contract",
+    contract: 'https://localhost:3000/'
+  },
+  {
+    title: "Bed A's contract",
+    contract: 'https://localhost:3000/'
+  },
+  {
+    title: "Bed A's contract",
+    contract: 'https://localhost:3000/'
+  },
+]
+
 export default function ContractDetails(props: IData) {
   const classes = useStyles();
   
   return (
     <div className={classes.root}>
-      <Grid container spacing={3}>
+      <Grid container spacing={2}>
 
           {props.tenants.map(res => (
-              <Grid item xs={6}>
+            <Grid item xs={3}>
               <Paper className={classes.paper}>
-
-                <Grid container justify="flex-start" alignItems="flex-start" spacing={3}>
-
-                  <Grid item xs={12} style={{ backgroundColor: '#dedede' }}>
-                      <Avatar style={{ float: 'left' }} alt={res.bed} src="/static/images/avatar/1.jpg" />
-                      <div>
-                        <TransitionsModal>
-                          <DescriptionIcon />
-                        </TransitionsModal>
-                        <Typography style={{color:'#000'}}>{`${res.name}'s contract`}</Typography>
-                        <Typography color="inherit">{res.email}</Typography>
-                      </div>
-                  </Grid>
-                  
-                </Grid>
-
+                <div>
+                  <TransitionsModal>
+                    <DescriptionIcon />
+                  </TransitionsModal>
+                  <Typography style={{color:'#000'}}>{`${res.name}'s contract`}</Typography>
+                </div>
               </Paper>
-          </Grid>
+            </Grid>
           ))}
+  
+          <Grid item xs={12}>
+            <div style={{backgroundColor: '#e1e1e1'}}>
+              <Paper className={classes.paperContract}>  
+              <Typography variant="button" display="block" gutterBottom>
+                Bed History
+              </Typography>
+              
+              </Paper>
+            </div>
+          </Grid>
+          
         </Grid>
       </div>
   )

@@ -10,6 +10,7 @@ import Backdrop from '@material-ui/core/Backdrop';
 import { useSpring, animated } from 'react-spring/web.cjs';
 import Button from '@material-ui/core/Button'
 import PersonIcon from '@material-ui/icons/Person';
+import Tooltip from '@material-ui/core/Tooltip'
 import { ITenant } from '../../interface/Interfaces'
  
 const useStyles = makeStyles((theme: Theme) =>
@@ -56,18 +57,20 @@ export default function TenantDetails(props: IData) {
                   <Grid item xs={12} style={{ backgroundColor: '#dedede' }}>
                       <SpringModal tenant={res}>
                       <div>
-                        <Grid container xs={12}>
-                          <Grid xs={4}>
-                          <Avatar alt={res.bed} src="/static/images/avatar/1.jpg" />
+                        <Tooltip title="Click to see more" arrow>
+                          <Grid container xs={12}>
+                            <Grid xs={4}>
+                            <Avatar alt={res.bed} src="/static/images/avatar/1.jpg" />
+                            </Grid>
+                            <Grid xs={4}>
+                            <Typography style={{color:'#000'}}>{res.name}</Typography>
+                            <Typography color="inherit">{res.email}</Typography>
+                            </Grid>
+                            <Grid xs={4}>
+                              <KeyboardArrowRightIcon style={{float:'right',height:'100%'}}/>
+                            </Grid>
                           </Grid>
-                          <Grid xs={4}>
-                          <Typography style={{color:'#000'}}>{res.name}</Typography>
-                          <Typography color="inherit">{res.email}</Typography>
-                          </Grid>
-                          <Grid xs={4}>
-                            <KeyboardArrowRightIcon style={{float:'right',height:'100%'}}/>
-                          </Grid>
-                        </Grid>
+                        </Tooltip>
                       </div>
                       </SpringModal>
                   </Grid>
