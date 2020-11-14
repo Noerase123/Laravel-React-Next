@@ -18,6 +18,30 @@ export const PROVINCE = ['Metro manila','Laguna','Cavite','Pampanga','Tarlac','Q
 
 
 //////////////////////////////////////////start json objects //////////////////////////////////////////
+
+export const DATALOGS = [
+  {
+    id: 1,
+    user: 'Bed A',
+    message: ' - made payment thru online payment (GRAB)',
+  },
+  {
+    id: 2,
+    user: 'Bed B',
+    message: ' - made payment thru online payment (GRAB)',
+  },
+  {
+    id: 3, 
+    user: 'Bed C',
+    message: ' - Just got move in',
+  },
+  {
+    id: 4,
+    user: 'Bed A',
+    message: ' - Book a cleaning services',
+  },
+]
+
 export const ROOMS1st = [
     {
       label: '101',

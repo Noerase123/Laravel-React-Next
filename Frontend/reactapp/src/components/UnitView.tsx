@@ -8,8 +8,8 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import TenantDetails from './tenants/tenantDetails'
 import ContractDetails from './tenants/contractDetails'
-import UtilityDetails from './tenants/utilitiesDetails'
-import {ITenant} from '../interface/Interfaces'
+import UtilityDetails from './tenants/ActivityLogs'
+import {ITenant, IDataLog} from '../interface/Interfaces'
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -53,6 +53,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 interface IDetails {
   tenantData: ITenant[]
+  dataLogs: IDataLog[]
 }
 
 export default function UnitView(props: IDetails) {
@@ -81,7 +82,7 @@ export default function UnitView(props: IDetails) {
           >
             <Tab label="Tenants" {...a11yProps(0)} />
             <Tab label="Contracts" {...a11yProps(1)} />
-            <Tab label="Unit Activity" {...a11yProps(2)} />
+            {/* <Tab label="Unit Activity" {...a11yProps(2)} /> */}
           </Tabs>
         </AppBar>
         <SwipeableViews
@@ -95,9 +96,9 @@ export default function UnitView(props: IDetails) {
           <TabPanel value={value} index={1} dir={theme.direction}>
             <ContractDetails tenants={props.tenantData}/>
           </TabPanel>
-          <TabPanel value={value} index={2} dir={theme.direction}>
-            <UtilityDetails/>
-          </TabPanel>
+          {/* <TabPanel value={value} index={2} dir={theme.direction}>
+            <UtilityDetails dataLog={props.dataLogs}/>
+          </TabPanel> */}
         </SwipeableViews>
     </div>
   );

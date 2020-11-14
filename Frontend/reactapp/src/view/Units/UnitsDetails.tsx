@@ -4,11 +4,13 @@ import Container from '@material-ui/core/Container'
 import NavDrawer from '../../components/dashboard/NavDrawer'
 import UnitView from '../../components/UnitView'
 import Typography from '@material-ui/core/Typography'
+import Grid from '@material-ui/core/Grid'
 import SubList from '../../components/SubList'
-import {TENANTPERROOM} from '../../defaults/restData'
-import { ITenant, ISubs } from '../../interface/Interfaces'
+import { TENANTPERROOM } from '../../defaults/restData'
+import UtilityDetails from '../../components/tenants/ActivityLogs'
+import { ITenant, ISubs, IDataLog } from '../../interface/Interfaces'
 import Unit from './UnitsData'
-import {DEFAULT_TITLE} from '../../defaults/restData'
+import {DEFAULT_TITLE, DATALOGS} from '../../defaults/restData'
 
 interface IDetails {
     id: string
@@ -19,6 +21,7 @@ interface IDetails {
 export default function UnitsDetails(props: IDetails) {
 
     const tenants: ITenant[] = TENANTPERROOM
+    const dataLogs: IDataLog[] = DATALOGS
 
     const subs: ISubs[] = [
         {
@@ -44,16 +47,28 @@ export default function UnitsDetails(props: IDetails) {
             {props.id === null ? (
                 <Unit/>
             ): (
-                <NavDrawer title={DEFAULT_TITLE}>
-                <Container>
-                    <Typography variant="h5" gutterBottom>
-                        Room Information
-                    </Typography>
-                    <SubList item={subs}/>
-                    <br/>
-                    <br/>
-                    <UnitView tenantData={tenants}/>
-                </Container>
+            <NavDrawer title={DEFAULT_TITLE}>
+                <Grid container xs={12}>
+                    <Grid item xs={9}>
+                        <Container>
+                            <Typography variant="h5" gutterBottom>
+                                Room Information
+                            </Typography>
+                            <SubList item={subs}/>
+                            <br/>
+                            <UnitView tenantData={tenants} dataLogs={dataLogs}/>
+                        </Container>
+                    </Grid>
+                    <Grid item xs={3}>
+                        <Container>
+                            <Typography variant="h5" gutterBottom>
+                                Activity Logs
+                            </Typography>
+                            <br/>
+                            <UtilityDetails dataLog={dataLogs}/>
+                        </Container>
+                    </Grid>
+                </Grid>
             </NavDrawer>
             )}
         </div>

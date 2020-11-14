@@ -30,6 +30,12 @@ export interface IRoom {
   data: ITenantData[]
 }
 
+export interface IDataLog {
+  id: number
+  user: string
+  message: string
+}
+
 export interface IUnit {
   id: number
   bldg: string
