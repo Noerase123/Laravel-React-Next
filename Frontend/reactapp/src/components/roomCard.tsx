@@ -18,6 +18,24 @@ const useStyles = makeStyles((theme: Theme) => ({
     maxWidth: 345,
     margin: 10,
   },
+  textAlignCenter: {
+    textAlign: 'center'
+  },
+  vacantColor: {
+    backgroundColor:'#98FB98',
+    maxWidth: 345,
+    margin: 10,
+  },
+  occupiedColor: {
+    backgroundColor:'#cc99ff',
+    maxWidth: 345,
+    margin: 10,
+  },
+  partialColor: {
+    backgroundColor:'#ADD8E6',
+    maxWidth: 345,
+    margin: 10,
+  },
 }));
 
 interface IProps {
@@ -56,16 +74,16 @@ export default function RoomCard(props: IProps) {
               <Tooltip title={
                 <React.Fragment>
                   <div style={{display:'inline-block'}}>
-                    <Typography variant="button" style={{textAlign:'center'}} display="block" gutterBottom>
+                    <Typography variant="button" className={classes.textAlignCenter} display="block" gutterBottom>
                       {room.roomAccount}
                     </Typography>
-                    <Typography variant="button" style={{textAlign:'center'}} display="block" gutterBottom>
+                    <Typography variant="button" className={classes.textAlignCenter} display="block" gutterBottom>
                       No Tenants
                     </Typography>
                   </div>
                 </React.Fragment>
               } arrow>
-                <Card className={classes.rootPaper} style={{backgroundColor:'#98FB98'}} onClick={() => console.log(room.slug)}>
+                <Card className={classes.vacantColor} onClick={() => console.log(room.slug)}>
                   <Link href={room.slug}>
                     <CardActionArea>
                       <CardContent>
@@ -74,7 +92,7 @@ export default function RoomCard(props: IProps) {
                             Unit
                           </Typography>
                           <Typography gutterBottom variant="h5" component="h2">
-                              <div style={{textAlign:'center'}}>
+                              <div className={classes.textAlignCenter}>
                                 {room.label}
                               </div>
                           </Typography>
@@ -91,7 +109,7 @@ export default function RoomCard(props: IProps) {
                 <div>
                   {room.status === 'partial' ? (
                       <Tooltip title={toolTipItem(room.data,room.roomAccount)} arrow>
-                      <Card className={classes.rootPaper} style={{backgroundColor:'#ADD8E6'}} onClick={() => console.log(room.slug)}>
+                      <Card className={classes.partialColor} onClick={() => console.log(room.slug)}>
                         <Link href={room.slug}>
                           <CardActionArea>
                             <CardContent>
@@ -100,7 +118,7 @@ export default function RoomCard(props: IProps) {
                                   Unit
                                 </Typography>
                                 <Typography gutterBottom variant="h5" component="h2">
-                                    <div style={{textAlign:'center'}}>
+                                    <div className={classes.textAlignCenter}>
                                       {room.label}
                                     </div>
                                 </Typography>
@@ -115,7 +133,7 @@ export default function RoomCard(props: IProps) {
                     </Tooltip>
                   ): (
                       <Tooltip title={toolTipItem(room.data,room.roomAccount)} arrow>
-                      <Card className={classes.rootPaper} style={{backgroundColor:'#cc99ff'}} onClick={() => console.log(room.slug)}>
+                      <Card className={classes.occupiedColor} onClick={() => console.log(room.slug)}>
                         <Link href={room.slug}>
                           <CardActionArea>
                             <CardContent>
@@ -124,7 +142,7 @@ export default function RoomCard(props: IProps) {
                                   Unit
                                 </Typography>
                                 <Typography gutterBottom variant="h5" component="h2">
-                                    <div style={{textAlign:'center'}}>
+                                    <div className={classes.textAlignCenter}>
                                       {room.label}
                                     </div>
                                 </Typography>
