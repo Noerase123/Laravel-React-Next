@@ -111,8 +111,20 @@ export function TransitionsModal(props: IModal) {
             <h2 id="transition-modal-title">Download Contract?</h2>
             <Grid container>
               <Grid item xs={12}>
-                <Button style={{marginRight:10}} variant="contained">No</Button>
-                <Button variant="contained" color="primary">Yes</Button>
+                <Button
+                  style={{ marginRight: 10 }}
+                  variant="contained"
+                  onClick={handleClose}
+                >
+                  No
+                </Button>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={handleClose}
+                >
+                  Yes
+                </Button>
               </Grid>
             </Grid>
           </div>

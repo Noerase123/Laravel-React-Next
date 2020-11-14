@@ -4,8 +4,7 @@ import MuiAccordion from '@material-ui/core/Accordion';
 import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
 import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
-import {IRoom, ITenantData, IFloor} from '../../interface/Interfaces'
-import { ROOMS1st, ROOMS2nd } from '../../defaults/restData'
+import {IFloor} from '../../interface/Interfaces'
 import RoomCard from '../roomCard'
 
 const Accordion = withStyles({

@@ -1,5 +1,4 @@
 import React from "react";
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container'
 import NavDrawer from '../../components/dashboard/NavDrawer'
 import UnitView from '../../components/UnitView'
@@ -52,7 +51,7 @@ export default function UnitsDetails(props: IDetails) {
                     <Grid item xs={9}>
                         <Container>
                             <Typography variant="h5" gutterBottom>
-                                Room Information
+                                Room Information 
                             </Typography>
                             <SubList item={subs}/>
                             <br/>

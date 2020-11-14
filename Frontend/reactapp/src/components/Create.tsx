@@ -71,7 +71,6 @@ export default function Create(props: IData) {
   };
 
   const bldgs: IBuilding[] = BLDGS
-  const floors: string[] = FLOORS
   const roomType: string[] = ROOMTYPE
   const bldgType: string[] = BLDGTYPE
 
@@ -128,77 +127,57 @@ export default function Create(props: IData) {
                             </FormControl>
                           </TableCell>
                         ) : (
-                            <React.Fragment>
-                              {col === 'Floor' ? (
-                                <TableCell>
-                                  <FormControl className={classes.formControl} fullWidth>
-                                    <InputLabel id="demo-simple-select-label">select floor</InputLabel>
-                                    <Select
-                                      labelId="demo-simple-select-label"
-                                      id="demo-simple-select"
-                                      value={building}
-                                      onChange={handleChangeBuilding}
-                                    >
-                                      {floors.map(res => (
-                                        <MenuItem value={res}>{res}</MenuItem>
-                                      ))}
-                                    </Select>
-                                  </FormControl>
-                                </TableCell>
-                              ) : (
-                                  <React.Fragment>
-                                    {col === 'Room Type' ? (
-                                      <TableCell>
-                                        <FormControl className={classes.formControl} fullWidth>
-                                          <InputLabel id="demo-simple-select-label">select type</InputLabel>
-                                          <Select
-                                            labelId="demo-simple-select-label"
-                                            id="demo-simple-select"
-                                            value={building}
-                                            onChange={handleChangeBuilding}
-                                          >
-                                            {roomType.map(res => (
-                                              <MenuItem value={res}>{res}</MenuItem>
-                                            ))}
-                                          </Select>
-                                        </FormControl>
-                                      </TableCell>
-                                    ) : (
-                                      <React.Fragment>
-                                          {col === 'Building Type' ? (
-                                            <TableCell>
-                                              <FormControl className={classes.formControl} fullWidth>
-                                                <InputLabel id="demo-simple-select-label">select type</InputLabel>
-                                                <Select
-                                                  labelId="demo-simple-select-label"
-                                                  id="demo-simple-select"
-                                                  value={building}
-                                                  onChange={handleChangeBuilding}
-                                                >
-                                                  {bldgType.map(res => (
-                                                    <MenuItem value={res}>{res}</MenuItem>
-                                                  ))}
-                                                </Select>
-                                              </FormControl>
-                                            </TableCell>
-                                          ) : (
-                                              
-                                            <TableCell>
-                                                <TextField
-                                                  size="small"
-                                                  autoComplete="off"
-                                                  id="standard-basic"
-                                                  label={col.toLowerCase}
-                                                  fullWidth
-                                                  helperText={props.helperTxt}
-                                                />
-                                            </TableCell> 
-                                          )}
-                                      </React.Fragment>
-                                    )}
-                                  </React.Fragment>
-                              )} 
-                            </React.Fragment>
+                          <React.Fragment>
+                            {col === 'Room Type' ? (
+                              <TableCell>
+                                <FormControl className={classes.formControl} fullWidth>
+                                  <InputLabel id="demo-simple-select-label">select type</InputLabel>
+                                  <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={building}
+                                    onChange={handleChangeBuilding}
+                                  >
+                                    {roomType.map(res => (
+                                      <MenuItem value={res}>{res}</MenuItem>
+                                    ))}
+                                  </Select>
+                                </FormControl>
+                              </TableCell>
+                            ) : (
+                              <React.Fragment>
+                                  {col === 'Building Type' ? (
+                                    <TableCell>
+                                      <FormControl className={classes.formControl} fullWidth>
+                                        <InputLabel id="demo-simple-select-label">select type</InputLabel>
+                                        <Select
+                                          labelId="demo-simple-select-label"
+                                          id="demo-simple-select"
+                                          value={building}
+                                          onChange={handleChangeBuilding}
+                                        >
+                                          {bldgType.map(res => (
+                                            <MenuItem value={res}>{res}</MenuItem>
+                                          ))}
+                                        </Select>
+                                      </FormControl>
+                                    </TableCell>
+                                  ) : (
+                                      
+                                    <TableCell>
+                                        <TextField
+                                          size="small"
+                                          autoComplete="off"
+                                          id="standard-basic"
+                                          label={col.toLowerCase}
+                                          fullWidth
+                                          helperText={props.helperTxt}
+                                        />
+                                    </TableCell> 
+                                  )}
+                              </React.Fragment>
+                            )}
+                          </React.Fragment>
                         )}
                       </TableRow>
                     )
@@ -210,7 +189,7 @@ export default function Create(props: IData) {
                     <TableCell>
                       <div style={{float:'right'}}>
                         <Button variant="contained" style={{backgroundColor:DEFAULT_COLOR, color:'#fff'}}>
-                          Create
+                          ADD
                         </Button>
                       </div>
                     </TableCell>

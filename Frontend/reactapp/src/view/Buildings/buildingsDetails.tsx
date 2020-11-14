@@ -34,7 +34,7 @@ export default function BuildingsDetails(props: IDetails) {
   const itemData: IFloor[] = FLOORINFO
 
     const create = {
-        fields: ['Floor', 'Room Type', 'Capacity'],
+        fields: ['Floor'],
         title: 'floor',
         //helperTxt: 'Fill up details',
         helperTxt: '',
