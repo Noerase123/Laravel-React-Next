@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Avatar from '@material-ui/core/Avatar'
 import Typography from '@material-ui/core/Typography';
 import Modal from '@material-ui/core/Modal';
+import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import Backdrop from '@material-ui/core/Backdrop';
 import { useSpring, animated } from 'react-spring/web.cjs';
 import Button from '@material-ui/core/Button'
@@ -54,12 +55,21 @@ export default function TenantDetails(props: IData) {
 
                   <Grid item xs={12} style={{ backgroundColor: '#dedede' }}>
                       <SpringModal tenant={res}>
-                        <Avatar style={{ float: 'left' }} alt={res.bed} src="/static/images/avatar/1.jpg" />
-                      </SpringModal>
                       <div>
-                        <Typography style={{color:'#000'}}>{res.name}</Typography>
-                        <Typography color="inherit">{res.email}</Typography>
+                        <Grid container xs={12}>
+                          <Grid xs={4}>
+                          <Avatar alt={res.bed} src="/static/images/avatar/1.jpg" />
+                          </Grid>
+                          <Grid xs={4}>
+                          <Typography style={{color:'#000'}}>{res.name}</Typography>
+                          <Typography color="inherit">{res.email}</Typography>
+                          </Grid>
+                          <Grid xs={4}>
+                            <KeyboardArrowRightIcon style={{float:'right',height:'100%'}}/>
+                          </Grid>
+                        </Grid>
                       </div>
+                      </SpringModal>
                   </Grid>
                   
                   <Grid item xs={12} style={{textAlign:'left'}}>

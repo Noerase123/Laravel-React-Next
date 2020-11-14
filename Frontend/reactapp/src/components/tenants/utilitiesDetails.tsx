@@ -35,47 +35,28 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-interface IData {
-  tenants: ITenant[]
-}
-
-export default function UtilityDetails(props: IData) {
+export default function UtilityDetails() {
   const classes = useStyles();
   
   return (
     <div className={classes.root}>
-      <Grid container spacing={3}>
+      <Grid container spacing={2}>
+        {[1, 2, 3,4,5,6].map(res => (
+          <Grid item xs={12}>
+          <Paper className={classes.paper}>
+            <Grid container justify="flex-start" alignItems="flex-start" spacing={3}>
 
-          {props.tenants.map(res => (
-              <Grid item xs={6}>
-              <Paper className={classes.paper}>
+              <Grid item xs={12}>
+                <Typography style={{color:'#000'}}>{'Bed A - made payment thru online payment (GRAB)'}</Typography>
+              </Grid>
+              
+            </Grid>
 
-                <Grid container justify="flex-start" alignItems="flex-start" spacing={3}>
-
-                  <Grid item xs={12} style={{ backgroundColor: '#dedede' }}>
-                      <SpringModal tenant={res}>
-                        <Avatar style={{ float: 'left' }} alt={res.bed} src="/static/images/avatar/1.jpg" />
-                      </SpringModal>
-                      <div>
-                        <Typography style={{color:'#000'}}>{res.name}</Typography>
-                        <Typography color="inherit">{res.email}</Typography>
-                      </div>
-                  </Grid>
-                  
-                  <Grid item xs={12} style={{textAlign:'left'}}>
-                      {/* <div>
-                        <Typography>Bed Rate : {res.rentalRate}</Typography>
-                          <Typography>Move In: {res.moveIn}</Typography>
-                          <Typography>Move Out: {res.moveOut}</Typography>
-                      </div> */}
-                  </Grid>
-                  
-                </Grid>
-
-              </Paper>
-          </Grid>
-          ))}
-        </Grid>
+          </Paper>
+      </Grid>
+        ))}
+        
+      </Grid>
       </div>
   )
 }

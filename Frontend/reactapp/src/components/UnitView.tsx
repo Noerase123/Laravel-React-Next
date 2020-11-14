@@ -47,7 +47,7 @@ function a11yProps(index: any) {
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    backgroundColor: theme.palette.background.paper,
+    // backgroundColor: theme.palette.background.paper,
   },
 }));
 
@@ -81,7 +81,7 @@ export default function UnitView(props: IDetails) {
           >
             <Tab label="Tenants" {...a11yProps(0)} />
             <Tab label="Contracts" {...a11yProps(1)} />
-            <Tab label="Utilities" {...a11yProps(2)} />
+            <Tab label="Unit Activity" {...a11yProps(2)} />
           </Tabs>
         </AppBar>
         <SwipeableViews
@@ -96,7 +96,7 @@ export default function UnitView(props: IDetails) {
             <ContractDetails tenants={props.tenantData}/>
           </TabPanel>
           <TabPanel value={value} index={2} dir={theme.direction}>
-            <UtilityDetails tenants={props.tenantData}/>
+            <UtilityDetails/>
           </TabPanel>
         </SwipeableViews>
     </div>
