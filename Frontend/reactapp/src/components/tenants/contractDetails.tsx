@@ -87,14 +87,14 @@ export default function ContractDetails(props: IData) {
           ))}
   
           <Grid item xs={12}>
-            <div style={{backgroundColor: '#e1e1e1'}}>
-              <Paper className={classes.paperContract}>  
-              <Typography variant="button" display="block" gutterBottom>
-                Bed History
-              </Typography>
-              
+            <Typography variant="button" display="block" gutterBottom>
+            Bed History
+            </Typography>
+            <Paper className={classes.paperContract}>
+              <Paper>
+                BED A - John Isaac B Caasi
               </Paper>
-            </div>
+            </Paper>
           </Grid>
           
         </Grid>
