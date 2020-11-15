@@ -1,3 +1,3 @@
 cd Backend/node-mysql
 
-npm start
+touch touch.js

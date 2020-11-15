@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme, useTheme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Avatar from '@material-ui/core/Avatar'
@@ -8,15 +8,24 @@ import Modal from '@material-ui/core/Modal';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import Backdrop from '@material-ui/core/Backdrop';
 import { useSpring, animated } from 'react-spring/web.cjs';
-import Button from '@material-ui/core/Button'
 import PersonIcon from '@material-ui/icons/Person';
 import Tooltip from '@material-ui/core/Tooltip'
 import { ITenant } from '../../interface/Interfaces'
+
+import SwipeableViews from 'react-swipeable-views';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Box from '@material-ui/core/Box';
  
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       flexGrow: 1,
+    },
+    rootTab: {
+      backgroundColor: theme.palette.background.paper,
+      width: '100%',
     },
     paper: {
       padding: theme.spacing(2),
@@ -225,25 +234,114 @@ export function SpringModal(props: IModal) {
             </Grid>
             <br/>
             <Grid xs={12}>
-              <div style={{backgroundColor:'#808080'}}>
-                <Typography variant="overline" display="block" style={{padding:10, color:'#fff'}} gutterBottom>
-                  Basic Information
-                </Typography>
-              </div>
-              <div style={{backgroundColor:'#e1e1e1', height:320, overflow:'scroll'}}>
-                  <div style={{margin:20}}>
-                    {allData.map(data => (
-                      <div>
-                        <Typography>{data.label} {data.title}</Typography><br/>
-                      </div>
-                    ))}
-                  </div>
-              </div>
+              <InfoTabs>
+                {/* <div style={{ backgroundColor: '#808080' }}>
+                  <Typography variant="overline" display="block" style={{padding:10, color:'#fff'}} gutterBottom>
+                    Basic Information
+                  </Typography>
+                </div> */}
+                <div style={{backgroundColor:'#e1e1e1', height:320, overflow:'scroll'}}>
+                    <div style={{margin:20}}>
+                      {allData.map(data => (
+                        <div>
+                          <Typography>{data.label} {data.title}</Typography><br/>
+                        </div>
+                      ))}
+                    </div>
+                </div>
+              </InfoTabs>
+              
             </Grid>
 
           </div>
         </Fade>
       </Modal>
+    </div>
+  );
+}
+
+interface TabPanelProps {
+  children?: React.ReactNode;
+  dir?: string;
+  index: any;
+  value: any;
+}
+
+function TabPanel(props: TabPanelProps) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`full-width-tabpanel-${index}`}
+      aria-labelledby={`full-width-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box p={3}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+function a11yProps(index: any) {
+  return {
+    id: `full-width-tab-${index}`,
+    'aria-controls': `full-width-tabpanel-${index}`,
+  };
+}
+
+interface IPropsTabs {
+  children: React.ReactNode
+}
+
+export function InfoTabs(props: IPropsTabs) {
+  const classes = useStyles();
+  const theme = useTheme();
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
+    setValue(newValue);
+  };
+
+  const handleChangeIndex = (index: number) => {
+    setValue(index);
+  };
+
+  return (
+    <div className={classes.rootTab}>
+      <AppBar position="static" color="default">
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          indicatorColor="primary"
+          textColor="primary"
+          variant="fullWidth"
+          aria-label="full width tabs example"
+        >
+          <Tab label="Personal" {...a11yProps(0)} />
+          <Tab label="Rent" {...a11yProps(1)} />
+          <Tab label="Billing" {...a11yProps(2)} />
+        </Tabs>
+      </AppBar>
+      <SwipeableViews
+        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+        index={value}
+        onChangeIndex={handleChangeIndex}
+      >
+        <TabPanel value={value} index={0} dir={theme.direction}>
+          {props.children}
+        </TabPanel>
+        <TabPanel value={value} index={1} dir={theme.direction}>
+          {props.children}
+        </TabPanel>
+        <TabPanel value={value} index={2} dir={theme.direction}>
+          {props.children}
+        </TabPanel>
+      </SwipeableViews>
     </div>
   );
 }

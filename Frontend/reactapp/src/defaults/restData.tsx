@@ -42,6 +42,21 @@ export const DATALOGS = [
   },
 ]
 
+export const RESERVED = [
+  {
+    id: 1,
+    tenant: 'John Isaac',
+    bedReserve: 'Bed A',
+    moveIn: '09/22/20'
+  },
+  {
+    id: 2,
+    tenant: 'John Pedro',
+    bedReserve:'Bed B',
+    moveIn: '09/22/20'
+  }
+]
+
 export const ROOMS1st = [
     {
       label: '101',

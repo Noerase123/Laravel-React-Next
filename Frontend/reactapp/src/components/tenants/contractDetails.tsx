@@ -8,6 +8,7 @@ import Fade from '@material-ui/core/Fade';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import DescriptionIcon from '@material-ui/icons/Description';
+import Tooltip from '@material-ui/core/Tooltip'
 import Button from '@material-ui/core/Button'
 import { ITenant } from '../../interface/Interfaces'
  
@@ -20,6 +21,8 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: theme.spacing(2),
       textAlign: 'center',
       color: theme.palette.text.secondary,
+      height: '100%',
+      width:'100%'
     },
     paperContract: {
       padding: theme.spacing(2),
@@ -43,29 +46,6 @@ interface IData {
   tenants: ITenant[]
 }
 
-interface IContract {
-
-}
-
-const tenantContract = [
-  {
-    title: "Bed A's contract",
-    contract: 'https://localhost:3000/'
-  },
-  {
-    title: "Bed A's contract",
-    contract: 'https://localhost:3000/'
-  },
-  {
-    title: "Bed A's contract",
-    contract: 'https://localhost:3000/'
-  },
-  {
-    title: "Bed A's contract",
-    contract: 'https://localhost:3000/'
-  },
-]
-
 export default function ContractDetails(props: IData) {
   const classes = useStyles();
   
@@ -75,14 +55,14 @@ export default function ContractDetails(props: IData) {
 
           {props.tenants.map(res => (
             <Grid item xs={3}>
+            <Tooltip title="Click to download contract" arrow>
               <Paper className={classes.paper}>
-                <div>
-                  <TransitionsModal>
-                    <DescriptionIcon />
-                  </TransitionsModal>
+                <TransitionsModal>
+                  <DescriptionIcon />
                   <Typography style={{color:'#000'}}>{`${res.name}'s contract`}</Typography>
-                </div>
+                </TransitionsModal>
               </Paper>
+            </Tooltip>
             </Grid>
           ))}
   
@@ -90,11 +70,17 @@ export default function ContractDetails(props: IData) {
             <Typography variant="button" display="block" gutterBottom>
             Bed History
             </Typography>
-            <Paper className={classes.paperContract}>
-              <Paper>
-                BED A - John Isaac B Caasi
-              </Paper>
-            </Paper>
+            <Grid container spacing={1}>
+              {[1,2,3].map(bed => (
+                <Grid item xs={12}>
+                  <Paper className={classes.paperContract}>
+                    <Typography>
+                      Bed A - Move In
+                    </Typography>
+                  </Paper>
+                </Grid>
+              ))}
+            </Grid>
           </Grid>
           
         </Grid>

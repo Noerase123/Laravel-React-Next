@@ -4,7 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip'
-import { IDataLog } from '../../interface/Interfaces'
+import { IReserved } from '../../interface/Interfaces'
  
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -43,10 +43,10 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface IProps {
-  dataLog: IDataLog[]
+  reserved: IReserved[]
 }
 
-export default function ActivityLogs(props: IProps) {
+export default function ReservedTenant(props: IProps) {
   const classes = useStyles();
   
   return (
@@ -54,13 +54,13 @@ export default function ActivityLogs(props: IProps) {
       <Grid container spacing={3}>
         <div className={classes.itemLogs}>
 
-        {props.dataLog.map(res => (
+        {props.reserved.map(res => (
           <React.Fragment>
             <Tooltip title={
               <React.Fragment>
                 <div style={{width:300}}>
                   <Typography>
-                    {res.user} {res.message}
+                    {`${res.tenant} ${res.moveIn} ${res.bedReserve}`}
                   </Typography>
                 </div>
               </React.Fragment>
@@ -71,8 +71,7 @@ export default function ActivityLogs(props: IProps) {
                     <Grid item xs={12}>
                       <div>
                         <Typography variant="body2" gutterBottom>
-                          <b>{res.user}</b>
-                          {res.message.length > 55 ? `${res.message.substr(0, 55)}...` : res.message}
+                          <b>{res.tenant}</b> {res.bedReserve.length > 55 ? `${res.bedReserve.substr(0, 55)}...` : res.bedReserve} ({res.moveIn})
                         </Typography>
                       </div>
                     </Grid>

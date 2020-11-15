@@ -10,7 +10,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import {useRouter} from 'next/router';
+import { useRouter } from 'next/router';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -76,8 +76,7 @@ export default function Form(props:IProps) {
     };
 
     const next = () => {
-
-        router.push('/buildings')
+        router.push('register?page=2')
     }
 
     return (
@@ -136,23 +135,6 @@ export default function Form(props:IProps) {
                             Birth Place
                         </Typography> 
                         <TextField id="birthplace" size="small" label="Enter your Birthplace" variant="outlined" fullWidth />
-
-                        <Typography variant="subtitle1" gutterBottom>
-                            Tenant Type
-                        </Typography>
-                        <FormControl className={classes.formControl} fullWidth>
-                            <InputLabel id="tenantType">Select Type</InputLabel>
-                            <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
-                            value={age}
-                            onChange={handleChange}
-                            >
-                            <MenuItem value={'Student'}>Student</MenuItem>
-                            <MenuItem value={'Employee'}>Employee</MenuItem>
-                            <MenuItem value={'N/A'}>N/A</MenuItem>
-                            </Select>
-                        </FormControl>
 
                         <Typography variant="subtitle1" gutterBottom>
                             Primary Email Address

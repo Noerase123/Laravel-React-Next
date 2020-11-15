@@ -7,9 +7,11 @@ import Grid from '@material-ui/core/Grid'
 import SubList from '../../components/SubList'
 import { TENANTPERROOM } from '../../defaults/restData'
 import ActivityLogs from '../../components/tenants/ActivityLogs'
-import { ITenant, ISubs, IDataLog } from '../../interface/Interfaces'
+import ReservedTenant from '../../components/tenants/Reserved'
+import { ITenant, ISubs, IDataLog, IReserved } from '../../interface/Interfaces'
 import Unit from './UnitsData'
 import {DEFAULT_TITLE, DATALOGS} from '../../defaults/restData'
+import {RESERVED} from '../../defaults/restData'
 
 interface IDetails {
     id: string
@@ -21,6 +23,7 @@ export default function UnitsDetails(props: IDetails) {
 
     const tenants: ITenant[] = TENANTPERROOM
     const dataLogs: IDataLog[] = DATALOGS
+    const reserved: IReserved[] = RESERVED
 
     const subs: ISubs[] = [
         {
@@ -65,6 +68,12 @@ export default function UnitsDetails(props: IDetails) {
                             </Typography>
                             <br/>
                             <ActivityLogs dataLog={dataLogs}/>
+                            <br/><br/>
+                            <Typography variant="h5" gutterBottom>
+                                Reserved Bed Move-in
+                            </Typography>
+                            <br/>
+                            <ReservedTenant reserved={reserved}/>
                         </Container>
                     </Grid>
                 </Grid>

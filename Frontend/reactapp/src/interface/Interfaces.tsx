@@ -36,6 +36,13 @@ export interface IDataLog {
   message: string
 }
 
+export interface IReserved {
+  id: number
+  tenant: string
+  bedReserve: string
+  moveIn: string
+}
+
 export interface IUnit {
   id: number
   bldg: string
