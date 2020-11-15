@@ -221,25 +221,21 @@ export function SpringModal(props: IModal) {
           <div className={classes.paperModal}>
             
             <Grid container xs={12}>
-              <Grid item xs={3} style={{backgroundColor:'#e1e1e1', padding:15}}>
-                <PersonIcon style={{height:'100%',width:'100%',display:'block', backgroundColor:'#fefefe'}}/>
+              <Grid item xs={3} style={{backgroundColor: '#e1e1e1', padding:15}}>
+                <PersonIcon style={{ height: '100%', width: '100%', display: 'block', borderRadius: '100px', backgroundColor: '#fefefe' }} />
               </Grid>
-              <Grid item xs={9} style={{ backgroundColor: '#cdcdcd', padding: 30 }}>
+              <Grid item xs={9} style={{ backgroundColor: '#cdcdcd', borderRadius:'10px', padding: 15 }}>
                 {arrData.map(response => (
                   <div>
                     <Typography>{response}</Typography>
                   </div>
                 ))}
+                <PersonIcon style={{float:'right',height:'70%'}}/>
               </Grid>
             </Grid>
             <br/>
             <Grid xs={12}>
               <InfoTabs>
-                {/* <div style={{ backgroundColor: '#808080' }}>
-                  <Typography variant="overline" display="block" style={{padding:10, color:'#fff'}} gutterBottom>
-                    Basic Information
-                  </Typography>
-                </div> */}
                 <div style={{backgroundColor:'#e1e1e1', height:320, overflow:'scroll'}}>
                     <div style={{margin:20}}>
                       {allData.map(data => (
@@ -313,12 +309,11 @@ export function InfoTabs(props: IPropsTabs) {
 
   return (
     <div className={classes.rootTab}>
-      <AppBar position="static" color="default">
+      <AppBar position="static" style={{backgroundColor:'#fff'}}>
         <Tabs
           value={value}
           onChange={handleChange}
-          indicatorColor="primary"
-          textColor="primary"
+          style={{backgroundColor:'#808080',color:'#fff'}}
           variant="fullWidth"
           aria-label="full width tabs example"
         >
