@@ -523,6 +523,66 @@ export const BLDGS = [
     },
 ]
 
+export const TENANTPERSONALINFO = {
+  firstName: 'John Isaac',
+  middleName: 'Bernabe',
+  lastName: 'Caasi',
+  birthDate: 'September 22, 2020',
+  birthPlace: 'Mandaluyong City',
+  city: 'Makati City',
+  street: 'Harvard St.',
+  gender: 'male',
+  email: 'noerase12@gmail.com',
+  company: 'MyTown',
+  salary: '30,000-45,000',
+  companyEmail: 'isaac.caasi@puls.ph',
+  companySched: '1-2pm',
+  emergencyName: 'Aida',
+  emergencyRelation: 'Mother',
+  emergencyContact: '09770466342',
+}
+
+export const BILLINGINVOICE = [
+  {
+    invoiceID: 1,
+    invoiceRef: 'SYD1012020304',
+    billingDate: 'Nov 17, 2020',
+    dueDate: 'Nov 31, 2020',
+    status: 1,
+    isOnline: 1,
+    dateCreated: 'Nov 15, 2020',
+  },
+  {
+    invoiceID: 2,
+    invoiceRef: 'SYD1012020305',
+    billingDate: 'Nov 17, 2020',
+    dueDate: 'Nov 31, 2020',
+    status: 0,
+    isOnline: 1,
+    dateCreated: 'Nov 15, 2020',
+  },
+  {
+    invoiceID: 3,
+    invoiceRef: 'SYD1012020306',
+    billingDate: 'Nov 17, 2020',
+    dueDate: 'Nov 31, 2020',
+    status: 1,
+    isOnline: 1,
+    dateCreated: 'Nov 15, 2020',
+  },
+]
+
+export const EXTRAFEE = [
+  {
+    label: 'Parking Fee',
+    value: '10,000',
+  },
+  {
+    label: 'Locker Fee',
+    value: '500',
+  },
+]
+
 export const TENANTPERROOM = [
     {
         name: 'John Isaac',

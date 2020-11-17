@@ -10,7 +10,7 @@ import Backdrop from '@material-ui/core/Backdrop';
 import { useSpring, animated } from 'react-spring/web.cjs';
 import PersonIcon from '@material-ui/icons/Person';
 import Tooltip from '@material-ui/core/Tooltip'
-import { ITenant } from '../../interface/Interfaces'
+import { ITenant, IPersonalInfo, IBillingInfo, IExtraInfo } from '../../interface/Interfaces'
 
 import SwipeableViews from 'react-swipeable-views';
 import AppBar from '@material-ui/core/AppBar';
@@ -48,6 +48,9 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface IData {
   tenants: ITenant[]
+  personal: IPersonalInfo
+  billing: IBillingInfo[]
+  extraFee: IExtraInfo[]
 }
 
 export default function TenantDetails(props: IData) {
@@ -64,7 +67,7 @@ export default function TenantDetails(props: IData) {
                 <Grid container justify="flex-start" alignItems="flex-start" spacing={3}>
 
                   <Grid item xs={12} style={{ backgroundColor: '#dedede' }}>
-                      <SpringModal tenant={res}>
+                      <SpringModal tenant={res} personal={props.personal} billing={props.billing} extraFee={props.extraFee}>
                       <div>
                         <Tooltip title="Click to see more" arrow>
                           <Grid container xs={12}>
@@ -136,6 +139,9 @@ const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(props, re
 interface IModal {
   children: React.ReactNode
   tenant: ITenant
+  personal: IPersonalInfo
+  billing: IBillingInfo[]
+  extraFee: IExtraInfo[]
 }
 
 export function SpringModal(props: IModal) {
@@ -154,51 +160,8 @@ export function SpringModal(props: IModal) {
   const contactNum = props.tenant.contactNum
   const email = props.tenant.email
   const city = props.tenant.city
-  const province = props.tenant.province
-  const houseNum = props.tenant.houseNum
-  const company = props.tenant.company
-  const occupation = props.tenant.occupation
-
-  interface IAllData {
-    label: string
-    title: string
-  }
 
   const arrData = [name,contactNum,email,city]
-  const allData:IAllData[] = [
-    {
-      label: 'Name',
-      title: name 
-    },
-    {
-      label: 'Phone',
-      title: contactNum 
-    },
-    {
-      label: 'Email',
-      title: email 
-    },
-    {
-      label: 'City',
-      title: city
-    },
-    {
-      label: 'Province',
-      title: province 
-    },
-    {
-      label: 'House #',
-      title: houseNum 
-    },
-    {
-      label: 'Company',
-      title: company 
-    },
-    {
-      label: 'Occupation',
-      title: occupation 
-    },
-  ]
 
   return (
     <div>
@@ -235,17 +198,8 @@ export function SpringModal(props: IModal) {
             </Grid>
             <br/>
             <Grid xs={12}>
-              <InfoTabs>
-                <div style={{backgroundColor:'#e1e1e1', height:320, overflow:'scroll'}}>
-                    <div style={{margin:20}}>
-                      {allData.map(data => (
-                        <div>
-                          <Typography>{data.label} {data.title}</Typography><br/>
-                        </div>
-                      ))}
-                    </div>
-                </div>
-              </InfoTabs>
+              
+              <InfoTabs personalInfo={props.personal} billingInfo={props.billing} extraFeeInfo={props.extraFee} />
               
             </Grid>
 
@@ -291,7 +245,9 @@ function a11yProps(index: any) {
 }
 
 interface IPropsTabs {
-  children: React.ReactNode
+  personalInfo: IPersonalInfo,
+  billingInfo: IBillingInfo[]
+  extraFeeInfo: IExtraInfo[]
 }
 
 export function InfoTabs(props: IPropsTabs) {
@@ -307,6 +263,8 @@ export function InfoTabs(props: IPropsTabs) {
     setValue(index);
   };
 
+  const person = props.personalInfo
+
   return (
     <div className={classes.rootTab}>
       <AppBar position="static" style={{backgroundColor:'#fff'}}>
@@ -318,8 +276,8 @@ export function InfoTabs(props: IPropsTabs) {
           aria-label="full width tabs example"
         >
           <Tab label="Personal" {...a11yProps(0)} />
-          <Tab label="Rent" {...a11yProps(1)} />
-          <Tab label="Billing" {...a11yProps(2)} />
+          <Tab label="Billing" {...a11yProps(1)} />
+          <Tab label="Extra Fees" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
       <SwipeableViews
@@ -328,13 +286,58 @@ export function InfoTabs(props: IPropsTabs) {
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
-          {props.children}
+
+          <div style={{backgroundColor:'#e1e1e1', height:320, overflow:'scroll'}}>
+            <div style={{margin:20}}>  
+              <Typography> Firstname : {person.firstName}</Typography>
+              <Typography> Middlename : {person.middleName} </Typography>
+              <Typography> Lastname : {person.lastName} </Typography>
+              <Typography> Birth Date : {person.birthDate} </Typography>
+              <Typography> Birth place : {person.birthPlace} </Typography>
+              <Typography> City : {person.city} </Typography>
+              <Typography> Street : {person.street} </Typography>
+              <Typography> Gender : {person.gender} </Typography>
+              <Typography> Email : {person.email} </Typography>
+              <Typography> Company : {person.company} </Typography>
+              <Typography> Salary : {person.salary} </Typography>
+              <Typography> Company Email : {person.companyEmail} </Typography>
+              <Typography> Company Schedule : {person.companySched} </Typography>
+              <Typography> Emergency Name : {person.emergencyName} </Typography>
+              <Typography> Emergency Relation : {person.emergencyRelation} </Typography>
+              <Typography> Emergency Contact : {person.emergencyContact} </Typography>
+            </div>
+          </div>
+
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          {props.children}
+          <div style={{backgroundColor:'#e1e1e1',height:320, overflow:'scroll'}}>
+            {props.billingInfo.map(billing => (
+              <React.Fragment>
+                <Paper style={{ margin: 10 }}>
+                  <div style={{margin:20}}>
+                    <Typography> invoiceID : {billing.invoiceID} </Typography>
+                    <Typography> invoiceReference : {billing.invoiceRef} </Typography>
+                    <Typography> billing Date : {billing.billingDate} </Typography>
+                    <Typography> due Date : {billing.dueDate} </Typography>
+                    <Typography> status : {billing.status} </Typography>
+                    <Typography> online : {billing.isOnline} </Typography>
+                    <Typography> date created : {billing.dateCreated} </Typography>
+                  </div>
+                </Paper>
+              </React.Fragment>
+            ))}
+          </div>
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
-          {props.children}
+          <div style={{backgroundColor:'#e1e1e1',height:320, overflow:'scroll'}}>
+            <div style={{margin:20}}>
+            {props.extraFeeInfo.map(res => (
+              <React.Fragment>
+                <Typography> {res.label} {res.value} </Typography>
+              </React.Fragment>
+            ))}
+            </div>
+          </div>
         </TabPanel>
       </SwipeableViews>
     </div>

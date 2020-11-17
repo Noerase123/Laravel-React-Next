@@ -5,13 +5,12 @@ import UnitView from '../../components/UnitView'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 import SubList from '../../components/SubList'
-import { TENANTPERROOM } from '../../defaults/restData'
+import { BILLINGINVOICE, EXTRAFEE, TENANTPERROOM } from '../../defaults/restData'
 import ActivityLogs from '../../components/tenants/ActivityLogs'
 import ReservedTenant from '../../components/tenants/Reserved'
-import { ITenant, ISubs, IDataLog, IReserved } from '../../interface/Interfaces'
+import { ITenant, ISubs, IDataLog, IReserved, IBillingInfo, IExtraInfo, IPersonalInfo } from '../../interface/Interfaces'
 import Unit from './UnitsData'
-import {DEFAULT_TITLE, DATALOGS} from '../../defaults/restData'
-import {RESERVED} from '../../defaults/restData'
+import {DEFAULT_TITLE, DATALOGS, RESERVED, TENANTPERSONALINFO} from '../../defaults/restData'
 
 interface IDetails {
     id: string
@@ -24,6 +23,9 @@ export default function UnitsDetails(props: IDetails) {
     const tenants: ITenant[] = TENANTPERROOM
     const dataLogs: IDataLog[] = DATALOGS
     const reserved: IReserved[] = RESERVED
+    const personalInfo: IPersonalInfo = TENANTPERSONALINFO
+    const billingInfo: IBillingInfo[] = BILLINGINVOICE
+    const extrafeeInfo: IExtraInfo[] = EXTRAFEE
 
     const subs: ISubs[] = [
         {
@@ -58,7 +60,12 @@ export default function UnitsDetails(props: IDetails) {
                             </Typography>
                             <SubList item={subs}/>
                             <br/>
-                            <UnitView tenantData={tenants} dataLogs={dataLogs}/>
+                            <UnitView 
+                                tenantData={tenants}
+                                personalInfo={personalInfo}
+                                billingInfo={billingInfo}
+                                extraFeeInfo={extrafeeInfo}
+                            />
                         </Container>
                     </Grid>
                     <Grid item xs={3}>

@@ -71,15 +71,17 @@ export default function ContractDetails(props: IData) {
             Bed History
             </Typography>
             <Grid container spacing={1}>
-              {[1,2,3].map(bed => (
-                <Grid item xs={12}>
-                  <Paper className={classes.paperContract}>
-                    <Typography>
-                      Bed A - Move In
-                    </Typography>
-                  </Paper>
-                </Grid>
-              ))}
+              <div style={{height:320, width:'100%', overflow:'scroll'}}>
+                {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17].map(bed => (
+                  <Grid item xs={12} style={{margin:10}}>
+                    <Paper className={classes.paperContract}>
+                      <Typography>
+                        Bed A - Move In
+                      </Typography>
+                    </Paper>
+                  </Grid>
+                ))}
+              </div>
             </Grid>
           </Grid>
           

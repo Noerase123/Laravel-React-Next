@@ -82,7 +82,7 @@ export interface ITenant {
   moveOut: string
 }
 
-export interface ITenantInfo {
+export interface IPersonalInfo {
   firstName: string
   middleName: string
   lastName: string
@@ -99,6 +99,21 @@ export interface ITenantInfo {
   emergencyName: string
   emergencyRelation: string
   emergencyContact: string
+}
+
+export interface IBillingInfo {
+  invoiceID: number
+  invoiceRef: string
+  billingDate: string
+  dueDate: string
+  status: number
+  isOnline: number
+  dateCreated: string
+}
+
+export interface IExtraInfo {
+  label: string
+  value: string
 }
 
 export interface ISubs {
