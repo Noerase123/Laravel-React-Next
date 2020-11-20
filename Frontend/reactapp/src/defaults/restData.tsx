@@ -716,4 +716,49 @@ export const FLOORINFO = [
   },
 ]
 
+export const BLDGPAYMENT = [
+  {
+    bldg: 'Amsterdam',
+    type: 'First Class',
+    invoices: 100,
+    payments: 30,
+    latestDate: 70
+  },
+  {
+    bldg: 'Amsterdam',
+    type: 'First Class',
+    invoices: 100,
+    payments: 30,
+    latestDate: 70
+  },
+  {
+    bldg: 'Amsterdam',
+    type: 'First Class',
+    invoices: 100,
+    payments: 30,
+    latestDate: 70
+  },
+  {
+    bldg: 'Amsterdam',
+    type: 'First Class',
+    invoices: 100,
+    payments: 30,
+    latestDate: 70
+  },
+  {
+    bldg: 'Amsterdam',
+    type: 'First Class',
+    invoices: 100,
+    payments: 30,
+    latestDate: 70
+  },
+  {
+    bldg: 'Amsterdam',
+    type: 'First Class',
+    invoices: 100,
+    payments: 30,
+    latestDate: 70
+  },
+]
+
 //////////////////////////////////////////end json objects //////////////////////////////////////////

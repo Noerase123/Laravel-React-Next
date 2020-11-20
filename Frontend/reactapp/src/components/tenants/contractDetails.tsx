@@ -66,18 +66,35 @@ export default function ContractDetails(props: IData) {
             </Grid>
           ))}
   
-          <Grid item xs={12}>
-            <Typography variant="button" display="block" gutterBottom>
-            Bed History
-            </Typography>
-            <Grid container spacing={1}>
+          <Grid item xs={6}>
+            <Typography variant="h6" gutterBottom>
+                UTILITY TRACKING
+            </Typography><br/>
+            <Grid container spacing={1} style={{textAlign:'center'}}>
+                <Grid container style={{backgroundColor:'#e1e1e1', padding:5}}>
+                  <Grid item xs={6}>
+                    <Typography variant="button" display="block" gutterBottom>
+                      Electricity
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={5}>
+                    <Typography variant="button" display="block" gutterBottom>
+                      Water
+                    </Typography>
+                  </Grid>
+                </Grid>
               <div style={{height:320, width:'100%', overflow:'scroll'}}>
                 {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17].map(bed => (
                   <Grid item xs={12} style={{margin:10}}>
                     <Paper className={classes.paperContract}>
-                      <Typography>
-                        Bed A - Move In
-                      </Typography>
+                      <Grid container>
+                        <Grid item xs={6}>
+                          <Typography>1,200</Typography>
+                        </Grid>
+                        <Grid item xs={6}>
+                          <Typography>1,886</Typography>
+                        </Grid>
+                      </Grid>
                     </Paper>
                   </Grid>
                 ))}
@@ -85,6 +102,46 @@ export default function ContractDetails(props: IData) {
             </Grid>
           </Grid>
           
+          <Grid item xs={6}>
+            <Typography variant="h6" gutterBottom>
+                BED HISTORY
+            </Typography><br/>
+            <Grid container spacing={1} style={{textAlign:'center'}}>
+                <Grid container style={{backgroundColor:'#e1e1e1', padding:5}}>
+                  <Grid item xs={3}>
+                    <Typography variant="button" display="block" gutterBottom>
+                      Bed unit
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography variant="button" display="block" gutterBottom>
+                      Transaction
+                    </Typography>
+                  </Grid>
+                </Grid>
+              <div style={{height:320, width:'100%', overflow:'scroll'}}>
+                {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17].map(bed => (
+                  <Grid item xs={12} style={{margin:10}}>
+                    <Paper className={classes.paperContract}>
+                      <Grid container>
+                        <Grid item xs={2}>
+                          <Typography variant="button" display="block" gutterBottom>
+                            Bed {bed}
+                          </Typography>
+                        </Grid>
+                        <Grid item xs={6}>
+                          <Typography variant="button" display="block" gutterBottom>
+                            Move in
+                          </Typography>
+                        </Grid>
+                      </Grid>
+                    </Paper>
+                  </Grid>
+                ))}
+              </div>
+            </Grid>
+          </Grid>
+
         </Grid>
       </div>
   )

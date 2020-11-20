@@ -92,7 +92,12 @@ export default function UnitView(props: IDetails) {
           onChangeIndex={handleChangeIndex}
         >
           <TabPanel value={value} index={0} dir={theme.direction}>
-            <TenantDetails tenants={props.tenantData} personal={props.personalInfo} billing={props.billingInfo} extraFee={props.extraFeeInfo} />
+            <TenantDetails 
+              tenants={props.tenantData} 
+              personal={props.personalInfo} 
+              billing={props.billingInfo} 
+              extraFee={props.extraFeeInfo} 
+            />
           </TabPanel>
           <TabPanel value={value} index={1} dir={theme.direction}>
             <ContractDetails tenants={props.tenantData}/>

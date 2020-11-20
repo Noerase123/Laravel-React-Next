@@ -16,6 +16,14 @@ export interface IBuilding {
   occupancy: number
 }
 
+export interface IPayment {
+  bldg: string
+  type: string
+  invoices: number
+  payments: number
+  latestDate: number
+}
+
 export interface ITenantData {
   name: string
   moveOut: string

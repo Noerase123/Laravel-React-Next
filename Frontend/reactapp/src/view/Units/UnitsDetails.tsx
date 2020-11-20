@@ -3,6 +3,7 @@ import Container from '@material-ui/core/Container'
 import NavDrawer from '../../components/dashboard/NavDrawer'
 import UnitView from '../../components/UnitView'
 import Typography from '@material-ui/core/Typography'
+import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
 import SubList from '../../components/SubList'
 import { BILLINGINVOICE, EXTRAFEE, TENANTPERROOM } from '../../defaults/restData'
@@ -60,6 +61,14 @@ export default function UnitsDetails(props: IDetails) {
                             </Typography>
                             <SubList item={subs}/>
                             <br/>
+                            <Paper style={{backgroundColor:'#e1e1e1', padding:10}}>
+                                <Typography variant="button">Information</Typography>
+                                <Typography> - <b>Room capacity of 4 tenant</b></Typography>
+                                <Typography> - <b>Shower extension</b></Typography>
+                                <Typography> - <b>Got cleaning schedule every 2 weeks</b></Typography>
+                                <Typography> - <b>Tenants Nurses and call center agent</b></Typography>
+                            </Paper>
+                            <br/>
                             <UnitView 
                                 tenantData={tenants}
                                 personalInfo={personalInfo}
@@ -70,14 +79,14 @@ export default function UnitsDetails(props: IDetails) {
                     </Grid>
                     <Grid item xs={3}>
                         <Container>
-                            <Typography variant="h5" gutterBottom>
-                                Unit Activities
+                            <Typography variant="h6" gutterBottom>
+                                UNIT ACTIVITIES
                             </Typography>
                             <br/>
                             <ActivityLogs dataLog={dataLogs}/>
                             <br/><br/>
-                            <Typography variant="h5" gutterBottom>
-                                Reserved Bed Move-in
+                            <Typography variant="h6" gutterBottom>
+                                MOVE-IN RESERVATION
                             </Typography>
                             <br/>
                             <ReservedTenant reserved={reserved}/>

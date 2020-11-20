@@ -186,6 +186,11 @@ export default function NavDrawer(props:INavProps) {
       iconName: <PersonAddIcon/>,
       name: 'Register'
     },
+    {
+      link : '/billing',
+      iconName: <AssessmentIcon/>,
+      name: 'Payments'
+    },
   ]
 
   const roomItems: IItemList[] = [
@@ -306,9 +311,7 @@ export default function NavDrawer(props:INavProps) {
           <Typography variant="h6" noWrap>
             {props.title}
           </Typography>
-          <div style={{float:'right'}}>
-            <SettingsIcon/>
-          </div>
+          <SettingsIcon/>
         </Toolbar>
       </AppBar>
       <Drawer

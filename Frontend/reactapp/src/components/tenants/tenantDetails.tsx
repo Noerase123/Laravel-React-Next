@@ -17,6 +17,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
+import Personal from './tenantComponent/personal';
  
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -43,6 +44,10 @@ const useStyles = makeStyles((theme: Theme) =>
       minHeight: 500,
       padding: 20,
     },
+    personalLayout: {
+      float:'right', 
+      marginRight:10
+    }
   }),
 );
 
@@ -159,9 +164,13 @@ export function SpringModal(props: IModal) {
   const name = props.tenant.name
   const contactNum = props.tenant.contactNum
   const email = props.tenant.email
-  const city = props.tenant.city
+  const bed = props.tenant.bed
+  const type = props.tenant.tenantType
+  const moveIn = props.tenant.moveIn
+  const moveOut = props.tenant.moveOut
 
-  const arrData = [name,contactNum,email,city]
+  const arrData = [name,contactNum,email]
+  const arrData2 = [`Bed ${bed}`,`${type} Type`,`Move in ${moveIn}`,`Move out ${moveOut}`]
 
   return (
     <div>
@@ -188,11 +197,22 @@ export function SpringModal(props: IModal) {
                 <PersonIcon style={{ height: '100%', width: '100%', display: 'block', borderRadius: '100px', backgroundColor: '#fefefe' }} />
               </Grid>
               <Grid item xs={9} style={{ backgroundColor: '#cdcdcd', borderRadius:'10px', padding: 15 }}>
-                {arrData.map(response => (
-                  <div>
-                    <Typography>{response}</Typography>
-                  </div>
-                ))}
+                <Grid container>
+                  <Grid item xs={6}>
+                    {arrData.map(response => (
+                      <div>
+                        <Typography>{response}</Typography>
+                      </div>
+                    ))}
+                  </Grid>
+                  <Grid item xs={6}>
+                    {arrData2.map(response => (
+                      <div>
+                        <Typography>{response}</Typography>
+                      </div>
+                    ))}
+                  </Grid>
+                </Grid>
                 <PersonIcon style={{float:'right',height:'70%'}}/>
               </Grid>
             </Grid>
@@ -264,6 +284,8 @@ export function InfoTabs(props: IPropsTabs) {
   };
 
   const person = props.personalInfo
+  const billing = props.billingInfo
+  const extrafee = props.extraFeeInfo
 
   return (
     <div className={classes.rootTab}>
@@ -288,30 +310,15 @@ export function InfoTabs(props: IPropsTabs) {
         <TabPanel value={value} index={0} dir={theme.direction}>
 
           <div style={{backgroundColor:'#e1e1e1', height:320, overflow:'scroll'}}>
-            <div style={{margin:20}}>  
-              <Typography> Firstname : {person.firstName}</Typography>
-              <Typography> Middlename : {person.middleName} </Typography>
-              <Typography> Lastname : {person.lastName} </Typography>
-              <Typography> Birth Date : {person.birthDate} </Typography>
-              <Typography> Birth place : {person.birthPlace} </Typography>
-              <Typography> City : {person.city} </Typography>
-              <Typography> Street : {person.street} </Typography>
-              <Typography> Gender : {person.gender} </Typography>
-              <Typography> Email : {person.email} </Typography>
-              <Typography> Company : {person.company} </Typography>
-              <Typography> Salary : {person.salary} </Typography>
-              <Typography> Company Email : {person.companyEmail} </Typography>
-              <Typography> Company Schedule : {person.companySched} </Typography>
-              <Typography> Emergency Name : {person.emergencyName} </Typography>
-              <Typography> Emergency Relation : {person.emergencyRelation} </Typography>
-              <Typography> Emergency Contact : {person.emergencyContact} </Typography>
+            <div style={{margin:20}}>
+              <Personal person={person}/>
             </div>
           </div>
 
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
           <div style={{backgroundColor:'#e1e1e1',height:320, overflow:'scroll'}}>
-            {props.billingInfo.map(billing => (
+            {billing.map(billing => (
               <React.Fragment>
                 <Paper style={{ margin: 10 }}>
                   <div style={{margin:20}}>
@@ -331,7 +338,7 @@ export function InfoTabs(props: IPropsTabs) {
         <TabPanel value={value} index={2} dir={theme.direction}>
           <div style={{backgroundColor:'#e1e1e1',height:320, overflow:'scroll'}}>
             <div style={{margin:20}}>
-            {props.extraFeeInfo.map(res => (
+            {extrafee.map(res => (
               <React.Fragment>
                 <Typography> {res.label} {res.value} </Typography>
               </React.Fragment>
