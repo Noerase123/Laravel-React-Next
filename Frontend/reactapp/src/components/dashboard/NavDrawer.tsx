@@ -18,12 +18,17 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
+import LocalLaundryServiceIcon from '@material-ui/icons/LocalLaundryService';
 import MailIcon from '@material-ui/icons/Mail';
 import DashboardIcon from '@material-ui/icons/Dashboard';
+import RoomServiceIcon from '@material-ui/icons/RoomService';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import BuildIcon from '@material-ui/icons/Build';
 import AssessmentIcon from '@material-ui/icons/Assessment';
 import HomeIcon from '@material-ui/icons/Home';
-import SettingsIcon from '@material-ui/icons/Settings'
+import SettingsIcon from '@material-ui/icons/Settings';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Collapse from '@material-ui/core/Collapse';
@@ -138,6 +143,7 @@ export default function NavDrawer(props:INavProps) {
   const [open, setOpen] = React.useState(true);
   const [openRoom, setOpenRoom] = React.useState(false);
   const [openReport, setOpenReport] = React.useState(false);
+  const [openService, setOpenService] = React.useState(false);
   const [openBackDrop, setOpenBackDrop] = React.useState(false)
 
   const handleDrawerOpen = () => {
@@ -150,6 +156,10 @@ export default function NavDrawer(props:INavProps) {
 
   const handleClickRoom = () => {
     setOpenRoom(!openRoom);
+  };
+
+  const handleClickService = () => {
+    setOpenService(!openService);
   };
 
   const handleClickReport = () => {
@@ -188,8 +198,13 @@ export default function NavDrawer(props:INavProps) {
     },
     {
       link : '/billing',
-      iconName: <AssessmentIcon/>,
+      iconName: <AccountBalanceIcon/>,
       name: 'Payments'
+    },
+    {
+      link : '/trends',
+      iconName: <AssessmentIcon/>,
+      name: 'Trends'
     },
   ]
 
@@ -211,6 +226,24 @@ export default function NavDrawer(props:INavProps) {
     },
   ]
 
+  const servicesItems: IItemList[] = [
+    {
+      link:'/cleaningServices',
+      iconName: <LocalLaundryServiceIcon/>,
+      name: 'Cleaning Services'
+    },
+    {
+      link:'/repairServices',
+      iconName: <BuildIcon/>,
+      name: 'Repair Services'
+    },
+    {
+      link:'/roomServices',
+      iconName: <RoomServiceIcon/>,
+      name: 'Room Services'
+    },
+  ]
+
   const reportItems: IItemList[] = [
     {
       link : '/tenantsReports/',
@@ -229,22 +262,17 @@ export default function NavDrawer(props:INavProps) {
     },
   ]
 
-  const mailItems: IItemList[] = [
+  const settingsItems: IItemList[] = [
     {
-      link: '/allMails',
+      link: '/accountSettings',
       iconName: <MailIcon />,
-      name: 'All mail'
+      name: 'Account Settings'
     },
     {
-      link: '/trash',
+      link: '/logout',
       iconName: <MailIcon />,
-      name: 'Trash'
-    },
-    {
-      link: '/spam',
-      iconName: <MailIcon />,
-      name: 'Spam'
-    },
+      name: 'Logout'
+    }
   ]
 
   const ItemList = (dataArr: IItemList[],navType: number) => {
@@ -311,7 +339,14 @@ export default function NavDrawer(props:INavProps) {
           <Typography variant="h6" noWrap>
             {props.title}
           </Typography>
-          <SettingsIcon/>
+          <IconButton
+            className={classes.menuButton}
+            edge="end"
+            aria-haspopup="true"
+            color="inherit"
+          >
+            <SettingsIcon />
+          </IconButton>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -327,13 +362,21 @@ export default function NavDrawer(props:INavProps) {
           }),
         }}
       >
-        <div className={classes.toolbar} >
+        <div className={classes.toolbar} 
+        style={{backgroundColor:'#5e35b1'}}>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </div>
+        
+        <div style={{textAlign:'center', backgroundColor:'#5e35b1'}}>
+          <AccountCircle style={{ color: '#fff', height: 100, width: '100%' }} />
+          <Typography id="personName" style={{color:'#fff',width: '100%', float:'right'}}>Mang Thomas</Typography>
+          <Typography id="personDept" style={{color:'#fff',width: '100%', float:'right', marginBottom:20}}>UFC Brand Dept</Typography>
+        </div>
+        
         <Divider />
-        <List>
+        <List style={{overflow:'auto'}}>
 
             {ItemList(navItems,1)}
             
@@ -347,6 +390,17 @@ export default function NavDrawer(props:INavProps) {
             <Collapse in={openRoom} timeout="auto" unmountOnExit>
               {ItemList(roomItems,2)}
             </Collapse>
+            
+            <ListItem button onClick={handleClickService}>
+              <ListItemIcon>
+                <RoomServiceIcon />
+              </ListItemIcon>
+              <ListItemText primary="Services" color="inherit" />
+              {openService ? <ExpandLess /> : <ExpandMore />}
+            </ListItem>
+            <Collapse in={openService} timeout="auto" unmountOnExit>
+              {ItemList(servicesItems,2)}
+            </Collapse>
 
             <ListItem button onClick={handleClickReport}>
               <ListItemIcon>
@@ -359,10 +413,10 @@ export default function NavDrawer(props:INavProps) {
               {ItemList(reportItems,2)}
             </Collapse>
 
-        </List>
+        {/* </List> */}
         <Divider />
-        <List>
-          {ItemList(mailItems,1)}
+        {/* <List> */}
+          {ItemList(settingsItems,1)}
         </List>
       </Drawer>
       <main className={classes.content}>
