@@ -77,7 +77,7 @@ export default function table(props: ITable) {
             <TableBody>
               {props.rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
                 return (
-                  <Link href={`beds?details=${row.name}`}>
+                  <Link href={`beds?details=${row.name.split(' ').join('-')}`}>
                     <TableRow hover role="checkbox" tabIndex={-1} key={row.name} onClick={() => console.log(row.name)}>
                       <TableCell>
                         {row.name}

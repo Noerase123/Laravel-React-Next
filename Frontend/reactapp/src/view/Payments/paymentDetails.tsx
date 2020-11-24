@@ -1,13 +1,12 @@
 import React from "react";
 import Container from '@material-ui/core/Container'
 import NavDrawer from '../../components/dashboard/NavDrawer'
-import BuildingView from '../../components/BuildingView'
+import TableInvoices from './tableInvoices'
 import Typography from '@material-ui/core/Typography'
 import SubList from '../../components/SubList'
-import { ISubs,IFloor } from '../../interface/Interfaces'
+import { ISubs,IInvoice } from '../../interface/Interfaces'
 import Payments from '../Payments/payments'
-import { DEFAULT_TITLE, FLOORINFO } from '../../defaults/restData'
-import CreateButton from '../../components/Create'
+import { DEFAULT_TITLE, INVOICES } from '../../defaults/restData'
 
 interface IDetails {
     itemID: string
@@ -30,15 +29,17 @@ export default function PaymentDetails(props: IDetails) {
         }
     ]
 
+    // bldg: string
+    // unit: string
+    // bed: string
+    // refNo: string
+    // billingDate: string
+    // dueDate: string
+    // totalAmount: number
+    // totalRemaining: number
 
-  const itemData: IFloor[] = FLOORINFO
-
-    const create = {
-        fields: ['Floor'],
-        title: 'floor',
-        //helperTxt: 'Fill up details',
-        helperTxt: '',
-    }
+    const columns = ['Building', 'Unit', 'Reference', 'Billing Date', 'Total Remaining', 'Status']
+    const rows: IInvoice[] = INVOICES
     
     return (
         <div>
@@ -52,9 +53,7 @@ export default function PaymentDetails(props: IDetails) {
                         </Typography>
                         <SubList item={subs}/>
                         <br/>
-                        <CreateButton fields={create.fields} title={create.title} helperTxt={create.helperTxt}/>
-                        <br/>
-                        <BuildingView itemID={props.itemID} itemData={itemData}/>
+                        <TableInvoices columns={columns} rows={rows} />
                     </Container>
                 </NavDrawer>
             )}

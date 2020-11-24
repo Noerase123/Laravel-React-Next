@@ -2,12 +2,24 @@ import Beds from '../view/Beds/bedsData'
 
 export default function buildings() {
 
-    // const urlParams = new URLSearchParams(global.window.location.search);
-    // const params = urlParams.get('details') as string;
+  var params:string = ''
 
-    return (
-        <div>
-          <Beds/>
-        </div>
-    )
+  try {
+      if (window !== undefined) {
+          const urlParams = new URLSearchParams(window.location.search);
+          params = urlParams.get('details') as string;
+      } else {
+          params = ''
+      }
+  } catch (e) {
+      console.log('====================================');
+      console.log(e);
+      console.log('====================================');
+  }
+
+  return (
+      <div>
+        <Beds/>
+      </div>
+  )
 }

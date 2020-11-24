@@ -7,7 +7,7 @@ import {IPayment} from '../../interface/Interfaces'
 
 export default function Payments() {
     
-    const columns = ['Name', 'Type', 'Invoices', 'Payments', 'Latest Date']
+    const columns = ['Building Name', 'Building Type', 'Invoices', 'Payments', 'Latest Date']
     const rows: IPayment[] = BLDGPAYMENT
     return (
         <div>

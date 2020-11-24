@@ -761,4 +761,40 @@ export const BLDGPAYMENT = [
   },
 ]
 
+export const INVOICES = [
+  {
+    bldg: 'Amsterdam',
+    unit: '101',
+    bed: 'A',
+    refNo: 'AMS2020001122',
+    billingDate: 'June 13, 2020',
+    dueDate: 'June 31, 2020',
+    totalAmount: '15,000.00',
+    totalRemaining: '15,000.00',
+    billingStatus: 'Paid'
+  },
+  {
+    bldg: 'Amsterdam',
+    unit: '101',
+    bed: 'A',
+    refNo: 'AMS2020001122',
+    billingDate: 'June 13, 2020',
+    dueDate: 'June 31, 2020',
+    totalAmount: 15000.00,
+    totalRemaining: 15000.00,
+    billingStatus: 'Unpaid'
+  },
+  {
+    bldg: 'Amsterdam',
+    unit: '101',
+    bed: 'A',
+    refNo: 'AMS2020001122',
+    billingDate: 'June 13, 2020',
+    dueDate: 'June 31, 2020',
+    totalAmount: 15000.00,
+    totalRemaining: 15000.00,
+    billingStatus: 'Paid'
+  },
+]
+
 //////////////////////////////////////////end json objects //////////////////////////////////////////

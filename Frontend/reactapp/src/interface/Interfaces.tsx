@@ -24,6 +24,18 @@ export interface IPayment {
   latestDate: number
 }
 
+export interface IInvoice {
+  bldg: string
+  unit: string
+  bed: string
+  refNo: string
+  billingDate: string
+  dueDate: string
+  totalAmount: string
+  totalRemaining: string
+  billingStatus: string
+}
+
 export interface ITenantData {
   name: string
   moveOut: string
