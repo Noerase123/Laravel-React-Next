@@ -108,6 +108,7 @@ export interface IPersonalInfo {
   lastName: string
   birthDate: string
   birthPlace: string
+  contactNo: string
   city: string
   street: string
   gender: string

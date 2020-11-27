@@ -529,6 +529,7 @@ export const TENANTPERSONALINFO = {
   lastName: 'Caasi',
   birthDate: 'September 22, 2020',
   birthPlace: 'Mandaluyong City',
+  contactNo: '+63977 046 6342',
   city: 'Makati City',
   street: 'Harvard St.',
   gender: 'male',

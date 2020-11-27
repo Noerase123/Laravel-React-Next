@@ -29,15 +29,6 @@ export default function PaymentDetails(props: IDetails) {
         }
     ]
 
-    // bldg: string
-    // unit: string
-    // bed: string
-    // refNo: string
-    // billingDate: string
-    // dueDate: string
-    // totalAmount: number
-    // totalRemaining: number
-
     const columns = ['Building', 'Unit', 'Reference', 'Billing Date', 'Total Remaining', 'Status']
     const rows: IInvoice[] = INVOICES
     

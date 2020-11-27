@@ -1,4 +1,4 @@
-import Beds from '../view/Beds/bedsData'
+import BedDetails from '../view/Beds/BedDetails'
 
 export default function buildings() {
 
@@ -19,7 +19,7 @@ export default function buildings() {
 
   return (
       <div>
-        <Beds/>
+        <BedDetails params={params} />
       </div>
   )
 }

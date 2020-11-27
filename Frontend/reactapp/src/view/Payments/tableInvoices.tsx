@@ -211,11 +211,21 @@ export function SpringModal(props: IProps) {
                 <h2 id="spring-modal-title">{`${props.invoice.bldg} ${props.invoice.unit} ${props.invoice.bed}`}</h2>
               </Grid>
               <Grid item xs={6}>
-                <h4 style={{float:'right'}}>via Grab Pay</h4>
+                <h4 style={{float:'right'}}>
+                    {props.invoice.billingStatus === 'Paid' ? (
+                      <div style={{color:'green'}}>
+                        <Typography variant="button">Billing Status : <b>{props.invoice.billingStatus}</b></Typography>
+                      </div>
+                    ): (
+                      <div style={{color:'orange'}}>
+                        <Typography variant="button">Billing Status : <b>{props.invoice.billingStatus}</b></Typography>
+                      </div>
+                    )}
+                </h4>
               </Grid>
             </Grid>
             <p id="spring-modal-description">Monthly invoice of the tenant for the month of <b>{'July'}</b></p><br />
-            <Grid container xs={8} spacing={3} style={{border: '1px solid #000', textAlign:'center'}}>
+            <Grid container xs={12} spacing={3} style={{border: '1px solid #000', textAlign:'center'}}>
               <Grid item xs={6}>
                 <Typography variant="button">Billing Date</Typography>
                 <h3>
